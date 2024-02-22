@@ -1,5 +1,3 @@
-<span style="font-size:2.5em; font-weight:bold;">The-Odin-Project</span>
-
 Projects made from following The Odin Project.
 
 [01_Landing_Page](https://blazion09.github.io/The-Odin-Project/01_Landing_Page/)
