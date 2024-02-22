@@ -2,7 +2,7 @@
 
 Projects made from following The Odin Project.
 
-[01_Landing_Page]([URL](https://blazion09.github.io/The-Odin-Project/01_Landing_Page/))
+[01_Landing_Page](https://blazion09.github.io/The-Odin-Project/01_Landing_Page/)
 
 [02_Odin_Recipes]([URL](https://blazion09.github.io/The-Odin-Project/02_Odin_Recipes/))
 
