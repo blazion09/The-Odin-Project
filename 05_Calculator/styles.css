@@ -1,0 +1,67 @@
+.btn {
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn#operator {
+  background-color: rgb(199, 83, 83);
+}
+
+.btn#operator:hover {
+  background-color: rgb(203, 40, 40);
+}
+
+.btn {
+  /* ... your existing styles ... */
+  transition: transform 0.2s ease;
+}
+
+.btn:active {
+  transform: scale(
+    0.9
+  ); /* You can adjust the scale value for your desired effect */
+}
+
+.btn:hover {
+  background-color: grey;
+}
+
+.display {
+  width: 225px;
+  height: 40px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  text-align: right;
+  background-color: white;
+}
+
+/* .btn#clear {
+    width: auto;
+} */
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.calculator {
+  border: 1px solid #ccc;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgb(193, 167, 167);
+  border-radius: 5px;
+  margin-top: 20px;
+}

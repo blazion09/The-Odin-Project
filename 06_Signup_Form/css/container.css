@@ -1,0 +1,65 @@
+.container {
+  display: flex;
+  width: min(1500px, 100vw);
+  margin: auto;
+  height: 100vh;
+}
+
+/* || LEFT CONTAINER */
+.leftContainer {
+  position: relative;
+  width: var(--img-container-width);
+}
+
+.textLogo {
+  font-family: norse;
+  position: absolute;
+  z-index: 10;
+  color: white;
+  font-size: 5rem;
+  top: 20%;
+  left: 25%;
+}
+
+img {
+  width: 100%;
+  /* max-height: 100%; */
+  height: 100%;
+  display: block;
+}
+/* ... */
+
+
+/* || RIGHT CONTAINER */
+.rightContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.paragraphContainer {
+  background-color: rgb(223, 229, 231);
+}
+
+.formContainer {
+  background-color: rgb(252, 252, 252);
+  box-shadow: 4px 4px 4px rgba(114, 111, 111, 0.5);
+  z-index: 1;
+}
+
+.buttonContainer {
+  background-color: var(--top-bottom-color);
+}
+
+.paragraphContainer p {
+  font-size: 18px;
+  padding-left: 4%;
+  padding-bottom: 3%;
+  margin: 0;
+  width: max(300px,80%);
+  font-weight: bold;
+}
+
+.rightContainer h3 {
+  padding-left: 4%;
+}
+/* ... */

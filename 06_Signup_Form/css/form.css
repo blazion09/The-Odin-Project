@@ -1,0 +1,47 @@
+form {
+  display: flex;
+  padding-left: 4%;
+  position: relative;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+}
+
+fieldset {
+  border: none;
+  width: 20%;
+  padding: 0;
+  height: 5%;
+}
+
+fieldset + fieldset {
+  margin-left: 10%;
+}
+
+form button {
+  position: absolute;
+  top: 120%;
+  bottom: calc();
+  background-color: #596d48;
+  width: 200px;
+  height: 50px;
+  color: white;
+}
+
+label {
+  font-family: lato;
+  font-size: 0.8rem;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+input {
+  border-color: #e5e7eb;
+  width: 200px;
+}
