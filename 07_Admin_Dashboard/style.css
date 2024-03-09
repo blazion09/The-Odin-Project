@@ -19,15 +19,12 @@
 .sidebar {
   grid-row: 1/3;
   background-color: var(--clr-blue);
+  display: grid;
+  padding: 1.25rem;
 }
 
 .sidebar h1 {
   font-weight: bolder;
-}
-
-.main-nav,
-.sub-nav {
-  margin-top: 1.25rem;
 }
 
 .header {
