@@ -50,6 +50,14 @@ body {
   grid-template-columns: 50px 3fr 1fr 1fr;
   gap: 10px;
   text-align: right;
+  align-items: center;
+}
+
+.search input {
+  height: 100%;
+  border-radius: 1rem;
+  background-color: var(--clr-grey);
+  border: none;
 }
 
 .header-tab {
