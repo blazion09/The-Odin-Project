@@ -38,7 +38,8 @@ body {
 .sidebar h1 {
   font-weight: bolder;
   display: flex;
-  font-size: 36px;
+  align-items: center;
+  font-size: 30px;
 }
 
 .sidebar h1 svg {
@@ -97,7 +98,7 @@ body {
 }
 
 .header-tab .profile-name {
-  color: red;
+  font-weight: bold;
   grid-row: 2/3;
   grid-column: 2 / 3;
 }
@@ -152,11 +153,18 @@ body {
   grid-column: 2 / 3;
 }
 
+.announcement-wrapper {
+  background-color: white;
+  margin: 10px;
+  height: 90%;
+}
+
 /* padding */
 
 .sidebar,
 .header,
-.content-grid {
+.content-grid,
+.card {
   padding: 15px;
 }
 
