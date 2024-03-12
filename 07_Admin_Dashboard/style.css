@@ -160,6 +160,17 @@ body {
   padding: 20px;
 }
 
+.card svg {
+  height: 20px;
+}
+
+.card-action {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.625rem;
+  margin-top: 30px;
+}
+
 .announcement {
   margin-bottom: 30px;
 }
