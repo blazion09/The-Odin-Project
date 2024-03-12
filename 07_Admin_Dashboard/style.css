@@ -130,7 +130,8 @@ body {
 .content-grid {
   background-color: var(--clr-grey);
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 2.5fr 1fr;
+  grid-template-rows: 1fr;
   gap: 10px;
   box-shadow: inset 0 5px 10px -5px #888888;
 }
@@ -150,23 +151,38 @@ body {
   margin: 10px;
 }
 
-.trending {
-  grid-row: 2 / 3;
-  grid-column: 2 / 3;
+.card,
+.announcement-wrapper,
+.trending-wrapper {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+  padding: 20px;
 }
 
-.announcement-wrapper {
+.announcement {
+  margin-bottom: 30px;
+}
+
+.announcement-wrapper,
+.trending-wrapper {
   background-color: white;
   margin: 10px;
-  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.announcement-item,
+.trending-item {
+  margin: 10px;
 }
 
 /* padding */
 
 .sidebar,
 .header,
-.content-grid,
-.card {
+.content-grid {
   padding: 30px;
 }
 
