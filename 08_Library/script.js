@@ -63,6 +63,7 @@ function createCardDIV() {
     let bookNumber = "book" + myLibrary.indexOf(book);
     let card = document.createElement("div");
     card.setAttribute("id", bookNumber);
+    card.classList.add("card");
     shelve.appendChild(card);
     //add book detail to each card
     bookDetails.forEach((detail) => {
@@ -76,4 +77,11 @@ function createCardDIV() {
   });
 }
 
-function removeCardDIV() {}
+function removeCardDIV() {
+  let allCard = document.querySelectorAll(".card");
+  allCard.forEach((card) => {
+    if (card) {
+      card.remove();
+    }
+  });
+}
