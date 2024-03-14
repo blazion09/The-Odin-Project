@@ -1,23 +1,31 @@
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, status) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.read = read;
+  this.status = status;
   this.info = function () {
     //The Hobbit by J.R.R. Tolkien, 295 pages, not read yet
-    return title + " by " + author + ", " + pages + " pages, " + read;
+    return title + " by " + author + ", " + pages + " pages, " + status;
   };
 }
 
 //Book("Cinderella", "Writer", 44, "Finish reading");
 
 function addBookToLibrary() {
-  let title = prompt("What is the book title?");
-  let author = prompt("What is the author name?");
-  let book = {};
-  book.title = title;
-  book.author = author;
+  let title = document.getElementById("title");
+  let author = document.getElementById("author");
+  let pages = document.getElementById("pages");
+  let status = document.getElementById("status");
+  let book = new Book(title.value, author.value, pages.value, status.value);
   myLibrary.push(book);
 }
+
+let submitBtn = document.getElementById("submit-button");
+submitBtn.addEventListener("click", addBookToLibrary);
+
+document.getElementById("form").addEventListener("submit", function (event) {
+  event.preventDefault();
+  this.reset(); // Clears the form
+});
