@@ -11,8 +11,6 @@ function Book(title, author, pages, status) {
   };
 }
 
-//Book("Cinderella", "Writer", 44, "Finish reading");
-
 function addBookToLibrary() {
   let title = document.getElementById("title");
   let author = document.getElementById("author");
@@ -29,3 +27,27 @@ document.getElementById("form").addEventListener("submit", function (event) {
   event.preventDefault();
   this.reset(); // Clears the form
 });
+
+submitBtn.addEventListener("click", addLibraryToShelve);
+
+function addLibraryToShelve() {
+  myLibrary.forEach((book) => removeBookFromDOM(book));
+  myLibrary.forEach((book) => {
+    addBookToDOM(book);
+  });
+}
+
+function addBookToDOM(book) {
+  let shelve = document.querySelector(".shelve");
+  let newBook = document.createElement("div");
+  newBook.classList.add("book-title");
+  shelve.appendChild(newBook);
+  newBook.textContent = book.title;
+}
+
+function removeBookFromDOM() {
+  let book = document.querySelector(".book-title");
+  if (book) {
+    book.remove();
+  }
+}
