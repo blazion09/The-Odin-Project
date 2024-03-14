@@ -1,4 +1,5 @@
 const myLibrary = [];
+// const bookDetails = ["title", "author", "pages", "status"];
 
 function Book(title, author, pages, status) {
   this.title = title;
@@ -29,3 +30,17 @@ document.getElementById("form").addEventListener("submit", function (event) {
   event.preventDefault();
   this.reset(); // Clears the form
 });
+
+//add book to DOM----------------------
+
+const bookDetails = ["title", "author", "pages", "status"];
+let shelve = document.querySelector(".shelve");
+
+function createDIV() {
+  bookDetails.forEach((detail) => {
+    let DOM = document.createElement("div");
+    DOM.setAttribute("id", detail);
+    DOM.classList.add("book");
+    shelve.appendChild(DOM);
+  });
+}
