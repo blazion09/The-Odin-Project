@@ -37,7 +37,28 @@ function addLibraryToShelve() {
   });
 }
 
+function removeBookFromDOM() {
+  let bookTitle = document.querySelector(".book-title");
+  let bookAuthor = document.querySelector(".book-author");
+  if ((bookTitle, bookAuthor)) {
+    bookTitle.remove();
+    bookAuthor.remove();
+  }
+}
+
+function addCardToDOM() {
+  let shelve = document.querySelector(".shelve");
+  let card = document.createElement("div");
+  card.classList.add("card");
+  shelve.appendChild(card);
+}
+
 function addBookToDOM(book) {
+  addBookTitleToDOM(book);
+  addBookAuthorToDOM(book);
+}
+
+function addBookTitleToDOM(book) {
   let shelve = document.querySelector(".shelve");
   let newBook = document.createElement("div");
   newBook.classList.add("book-title");
@@ -45,9 +66,10 @@ function addBookToDOM(book) {
   newBook.textContent = book.title;
 }
 
-function removeBookFromDOM() {
-  let book = document.querySelector(".book-title");
-  if (book) {
-    book.remove();
-  }
+function addBookAuthorToDOM(book) {
+  let shelve = document.querySelector(".shelve");
+  let newBook = document.createElement("div");
+  newBook.classList.add("book-author");
+  shelve.appendChild(newBook);
+  newBook.textContent = book.author;
 }
