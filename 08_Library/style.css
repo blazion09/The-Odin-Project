@@ -23,4 +23,11 @@ button {
 .shelve {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  width: 400px;
+}
+
+.card {
+  background-color: grey;
+  margin: 10px;
+  border-left: #f87171 solid 5px;
 }

@@ -1,26 +1,4 @@
-const myLibrary = [
-  {
-    title: "book1",
-    author: "author1",
-    pages: "11",
-    status: "done",
-  },
-  {
-    title: "book2",
-    author: "author2",
-    pages: "22",
-    status: "done",
-  },
-  {
-    title: "book3",
-    author: "author3",
-    pages: "33",
-    status: "done",
-  },
-];
-// const bookDetails = ["title", "author", "pages", "status"];
-
-// const myLibrary = [];
+const myLibrary = [];
 
 function Book(title, author, pages, status) {
   this.title = title;
@@ -45,7 +23,11 @@ function addBookToLibrary() {
 }
 
 let submitBtn = document.getElementById("submit-button");
-submitBtn.addEventListener("click", addBookToLibrary);
+submitBtn.addEventListener("click", () => {
+  addBookToLibrary();
+  removeCardDIV();
+  createCardDIV();
+});
 
 document.getElementById("form").addEventListener("submit", function (event) {
   event.preventDefault();
@@ -65,11 +47,11 @@ function createCardDIV() {
     card.setAttribute("id", bookNumber);
     card.classList.add("card");
     shelve.appendChild(card);
+
     //add book detail to each card
     bookDetails.forEach((detail) => {
       let DOM = document.createElement("div");
       DOM.setAttribute("class", detail);
-
       //add text to each DOM
       DOM.textContent = book[detail];
       card.appendChild(DOM);
