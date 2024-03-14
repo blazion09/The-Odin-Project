@@ -67,3 +67,14 @@ function removeCardDIV() {
     }
   });
 }
+
+//delete button to remove book
+
+function createDeleteButton() {
+  let allCard = document.querySelectorAll(".card");
+  allCard.forEach((card) => {
+    let button = document.createElement("button");
+    button.textContent = "Delete";
+    card.appendChild(button);
+  });
+}
