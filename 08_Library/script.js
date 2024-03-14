@@ -47,7 +47,12 @@ function createCardDIV() {
     card.setAttribute("id", bookNumber);
     card.classList.add("card");
     shelve.appendChild(card);
-
+    //add delete button
+    let deletebutton = document.createElement("button");
+    deletebutton.textContent = "Delete";
+    deletebutton.classList.add("delete-button");
+    card.appendChild(deletebutton);
+    deletebutton.setAttribute("data-book", bookNumber);
     //add book detail to each card
     bookDetails.forEach((detail) => {
       let DOM = document.createElement("div");
@@ -69,12 +74,3 @@ function removeCardDIV() {
 }
 
 //delete button to remove book
-
-function createDeleteButton() {
-  let allCard = document.querySelectorAll(".card");
-  allCard.forEach((card) => {
-    let button = document.createElement("button");
-    button.textContent = "Delete";
-    card.appendChild(button);
-  });
-}
