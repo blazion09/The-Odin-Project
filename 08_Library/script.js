@@ -5,13 +5,7 @@ function Book(title, author, pages, status) {
   this.author = author;
   this.pages = pages;
   this.status = status;
-  this.info = function () {
-    //The Hobbit by J.R.R. Tolkien, 295 pages, not read yet
-    return title + " by " + author + ", " + pages + " pages, " + status;
-  };
 }
-
-//Book("Cinderella", "Writer", 44, "Finish reading");
 
 function addBookToLibrary() {
   let title = document.getElementById("title");
@@ -47,12 +41,14 @@ function createCardDIV() {
     card.setAttribute("id", bookNumber);
     card.classList.add("card");
     shelve.appendChild(card);
+
     //add delete button
     let deletebutton = document.createElement("button");
     deletebutton.textContent = "Delete";
     deletebutton.classList.add("delete-button");
     card.appendChild(deletebutton);
     deletebutton.setAttribute("data-book", bookNumber);
+
     //add book detail to each card
     bookDetails.forEach((detail) => {
       let DOM = document.createElement("div");
