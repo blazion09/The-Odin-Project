@@ -17,10 +17,12 @@ function addBookToLibrary() {
 }
 
 let submitBtn = document.getElementById("submit-button");
+
 submitBtn.addEventListener("click", () => {
   addBookToLibrary();
   removeCardDIV();
   createCardDIV();
+  deleteBook();
 });
 
 document.getElementById("form").addEventListener("submit", function (event) {
@@ -47,7 +49,7 @@ function createCardDIV() {
     deletebutton.textContent = "Delete";
     deletebutton.classList.add("delete-button");
     card.appendChild(deletebutton);
-    deletebutton.setAttribute("data-book", bookNumber);
+    deletebutton.setAttribute("data-book", myLibrary.indexOf(book));
 
     //add book detail to each card
     bookDetails.forEach((detail) => {
@@ -70,3 +72,15 @@ function removeCardDIV() {
 }
 
 //delete button to remove book
+function deleteBook() {
+  let deleteButton = document.querySelectorAll(".delete-button");
+  deleteButton.forEach((button) => {
+    button.addEventListener("click", function () {
+      let indexNumber = button.dataset.book;
+      myLibrary.splice(indexNumber, 1);
+      removeCardDIV();
+      createCardDIV();
+      deleteBook();
+    });
+  });
+}
