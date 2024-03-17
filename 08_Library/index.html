@@ -5,17 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Library</title>
     <script src="script.js" defer></script>
-    <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main>
+    <header>
       <h1>Library</h1>
+    </header>
+    <main>
       <form id="form" action="">
-        <input type="text" id="title" placeholder="Title..." />
-        <input type="text" id="author" placeholder="Author..." />
-        <input type="text" id="pages" placeholder="Number of Pages..." />
-        <input type="text" id="status" placeholder="Read Status..." />
+        <input
+          type="text"
+          id="title"
+          placeholder="Title..."
+          autocomplete="off"
+        />
+        <input
+          type="text"
+          id="author"
+          placeholder="Author..."
+          autocomplete="off"
+        />
+        <input
+          type="text"
+          id="pages"
+          placeholder="Number of Pages..."
+          autocomplete="off"
+        />
+        <div class="read-status">
+          <legend>Read Status</legend>
+          <input type="radio" name="read" id="read" value="Read" />
+          <label for="read">Read</label>
+
+          <input type="radio" name="read" id="unread" checked value="Unread" />
+          <label for="unread">Unread</label>
+        </div>
+
         <button type="submit" id="submit-button">Add Book to Library</button>
       </form>
       <div class="shelve"></div>

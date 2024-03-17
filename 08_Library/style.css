@@ -1,8 +1,20 @@
-body {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+* {
+  box-sizing: border-box;
+  font-size: 20px;
+}
+
+header {
+  padding-top: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  padding: 40px;
 }
 
 form {
@@ -13,4 +25,17 @@ form {
 input,
 button {
   margin-top: 10px;
+}
+
+.shelve {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: grey;
+  margin: 10px;
+  border-left: #f87171 solid 5px;
+  width: 200px;
+  height: 160px;
 }
