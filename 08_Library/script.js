@@ -11,9 +11,19 @@ function addBookToLibrary() {
   let title = document.getElementById("title");
   let author = document.getElementById("author");
   let pages = document.getElementById("pages");
-  let status = document.getElementById("status");
-  let book = new Book(title.value, author.value, pages.value, status.value);
+  let status = getSelectedRadioValue();
+  let book = new Book(title.value, author.value, pages.value, status);
   myLibrary.push(book);
+}
+
+function getSelectedRadioValue() {
+  let readInput = document.getElementsByName("read");
+
+  for (let i = 0; i < readInput.length; i++) {
+    if (readInput[i].checked) {
+      return readInput[i].value;
+    }
+  }
 }
 
 let submitBtn = document.getElementById("submit-button");
@@ -51,6 +61,8 @@ function createCardDIV() {
     card.appendChild(deletebutton);
     deletebutton.setAttribute("data-book", myLibrary.indexOf(book));
 
+    //add toggle read/unread status
+
     //add book detail to each card
     bookDetails.forEach((detail) => {
       let DOM = document.createElement("div");
@@ -72,11 +84,11 @@ function removeCardDIV() {
 }
 
 //delete button to remove book
-function deleteBook() {
+function deleteBook(indexNumber) {
   let deleteButton = document.querySelectorAll(".delete-button");
   deleteButton.forEach((button) => {
     button.addEventListener("click", function () {
-      let indexNumber = button.dataset.book;
+      indexNumber = button.dataset.book;
       myLibrary.splice(indexNumber, 1);
       removeCardDIV();
       createCardDIV();
@@ -84,3 +96,5 @@ function deleteBook() {
     });
   });
 }
+
+//toggle read status

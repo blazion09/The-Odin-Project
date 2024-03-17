@@ -32,12 +32,15 @@
           placeholder="Number of Pages..."
           autocomplete="off"
         />
-        <input
-          type="text"
-          id="status"
-          placeholder="Read Status..."
-          autocomplete="off"
-        />
+        <div class="read-status">
+          <legend>Read Status</legend>
+          <input type="radio" name="read" id="read" checked value="Read" />
+          <label for="read">Read</label>
+
+          <input type="radio" name="read" id="unread" value="Unread" />
+          <label for="unread">Unread</label>
+        </div>
+
         <button type="submit" id="submit-button">Add Book to Library</button>
       </form>
       <div class="shelve"></div>
