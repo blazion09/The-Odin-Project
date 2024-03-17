@@ -33,6 +33,7 @@ submitBtn.addEventListener("click", () => {
   removeCardDIV();
   createCardDIV();
   deleteBook();
+  toggleReadStatus();
 });
 
 document.getElementById("form").addEventListener("submit", function (event) {
@@ -53,6 +54,7 @@ function createCardDIV() {
     card.setAttribute("id", bookNumber);
     card.classList.add("card");
     shelve.appendChild(card);
+    card.setAttribute("data-book", myLibrary.indexOf(book));
 
     //add delete button
     let deletebutton = document.createElement("button");
@@ -61,19 +63,25 @@ function createCardDIV() {
     card.appendChild(deletebutton);
     deletebutton.setAttribute("data-book", myLibrary.indexOf(book));
 
-    //add toggle read/unread status
+    //add read/unread button
+    let readButton = document.createElement("button");
+    readButton.textContent = "Change Read Status";
+    readButton.classList.add("read-button");
+    card.appendChild(readButton);
+    readButton.setAttribute("data-book", myLibrary.indexOf(book));
 
     //add book detail to each card
     bookDetails.forEach((detail) => {
       let DOM = document.createElement("div");
       DOM.setAttribute("class", detail);
       //add text to each DOM
-      DOM.textContent = book[detail];
+      DOM.textContent = detail + ": " + book[detail];
       card.appendChild(DOM);
     });
   });
 }
 
+//remove all card
 function removeCardDIV() {
   let allCard = document.querySelectorAll(".card");
   allCard.forEach((card) => {
@@ -83,7 +91,7 @@ function removeCardDIV() {
   });
 }
 
-//delete button to remove book
+//delete function to remove book
 function deleteBook(indexNumber) {
   let deleteButton = document.querySelectorAll(".delete-button");
   deleteButton.forEach((button) => {
@@ -98,3 +106,19 @@ function deleteBook(indexNumber) {
 }
 
 //toggle read status
+function toggleReadStatus() {
+  let statusBtn = document.querySelectorAll(".read-button");
+  statusBtn.forEach((button) => {
+    button.addEventListener("click", function () {
+      let indexNumber = button.dataset.book;
+      if (myLibrary[indexNumber].status === "Read") {
+        myLibrary[indexNumber].status = "Unread";
+      } else {
+        myLibrary[indexNumber].status = "Read";
+      }
+      removeCardDIV();
+      createCardDIV();
+      toggleReadStatus();
+    });
+  });
+}
