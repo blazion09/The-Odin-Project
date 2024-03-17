@@ -41,48 +41,84 @@ document.getElementById("form").addEventListener("submit", function (event) {
   this.reset(); // Clears the form
 });
 
-submitBtn.addEventListener("click", addLibraryToShelve);
+//add book to DOM----------------------
 
-function addLibraryToShelve() {
-  myLibrary.forEach((book) => removeBookFromDOM(book));
+const bookDetails = ["title", "author", "pages", "status"];
+let shelve = document.querySelector(".shelve");
+
+//create card and book for each array index
+function createCardDIV() {
   myLibrary.forEach((book) => {
-    addBookToDOM(book);
+    let bookNumber = "book" + myLibrary.indexOf(book);
+    let card = document.createElement("div");
+    card.setAttribute("id", bookNumber);
+    card.classList.add("card");
+    shelve.appendChild(card);
+    card.setAttribute("data-book", myLibrary.indexOf(book));
+
+    //add delete button
+    let deletebutton = document.createElement("button");
+    deletebutton.textContent = "Delete";
+    deletebutton.classList.add("delete-button");
+    card.appendChild(deletebutton);
+    deletebutton.setAttribute("data-book", myLibrary.indexOf(book));
+
+    //add read/unread button
+    let readButton = document.createElement("button");
+    readButton.textContent = "Change Read Status";
+    readButton.classList.add("read-button");
+    card.appendChild(readButton);
+    readButton.setAttribute("data-book", myLibrary.indexOf(book));
+
+    //add book detail to each card
+    bookDetails.forEach((detail) => {
+      let DOM = document.createElement("div");
+      DOM.setAttribute("class", detail);
+      //add text to each DOM
+      DOM.textContent = detail + ": " + book[detail];
+      card.appendChild(DOM);
+    });
   });
 }
 
-function removeBookFromDOM() {
-  let bookTitle = document.querySelector(".book-title");
-  let bookAuthor = document.querySelector(".book-author");
-  if ((bookTitle, bookAuthor)) {
-    bookTitle.remove();
-    bookAuthor.remove();
-  }
+//remove all card
+function removeCardDIV() {
+  let allCard = document.querySelectorAll(".card");
+  allCard.forEach((card) => {
+    if (card) {
+      card.remove();
+    }
+  });
 }
 
-function addCardToDOM() {
-  let shelve = document.querySelector(".shelve");
-  let card = document.createElement("div");
-  card.classList.add("card");
-  shelve.appendChild(card);
+//delete function to remove book
+function deleteBook(indexNumber) {
+  let deleteButton = document.querySelectorAll(".delete-button");
+  deleteButton.forEach((button) => {
+    button.addEventListener("click", function () {
+      indexNumber = button.dataset.book;
+      myLibrary.splice(indexNumber, 1);
+      removeCardDIV();
+      createCardDIV();
+      deleteBook();
+    });
+  });
 }
 
-function addBookToDOM(book) {
-  addBookTitleToDOM(book);
-  addBookAuthorToDOM(book);
-}
-
-function addBookTitleToDOM(book) {
-  let shelve = document.querySelector(".shelve");
-  let newBook = document.createElement("div");
-  newBook.classList.add("book-title");
-  shelve.appendChild(newBook);
-  newBook.textContent = book.title;
-}
-
-function addBookAuthorToDOM(book) {
-  let shelve = document.querySelector(".shelve");
-  let newBook = document.createElement("div");
-  newBook.classList.add("book-author");
-  shelve.appendChild(newBook);
-  newBook.textContent = book.author;
+//toggle read status
+function toggleReadStatus() {
+  let statusBtn = document.querySelectorAll(".read-button");
+  statusBtn.forEach((button) => {
+    button.addEventListener("click", function () {
+      let indexNumber = button.dataset.book;
+      if (myLibrary[indexNumber].status === "Read") {
+        myLibrary[indexNumber].status = "Unread";
+      } else {
+        myLibrary[indexNumber].status = "Read";
+      }
+      removeCardDIV();
+      createCardDIV();
+      toggleReadStatus();
+    });
+  });
 }
