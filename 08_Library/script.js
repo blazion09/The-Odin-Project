@@ -128,6 +128,7 @@ function toggleReadStatus() {
       }
       removeCardDIV();
       createCardDIV();
+      deleteBook();
       toggleReadStatus();
     });
   });
