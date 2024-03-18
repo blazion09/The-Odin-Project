@@ -60,14 +60,13 @@ function createCardDIV() {
     let deletebutton = document.createElement("button");
     deletebutton.textContent = "Delete";
     deletebutton.classList.add("delete-button");
-    card.appendChild(deletebutton);
     deletebutton.setAttribute("data-book", myLibrary.indexOf(book));
 
     //add read/unread button
     let readButton = document.createElement("button");
     readButton.textContent = "Change Read Status";
     readButton.classList.add("read-button");
-    card.appendChild(readButton);
+
     readButton.setAttribute("data-book", myLibrary.indexOf(book));
 
     //add book detail to each card
@@ -78,6 +77,8 @@ function createCardDIV() {
       DOM.textContent = detail + ": " + book[detail];
       card.appendChild(DOM);
     });
+    card.appendChild(readButton);
+    card.appendChild(deletebutton);
   });
 }
 

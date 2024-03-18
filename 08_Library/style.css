@@ -3,23 +3,36 @@
   font-size: 20px;
 }
 
+body {
+  background-color: #f1f5f9;
+  font-family: "Gabriela", sans-serif;
+}
+
 header {
   padding-top: 20px;
 }
 
 h1 {
   text-align: center;
+  font-size: 50px;
 }
 
 main {
   display: grid;
   grid-template-columns: 1fr 4fr;
-  padding: 40px;
 }
 
 form {
   display: flex;
   flex-direction: column;
+  margin: 20px;
+  border: #020617 solid 2px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.read-status {
+  margin: 8px;
 }
 
 input,
@@ -32,10 +45,31 @@ button {
   flex-wrap: wrap;
 }
 
+.form-container {
+}
+
 .card {
-  background-color: grey;
+  background-color: #94a3b8;
   margin: 10px;
-  border-left: #f87171 solid 5px;
-  width: 200px;
-  height: 160px;
+  border-left: #1e293b solid 5px;
+  padding: 10px;
+  border-radius: 10px;
+  height: 200px;
+  color: #020617;
+}
+
+.title,
+.author,
+.pages,
+.status {
+  text-transform: capitalize;
+  margin: 4px;
+}
+
+button {
+  display: block;
+  background-color: #cbd5e1;
+  border-radius: 10px;
+  font-size: 16px;
+  font-family: "Gabriela", sans-serif;
 }
