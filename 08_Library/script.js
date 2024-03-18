@@ -13,6 +13,9 @@ function addBookToLibrary() {
   let pages = document.getElementById("pages");
   let status = getSelectedRadioValue();
   let book = new Book(title.value, author.value, pages.value, status);
+  if (title.trim() === "" || author.trim() === "" || pages.trim() === "" ||){
+    return false;
+  }
   myLibrary.push(book);
 }
 
