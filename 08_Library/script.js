@@ -13,10 +13,16 @@ function addBookToLibrary() {
   let pages = document.getElementById("pages");
   let status = getSelectedRadioValue();
   let book = new Book(title.value, author.value, pages.value, status);
-  if (title.trim() === "" || author.trim() === "" || pages.trim() === "" ||){
+
+  if (
+    title.value.trim() === "" ||
+    author.value.trim() === "" ||
+    pages.value.trim() === ""
+  ) {
     return false;
+  } else {
+    myLibrary.push(book);
   }
-  myLibrary.push(book);
 }
 
 function getSelectedRadioValue() {
