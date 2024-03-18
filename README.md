@@ -13,3 +13,5 @@ Projects made from following The Odin Project.
 [06_Signup_Form](https://muhd09afiq.github.io/The-Odin-Project/06_Signup_Form/)
 
 [07_Admin_Dashboard](https://muhd09afiq.github.io/The-Odin-Project/07_Admin_Dashboard/)
+
+[08_Library](https://muhd09afiq.github.io/The-Odin-Project/08_Library/)
