@@ -7,6 +7,7 @@ function createPlayer(name, marker) {
 const player1 = createPlayer("Player One", "X");
 const player2 = createPlayer("Player Two", "O");
 
+//create board
 const board = (function createBoard() {
   const row = 3;
   const column = 3;
@@ -32,10 +33,12 @@ let position1 = board[0][0];
 function playRound() {
   console.table(board);
 
-  for (let i = 0; i < 3; i++)
-    if (prompt(`${activePlayer.name}'s turn`) == 1) {
-      board[0][0] = activePlayer.marker;
-      switchTurn();
-      console.table(board);
+  for (let i = 0; i < 3; i++) {
+    let playerChoice = prompt(`${activePlayer.name}'s turn`);
+    for (let i = 1; i<10; i++){
+      if playerChoice
     }
+    switchTurn();
+    console.table(board);
+  }
 }
