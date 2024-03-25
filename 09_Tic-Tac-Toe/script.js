@@ -7,8 +7,7 @@ function createPlayer(name, marker) {
 const player1 = createPlayer("Player One", "X");
 const player2 = createPlayer("Player Two", "O");
 
-//create board
-const board = (function createBoard() {
+function gameBoard() {
   const row = 3;
   const column = 3;
   const board = [];
@@ -19,26 +18,17 @@ const board = (function createBoard() {
       board[i][j] = i * column + j + 1;
     }
   }
-  return board;
-})();
 
-let activePlayer = player1;
-const switchTurn = () => {
-  activePlayer = activePlayer === player1 ? player2 : player1;
-  console.log(`${activePlayer.name}'s turn`);
-};
+  const getBoard = () => board;
 
-let position1 = board[0][0];
+  //mark the board
 
-function playRound() {
-  console.table(board);
+  // const markBoard = () => {
+  //   const availableCells = board.
+  // };
 
-  for (let i = 0; i < 3; i++) {
-    let playerChoice = prompt(`${activePlayer.name}'s turn`);
-    for (let i = 1; i<10; i++){
-      if playerChoice
-    }
-    switchTurn();
-    console.table(board);
-  }
+  return { getBoard };
 }
+
+const game = gameBoard();
+const board = game.getBoard();
