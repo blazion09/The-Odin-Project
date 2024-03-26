@@ -33,6 +33,7 @@ function startGame() {
   console.table(board);
   updateSquare(board);
   addButton(board);
+  showActivePlayer();
 
   console.log(`${activePlayer.name}'s turn.`);
 
@@ -44,12 +45,17 @@ function startGame() {
 
     if (checkWin(board1)) {
       console.log(`${activePlayer.name}'s wins!`);
+      gameResult = `${activePlayer.name}'s wins!`;
+      showResult();
     } else if (checkTie(board1)) {
       console.log("Draw!");
+      gameResult = "Draw!";
+      showResult();
     } else {
       console.log(`${activePlayer.name}'s turn.`);
     }
     changePlayer();
+    showActivePlayer();
   }
 
   function changePlayer() {
@@ -69,7 +75,7 @@ function checkTie(board) {
       return false;
     }
   }
-  console.log("Draw");
+  return true;
 }
 
 function checkWin(board) {
@@ -131,6 +137,7 @@ function checkWin(board) {
 
 const game1 = startGame();
 const board1 = game1.board;
+let gameResult;
 
 //gameboard DOM
 function updateSquare(board) {
@@ -151,4 +158,14 @@ function addButton(board) {
       });
     }
   }
+}
+
+function showActivePlayer() {
+  const showPlayer = document.querySelector(".active-player");
+  showPlayer.textContent = `${activePlayer.name}'s turn.`;
+}
+
+function showResult() {
+  const result = document.querySelector(".game-result");
+  result.textContent = gameResult;
 }
