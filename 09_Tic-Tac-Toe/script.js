@@ -21,14 +21,33 @@ function gameBoard() {
 
   const getBoard = () => board;
 
-  //mark the board
-
-  // const markBoard = () => {
-  //   const availableCells = board.
-  // };
-
   return { getBoard };
 }
 
-const game = gameBoard();
-const board = game.getBoard();
+function startGame() {
+  const game = gameBoard();
+  const board = game.getBoard();
+  let activePlayer = player1;
+  console.table(board);
+
+  function tickTheBoard(board, row, col) {
+    const mark = activePlayer.marker;
+    board[row][col] = mark;
+    console.table(board);
+    changePlayer();
+    console.log(`${activePlayer.name}'s turn.`);
+  }
+
+  function changePlayer() {
+    if (activePlayer == player1) {
+      activePlayer = player2;
+    } else {
+      activePlayer = player1;
+    }
+  }
+
+  return { game, board, activePlayer, tickTheBoard };
+}
+
+const game1 = startGame();
+const board1 = game1.board;
