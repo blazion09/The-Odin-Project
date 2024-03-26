@@ -15,7 +15,7 @@ function gameBoard() {
   for (let i = 0; i < row; i++) {
     board[i] = [];
     for (let j = 0; j < column; j++) {
-      board[i][j] = "-";
+      board[i][j] = "";
     }
   }
 
@@ -39,24 +39,31 @@ function startGame() {
 
   function tickTheBoard(board, row, col) {
     const mark = activePlayer.marker;
-    board[row][col] = mark;
-    console.table(board);
-    updateSquare(board1);
+    if (checkCellStatus(board, row, col)) {
+      board[row][col] = mark;
+      console.table(board);
+      updateSquare(board1);
+      gameResult = "";
+      showResult();
 
-    //game win
-    if (checkWin(board1)) {
-      console.log(`${activePlayer.name}'s wins!`);
-      gameResult = `${activePlayer.name}'s wins!`;
-      showResult();
-      //game draw
-    } else if (checkTie(board1)) {
-      console.log("Draw!");
-      gameResult = "Draw!";
-      showResult();
+      //game win
+      if (checkWin(board1)) {
+        console.log(`${activePlayer.name}'s wins!`);
+        gameResult = `${activePlayer.name}'s wins!`;
+        showResult();
+        //game draw
+      } else if (checkTie(board1)) {
+        console.log("Draw!");
+        gameResult = "Draw!";
+        showResult();
+      } else {
+        console.log(`${activePlayer.name}'s turn.`);
+        changePlayer();
+        showActivePlayer();
+      }
     } else {
-      console.log(`${activePlayer.name}'s turn.`);
-      changePlayer();
-      showActivePlayer();
+      gameResult = "Space already occupied ヾ( ･`⌓´･)ﾉﾞ";
+      showResult();
     }
   }
 
@@ -68,8 +75,12 @@ function startGame() {
     }
   }
 
-  function checkCellStatus() {
-    for (let i = 0; i < 3; i++) {}
+  function checkCellStatus(board, row, col) {
+    if (board[row][col] == "X" || board[row][col] == "O") {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   return { game, board, activePlayer, tickTheBoard };
@@ -77,7 +88,7 @@ function startGame() {
 
 function checkTie(board) {
   for (let row of board) {
-    if (row.includes("-")) {
+    if (row.includes("")) {
       return false;
     }
   }
@@ -131,7 +142,7 @@ function checkWin(board) {
   for (let combo of winningCombinations) {
     const [a, b, c] = combo;
     if (
-      board[a[0]][a[1]] !== "-" &&
+      board[a[0]][a[1]] !== "" &&
       board[a[0]][a[1]] === board[b[0]][b[1]] &&
       board[a[0]][a[1]] === board[c[0]][c[1]]
     ) {
@@ -141,8 +152,6 @@ function checkWin(board) {
   return false;
 }
 
-const game1 = startGame();
-const board1 = game1.board;
 let gameResult;
 
 //gameboard DOM
@@ -175,3 +184,14 @@ function showResult() {
   const result = document.querySelector(".game-result");
   result.textContent = gameResult;
 }
+
+let game1;
+let board1;
+
+const startButton = document.querySelector(".start");
+startButton.addEventListener("click", function () {
+  game1 = startGame();
+  board1 = game1.board;
+  gameResult = "";
+  showResult();
+});
