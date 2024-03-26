@@ -43,19 +43,21 @@ function startGame() {
     console.table(board);
     updateSquare(board1);
 
+    //game win
     if (checkWin(board1)) {
       console.log(`${activePlayer.name}'s wins!`);
       gameResult = `${activePlayer.name}'s wins!`;
       showResult();
+      //game draw
     } else if (checkTie(board1)) {
       console.log("Draw!");
       gameResult = "Draw!";
       showResult();
     } else {
       console.log(`${activePlayer.name}'s turn.`);
+      changePlayer();
+      showActivePlayer();
     }
-    changePlayer();
-    showActivePlayer();
   }
 
   function changePlayer() {
@@ -64,6 +66,10 @@ function startGame() {
     } else {
       activePlayer = player1;
     }
+  }
+
+  function checkCellStatus() {
+    for (let i = 0; i < 3; i++) {}
   }
 
   return { game, board, activePlayer, tickTheBoard };
