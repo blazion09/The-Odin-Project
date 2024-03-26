@@ -185,6 +185,23 @@ function showResult() {
   result.textContent = gameResult;
 }
 
+function resetGame() {
+  const showPlayer = document.querySelector(".active-player");
+  showPlayer.textContent = "";
+
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      const square = document.querySelector(`.square-${3 * i + j + 1}`);
+      square.textContent = "";
+    }
+  }
+  board1.forEach(square);
+
+  gameResult = "";
+  showResult();
+  activePlayer = player1;
+}
+
 let game1;
 let board1;
 
@@ -194,4 +211,9 @@ startButton.addEventListener("click", function () {
   board1 = game1.board;
   gameResult = "";
   showResult();
+});
+
+const resetButton = document.querySelector(".reset");
+resetButton.addEventListener("click", function () {
+  resetGame();
 });
