@@ -31,6 +31,8 @@ function startGame() {
   const board = game.getBoard();
 
   console.table(board);
+  updateSquare(board);
+  addButton(board);
 
   console.log(`${activePlayer.name}'s turn.`);
 
@@ -38,7 +40,7 @@ function startGame() {
     const mark = activePlayer.marker;
     board[row][col] = mark;
     console.table(board);
-    updateSquare(board);
+    updateSquare(board1);
 
     if (checkWin(board1)) {
       console.log(`${activePlayer.name}'s wins!`);
@@ -129,25 +131,24 @@ function checkWin(board) {
 
 const game1 = startGame();
 const board1 = game1.board;
+
 //gameboard DOM
 function updateSquare(board) {
-  const square1 = document.querySelector(".square-1");
-  const square2 = document.querySelector(".square-2");
-  const square3 = document.querySelector(".square-3");
-  const square4 = document.querySelector(".square-4");
-  const square5 = document.querySelector(".square-5");
-  const square6 = document.querySelector(".square-6");
-  const square7 = document.querySelector(".square-7");
-  const square8 = document.querySelector(".square-8");
-  const square9 = document.querySelector(".square-9");
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      const square = document.querySelector(`.square-${3 * i + j + 1}`);
+      square.textContent = board[i][j];
+    }
+  }
+}
 
-  square1.textContent = board[0][0];
-  square2.textContent = board[0][1];
-  square3.textContent = board[0][2];
-  square4.textContent = board[1][0];
-  square5.textContent = board[1][1];
-  square6.textContent = board[1][2];
-  square7.textContent = board[2][0];
-  square8.textContent = board[2][1];
-  square9.textContent = board[2][2];
+function addButton(board) {
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      const square = document.querySelector(`.square-${3 * i + j + 1}`);
+      square.addEventListener("click", function () {
+        game1.tickTheBoard(board, i, j);
+      });
+    }
+  }
 }
