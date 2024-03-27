@@ -1,3 +1,5 @@
+const squareListeners = {};
+
 function createPlayer(name, marker) {
   return {
     name: name,
@@ -173,6 +175,7 @@ function addButton(board) {
       const addBtnFunction = function () {
         game1.tickTheBoard(board, i, j);
       };
+      squareListeners[`square-${3 * i + j + 1}`] = addBtnFunction;
       square.addEventListener("click", addBtnFunction);
     }
   }
@@ -210,10 +213,9 @@ function removeButtonListener() {
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
       const square = document.querySelector(`.square-${3 * i + j + 1}`);
-      const existingListener = square._listeners?.click[0];
-
-      if (existingListener) {
-        square.removeEventListener("click", existingListener);
+      const listener = squareListeners[`square-${3 * i + j + 1}`];
+      if (listener) {
+        square.removeEventListener("click", listener);
       }
     }
   }
