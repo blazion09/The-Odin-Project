@@ -51,11 +51,13 @@ function startGame() {
         console.log(`${activePlayer.name}'s wins!`);
         gameResult = `${activePlayer.name}'s wins!`;
         showResult();
+        activePlayer = player1;
         //game draw
       } else if (checkTie(board1)) {
         console.log("Draw!");
         gameResult = "Draw!";
         showResult();
+        activePlayer = player1;
       } else {
         console.log(`${activePlayer.name}'s turn.`);
         changePlayer();
@@ -168,9 +170,10 @@ function addButton(board) {
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
       const square = document.querySelector(`.square-${3 * i + j + 1}`);
-      square.addEventListener("click", function () {
+      const addBtnFunction = function () {
         game1.tickTheBoard(board, i, j);
-      });
+      };
+      square.addEventListener("click", addBtnFunction);
     }
   }
 }
@@ -185,7 +188,7 @@ function showResult() {
   result.textContent = gameResult;
 }
 
-function resetGame() {
+function resetGame(board) {
   const showPlayer = document.querySelector(".active-player");
   showPlayer.textContent = "";
 
@@ -193,13 +196,27 @@ function resetGame() {
     for (let j = 0; j < 3; j++) {
       const square = document.querySelector(`.square-${3 * i + j + 1}`);
       square.textContent = "";
+      board[i][j] = "";
     }
   }
-  board1.forEach(square);
 
   gameResult = "";
   showResult();
   activePlayer = player1;
+  removeButtonListener();
+}
+
+function removeButtonListener() {
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      const square = document.querySelector(`.square-${3 * i + j + 1}`);
+      const existingListener = square._listeners?.click[0];
+
+      if (existingListener) {
+        square.removeEventListener("click", existingListener);
+      }
+    }
+  }
 }
 
 let game1;
@@ -215,5 +232,5 @@ startButton.addEventListener("click", function () {
 
 const resetButton = document.querySelector(".reset");
 resetButton.addEventListener("click", function () {
-  resetGame();
+  resetGame(board1);
 });
