@@ -11,8 +11,12 @@ class Library {
     this.books.splice(index, 1);
   }
 
-  updateStatus(index, readStatus) {
-    this.books[index].status = readStatus;
+  updateStatus(index) {
+    if (this.books[index].status === "Unread") {
+      this.books[index].status = "Read";
+    } else {
+      this.books[index].status = "Unread";
+    }
   }
 }
 
@@ -27,14 +31,35 @@ class LibraryDOM {
     this.bookDetails = ["title", "author", "pages", "status"];
   }
 
-  createCard(library) {
-    library.forEach((book) => {
+  createCard(libraryArray) {
+    libraryArray.forEach((book) => {
       const card = document.createElement("div");
-      card.setAttribute("id", library.indexOf(book));
+      card.setAttribute("id", `Book${libraryArray.indexOf(book)}`);
       card.classList.add("card");
-      card.setAttribute("data-book", library.indexOf(book));
+      card.setAttribute("data-book", `Book${libraryArray.indexOf(book)}`);
       document.querySelector(".shelve").appendChild(card);
+
+      this.createCardContent(book, card);
+      this.createToggleStatusBtn(libraryArray, book, card);
     });
+  }
+
+  createCardContent(book, card) {
+    this.bookDetails.forEach((detail) => {
+      let DOM = document.createElement("div");
+      DOM.setAttribute("class", detail);
+      //add text to each DOM
+      DOM.textContent = detail + ": " + book[detail];
+      card.appendChild(DOM);
+    });
+  }
+
+  createToggleStatusBtn(libraryArray, book, card) {
+    let readButton = document.createElement("button");
+    readButton.textContent = "Change Read Status";
+    readButton.classList.add("read-button");
+    readButton.setAttribute("data-book", `Book${libraryArray.indexOf(book)}`);
+    card.appendChild(readButton);
   }
 }
 
