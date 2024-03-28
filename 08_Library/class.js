@@ -1,21 +1,3 @@
-function getSelectedRadioValue() {
-  let readInput = document.getElementsByName("read");
-
-  for (let i = 0; i < readInput.length; i++) {
-    if (readInput[i].checked) {
-      return readInput[i].value;
-    }
-  }
-}
-
-function removeCardDIV() {
-  let allCard = document.querySelectorAll(".card");
-  allCard.forEach((card) => {
-    if (card) {
-      card.remove();
-    }
-  });
-}
 class Library {
   constructor() {
     this.books = [];
@@ -26,6 +8,16 @@ class Library {
     let author = document.getElementById("author").value;
     let pages = document.getElementById("pages").value;
     let status = getSelectedRadioValue();
+
+    function getSelectedRadioValue() {
+      let readInput = document.getElementsByName("read");
+
+      for (let i = 0; i < readInput.length; i++) {
+        if (readInput[i].checked) {
+          return readInput[i].value;
+        }
+      }
+    }
 
     if (title.trim() === "" || author.trim() === "" || pages.trim() === "") {
       return false;
@@ -46,12 +38,6 @@ class Library {
     }
   }
 }
-
-const library = new Library();
-// library.addBook("Harry Potter", "JK Rowling", 1231, "Unread");
-// library.addBook("Game of Throne", "GRRM", 2231, "Unread");
-
-let shelve = library.books;
 
 class LibraryDOM {
   constructor() {
@@ -97,14 +83,26 @@ class LibraryDOM {
     deletebutton.setAttribute("data-book", `Book${libraryArray.indexOf(book)}`);
     card.appendChild(deletebutton);
   }
+
+  removeCardDIV() {
+    let allCard = document.querySelectorAll(".card");
+    allCard.forEach((card) => {
+      if (card) {
+        card.remove();
+      }
+    });
+  }
 }
 
+const library = new Library();
 const libraryDOM = new LibraryDOM();
+
+let shelve = library.books;
 let submitBtn = document.getElementById("submit-button");
 
 submitBtn.addEventListener("click", () => {
   library.addBook();
-  removeCardDIV();
+  libraryDOM.removeCardDIV();
   libraryDOM.createCard(shelve);
 });
 
