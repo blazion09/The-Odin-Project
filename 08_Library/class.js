@@ -1,10 +1,3 @@
-function Book(title, author, pages, status) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.status = status;
-}
-
 function getSelectedRadioValue() {
   let readInput = document.getElementsByName("read");
 
@@ -28,8 +21,17 @@ class Library {
     this.books = [];
   }
 
-  addBook(title, author, pages, status) {
-    this.books.push({ title, author, pages, status });
+  addBook() {
+    let title = document.getElementById("title").value;
+    let author = document.getElementById("author").value;
+    let pages = document.getElementById("pages").value;
+    let status = getSelectedRadioValue();
+
+    if (title.trim() === "" || author.trim() === "" || pages.trim() === "") {
+      return false;
+    } else {
+      this.books.push({ title, author, pages, status });
+    }
   }
 
   removeBook(index) {
@@ -54,24 +56,6 @@ let shelve = library.books;
 class LibraryDOM {
   constructor() {
     this.bookDetails = ["title", "author", "pages", "status"];
-  }
-
-  addBookToLibrary(libraryArray) {
-    let title = document.getElementById("title");
-    let author = document.getElementById("author");
-    let pages = document.getElementById("pages");
-    let status = getSelectedRadioValue();
-    let book = new Book(title.value, author.value, pages.value, status);
-
-    if (
-      title.value.trim() === "" ||
-      author.value.trim() === "" ||
-      pages.value.trim() === ""
-    ) {
-      return false;
-    } else {
-      libraryArray.push(book);
-    }
   }
 
   createCard(libraryArray) {
@@ -119,7 +103,7 @@ const libraryDOM = new LibraryDOM();
 let submitBtn = document.getElementById("submit-button");
 
 submitBtn.addEventListener("click", () => {
-  libraryDOM.addBookToLibrary(shelve);
+  library.addBook();
   removeCardDIV();
   libraryDOM.createCard(shelve);
 });
