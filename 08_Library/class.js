@@ -1,3 +1,19 @@
+function Book(title, author, pages, status) {
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.status = status;
+}
+
+function getSelectedRadioValue() {
+  let readInput = document.getElementsByName("read");
+
+  for (let i = 0; i < readInput.length; i++) {
+    if (readInput[i].checked) {
+      return readInput[i].value;
+    }
+  }
+}
 class Library {
   constructor() {
     this.books = [];
@@ -31,6 +47,24 @@ class LibraryDOM {
     this.bookDetails = ["title", "author", "pages", "status"];
   }
 
+  addBookToLibrary(libraryArray) {
+    let title = document.getElementById("title");
+    let author = document.getElementById("author");
+    let pages = document.getElementById("pages");
+    let status = getSelectedRadioValue();
+    let book = new Book(title.value, author.value, pages.value, status);
+
+    if (
+      title.value.trim() === "" ||
+      author.value.trim() === "" ||
+      pages.value.trim() === ""
+    ) {
+      return false;
+    } else {
+      libraryArray.push(book);
+    }
+  }
+
   createCard(libraryArray) {
     libraryArray.forEach((book) => {
       const card = document.createElement("div");
@@ -41,6 +75,7 @@ class LibraryDOM {
 
       this.createCardContent(book, card);
       this.createToggleStatusBtn(libraryArray, book, card);
+      this.createDeleteButton(libraryArray, book, card);
     });
   }
 
@@ -61,6 +96,24 @@ class LibraryDOM {
     readButton.setAttribute("data-book", `Book${libraryArray.indexOf(book)}`);
     card.appendChild(readButton);
   }
+
+  createDeleteButton(libraryArray, book, card) {
+    let deletebutton = document.createElement("button");
+    deletebutton.textContent = "Delete";
+    deletebutton.classList.add("delete-button");
+    deletebutton.setAttribute("data-book", `Book${libraryArray.indexOf(book)}`);
+    card.appendChild(deletebutton);
+  }
 }
 
 const libraryDOM = new LibraryDOM();
+let submitBtn = document.getElementById("submit-button");
+
+submitBtn.addEventListener("click", () => {
+  libraryDOM.addBookToLibrary(shelve);
+});
+
+document.getElementById("form").addEventListener("submit", function (event) {
+  event.preventDefault();
+  this.reset(); // Clears the form
+});
