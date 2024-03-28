@@ -14,6 +14,15 @@ function getSelectedRadioValue() {
     }
   }
 }
+
+function removeCardDIV() {
+  let allCard = document.querySelectorAll(".card");
+  allCard.forEach((card) => {
+    if (card) {
+      card.remove();
+    }
+  });
+}
 class Library {
   constructor() {
     this.books = [];
@@ -37,8 +46,8 @@ class Library {
 }
 
 const library = new Library();
-library.addBook("Harry Potter", "JK Rowling", 1231, "Unread");
-library.addBook("Game of Throne", "GRRM", 2231, "Unread");
+// library.addBook("Harry Potter", "JK Rowling", 1231, "Unread");
+// library.addBook("Game of Throne", "GRRM", 2231, "Unread");
 
 let shelve = library.books;
 
@@ -111,6 +120,8 @@ let submitBtn = document.getElementById("submit-button");
 
 submitBtn.addEventListener("click", () => {
   libraryDOM.addBookToLibrary(shelve);
+  removeCardDIV();
+  libraryDOM.createCard(shelve);
 });
 
 document.getElementById("form").addEventListener("submit", function (event) {
