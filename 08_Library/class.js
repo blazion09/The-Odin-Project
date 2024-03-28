@@ -4,6 +4,7 @@ class Library {
   }
 
   addBook() {
+    //data from form
     let title = document.getElementById("title").value;
     let author = document.getElementById("author").value;
     let pages = document.getElementById("pages").value;
@@ -72,24 +73,40 @@ class LibraryDOM {
     let readButton = document.createElement("button");
     readButton.textContent = "Change Read Status";
     readButton.classList.add("read-button");
-    readButton.setAttribute("data-book", `Book${libraryArray.indexOf(book)}`);
+    readButton.setAttribute("data-book", libraryArray.indexOf(book));
     card.appendChild(readButton);
+    this.addReadStatusEventListener(readButton, libraryArray);
   }
 
   createDeleteButton(libraryArray, book, card) {
     let deletebutton = document.createElement("button");
     deletebutton.textContent = "Delete";
     deletebutton.classList.add("delete-button");
-    deletebutton.setAttribute("data-book", `Book${libraryArray.indexOf(book)}`);
+    deletebutton.setAttribute("data-book", libraryArray.indexOf(book));
     card.appendChild(deletebutton);
   }
 
-  removeCardDIV() {
-    let allCard = document.querySelectorAll(".card");
-    allCard.forEach((card) => {
-      if (card) {
-        card.remove();
-      }
+  removeCardDIV(card) {
+    if (card) {
+      card.remove();
+    }
+  }
+
+  addReadStatusEventListener(statusBtn, libraryArray) {
+    statusBtn = document.querySelectorAll(".read-button");
+    statusBtn.forEach((button) => {
+      button.addEventListener("click", () => {
+        let indexNumber = button.dataset.book;
+        let card = document.querySelector(".card");
+        if (libraryArray[indexNumber].status === "Read") {
+          libraryArray[indexNumber].status = "Unread";
+        } else {
+          libraryArray[indexNumber].status = "Read";
+        }
+        this.removeCardDIV(card);
+        this.createCardContent();
+        this.addReadStatusEventListener();
+      });
     });
   }
 }
