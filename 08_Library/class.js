@@ -3,7 +3,11 @@ class Library {
     this.books = [];
   }
 
-  addBook() {
+  addBook(title, author, pages, status) {
+    this.books.push({ title, author, pages, status });
+  }
+
+  addBookFromDOM() {
     //data from form
     let title = document.getElementById("title").value;
     let author = document.getElementById("author").value;
@@ -75,7 +79,7 @@ class LibraryDOM {
     readButton.classList.add("read-button");
     readButton.setAttribute("data-book", libraryArray.indexOf(book));
     card.appendChild(readButton);
-    this.addReadStatusEventListener(readButton, libraryArray);
+    // addReadStatusEventListener(libraryArray);
   }
 
   createDeleteButton(libraryArray, book, card) {
@@ -84,31 +88,47 @@ class LibraryDOM {
     deletebutton.classList.add("delete-button");
     deletebutton.setAttribute("data-book", libraryArray.indexOf(book));
     card.appendChild(deletebutton);
+    addDeleteBtnEventListener(libraryArray);
   }
+}
 
-  removeCardDIV(card) {
+function removeCardDIV() {
+  let allCard = document.querySelectorAll(".card");
+  allCard.forEach((card) => {
     if (card) {
       card.remove();
     }
-  }
+  });
+}
 
-  addReadStatusEventListener(statusBtn, libraryArray) {
-    statusBtn = document.querySelectorAll(".read-button");
-    statusBtn.forEach((button) => {
-      button.addEventListener("click", () => {
-        let indexNumber = button.dataset.book;
-        let card = document.querySelector(".card");
-        if (libraryArray[indexNumber].status === "Read") {
-          libraryArray[indexNumber].status = "Unread";
-        } else {
-          libraryArray[indexNumber].status = "Read";
-        }
-        this.removeCardDIV(card);
-        this.createCardContent();
-        this.addReadStatusEventListener();
-      });
+function addReadStatusEventListener(libraryArray) {
+  let statusBtn = document.querySelectorAll(".read-button");
+  statusBtn.forEach((button) => {
+    button.addEventListener("click", function () {
+      let indexNumber = button.dataset.book;
+      console.log(indexNumber);
+      if (libraryArray[indexNumber].status === "Read") {
+        libraryArray[indexNumber].status = "Unread";
+      } else {
+        libraryArray[indexNumber].status = "Read";
+      }
+      removeCardDIV();
+      libraryDOM.createCard(libraryArray);
     });
-  }
+  });
+}
+
+function addDeleteBtnEventListener(libraryArray) {
+  let deleteButton = document.querySelectorAll(".delete-button");
+  console.log(deleteButton);
+  deleteButton.forEach((button) => {
+    button.addEventListener("click", function () {
+      let index = deleteButton.indexOf(button);
+      library.removeBook(index);
+      removeCardDIV();
+      libraryDOM.createCard(libraryArray);
+    });
+  });
 }
 
 const library = new Library();
@@ -117,9 +137,13 @@ const libraryDOM = new LibraryDOM();
 let shelve = library.books;
 let submitBtn = document.getElementById("submit-button");
 
+library.addBook("Harry Potter", "JK Rowling", 1231, "Unread");
+library.addBook("Game of Throne", "GRRM", 2231, "Unread");
+libraryDOM.createCard(shelve);
+
 submitBtn.addEventListener("click", () => {
-  library.addBook();
-  libraryDOM.removeCardDIV();
+  library.addBookFromDOM();
+  removeCardDIV();
   libraryDOM.createCard(shelve);
 });
 
