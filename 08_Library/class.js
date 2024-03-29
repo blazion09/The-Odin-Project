@@ -79,7 +79,16 @@ class LibraryDOM {
     readButton.classList.add("read-button");
     readButton.setAttribute("data-book", libraryArray.indexOf(book));
     card.appendChild(readButton);
-    // addReadStatusEventListener(libraryArray);
+    // add event listener for the button
+    readButton.addEventListener("click", function () {
+      if (libraryArray[libraryArray.indexOf(book)].status === "Read") {
+        libraryArray[libraryArray.indexOf(book)].status = "Unread";
+      } else {
+        libraryArray[libraryArray.indexOf(book)].status = "Read";
+      }
+      removeCardDIV();
+      libraryDOM.createCard(libraryArray);
+    });
   }
 
   createDeleteButton(libraryArray, book, card) {
@@ -88,7 +97,12 @@ class LibraryDOM {
     deletebutton.classList.add("delete-button");
     deletebutton.setAttribute("data-book", libraryArray.indexOf(book));
     card.appendChild(deletebutton);
-    addDeleteBtnEventListener(libraryArray);
+    // add event listener for the button
+    deletebutton.addEventListener("click", function () {
+      library.removeBook(libraryArray.indexOf(book));
+      removeCardDIV();
+      libraryDOM.createCard(libraryArray);
+    });
   }
 }
 
@@ -98,36 +112,6 @@ function removeCardDIV() {
     if (card) {
       card.remove();
     }
-  });
-}
-
-function addReadStatusEventListener(libraryArray) {
-  let statusBtn = document.querySelectorAll(".read-button");
-  statusBtn.forEach((button) => {
-    button.addEventListener("click", function () {
-      let indexNumber = button.dataset.book;
-      console.log(indexNumber);
-      if (libraryArray[indexNumber].status === "Read") {
-        libraryArray[indexNumber].status = "Unread";
-      } else {
-        libraryArray[indexNumber].status = "Read";
-      }
-      removeCardDIV();
-      libraryDOM.createCard(libraryArray);
-    });
-  });
-}
-
-function addDeleteBtnEventListener(libraryArray) {
-  let deleteButton = document.querySelectorAll(".delete-button");
-  console.log(deleteButton);
-  deleteButton.forEach((button) => {
-    button.addEventListener("click", function () {
-      let index = deleteButton.indexOf(button);
-      library.removeBook(index);
-      removeCardDIV();
-      libraryDOM.createCard(libraryArray);
-    });
   });
 }
 
