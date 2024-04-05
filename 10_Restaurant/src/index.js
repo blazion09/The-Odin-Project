@@ -15,4 +15,4 @@ Home.createAndAppendIntroText(homeTab);
 const Menu = new menu();
 let menuTab = Menu.createAndAppendMenuElement(mainContent);
 Menu.createAndAppendMenuTitle(menuTab);
-Menu.createAndAppendMenuText(menuTab);
+Menu.createAndAppendMenuItem(menuTab);
