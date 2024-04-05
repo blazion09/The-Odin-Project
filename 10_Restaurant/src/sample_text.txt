@@ -1,0 +1,45 @@
++------------------------------+
+|      Burger Palace          |
++------------------------------+
+|                             |
+|  [Hero Image: Delicious     |
+|   burgers on a wooden       |
+|   table]                    |
+|                             |
++------------------------------+
+|                             |
+|     About Burger Palace     |
+|                             |
+|  Welcome to Burger Palace,  |
+|  where we serve up the      |
+|  juiciest, most flavorful   |
+|  burgers in town. Our       |
+|  passion for quality        |
+|  ingredients and expert     |
+|  craftsmanship ensures      |
+|  every bite is a delight.   |
+|                             |
++------------------------------+
+|                             |
+|         Our Burgers         |
+|                             |
+|  - Classic Burger           |
+|  - Bacon Cheeseburger       |
+|  - Mushroom Swiss Burger    |
+|  - Veggie Burger            |
+|  - BBQ Bacon Burger         |
+|                             |
++------------------------------+
+|                             |
+|     Contact Burger Palace   |
+|                             |
+|  123 Burger Street          |
+|  Anytown, USA 12345         |
+|  Phone: (123) 456-7890      |
+|  Email: info@burgerpalace.com|
+|                             |
++------------------------------+
+|                             |
+|         © 2024 Burger Palace|
+|                             |
++------------------------------+
