@@ -1,4 +1,5 @@
 export { menu };
+export { menuItem };
 
 class menu {
   createAndAppendMenuElement(content) {
@@ -26,8 +27,28 @@ class menu {
 
     return content.appendChild(list);
   }
+}
 
-  menuItem() {
-    d;
+class menuItem {
+  menuItem = [
+    "Classic Burger ",
+    "Bacon Cheeseburger",
+    "Mushroom Swiss Burger",
+    "Veggie Burger",
+    "BBQ Bacon Burger",
+  ];
+
+  createMenuList(content) {
+    let list = document.createElement("ul");
+    list.classList.add("menu-list");
+
+    for (let i = 0; i < menuItem.length; i++) {
+      let item = document.createElement("li");
+      item.classList.add("item");
+      item.textContent = menuItem[i];
+      list.appendChild(item);
+    }
+
+    return content.appendChild(list);
   }
 }
