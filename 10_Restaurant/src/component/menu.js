@@ -1,54 +1,24 @@
-export { menu };
-export { menuItem };
+import { DomElement } from "./index.js";
+export { menuContent };
 
-class menu {
-  createAndAppendMenuElement(content) {
-    let menuElement = document.createElement("div");
-    menuElement.id = "menu";
-    menuElement.classList.add("tab");
-    return content.appendChild(menuElement);
-  }
+const menuContent = new DomElement("div", "menu");
 
-  createAndAppendMenuTitle(content) {
-    let menuTitle = document.createElement("div");
-    menuTitle.classList.add("menu-title");
-    return content.appendChild(menuTitle);
-  }
+const menuTitle = new DomElement("div", "menu-title", "Menu");
+menuTitle.appendTo(menuContent.element);
 
-  createAndAppendMenuItem(content) {
-    let list = document.createElement("ul");
-    list.classList.add("menu-list");
+const menuUL = new DomElement("ul", "menuList", "");
+menuUL.appendTo(menuContent.element);
 
-    for (let i = 0; i < 6; i++) {
-      let item = document.createElement("li");
-      item.classList.add("item");
-      list.appendChild(item);
-    }
+//item list for menu
+const menuItems = [
+  "Classic Burger ",
+  "Bacon Cheeseburger",
+  "Mushroom Swiss Burger",
+  "Veggie Burger",
+  "BBQ Bacon Burger",
+];
 
-    return content.appendChild(list);
-  }
-}
-
-class menuItem {
-  menuItem = [
-    "Classic Burger ",
-    "Bacon Cheeseburger",
-    "Mushroom Swiss Burger",
-    "Veggie Burger",
-    "BBQ Bacon Burger",
-  ];
-
-  createMenuList(content) {
-    let list = document.createElement("ul");
-    list.classList.add("menu-list");
-
-    for (let i = 0; i < menuItem.length; i++) {
-      let item = document.createElement("li");
-      item.classList.add("item");
-      item.textContent = menuItem[i];
-      list.appendChild(item);
-    }
-
-    return content.appendChild(list);
-  }
+for (let i = 0; i < menuItems.length; i++) {
+  let menuLI = new DomElement("li", "menuList", menuItems[i]);
+  menuLI.appendTo(menuUL.element);
 }

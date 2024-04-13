@@ -1,17 +1,11 @@
-export { home };
+import { DomElement } from "./index.js";
+export { homeContent };
 
-class home {
-  createAndAppendHomeElement(content) {
-    let homeElement = document.createElement("div");
-    homeElement.id = "home";
-    homeElement.classList.add("tab");
-    return content.appendChild(homeElement);
-  }
+const homeContent = new DomElement("div", "home", "");
 
-  createAndAppendIntroText(content) {
-    let introElement = document.createElement("div");
-    introElement.classList.add("intro");
-    introElement.textContent = "Welcome to the Best Burger in Town!";
-    return content.appendChild(introElement);
-  }
-}
+const intro = new DomElement(
+  "div",
+  "intro",
+  "Welcome to the Best Burger in Town!"
+);
+intro.appendTo(homeContent.element);

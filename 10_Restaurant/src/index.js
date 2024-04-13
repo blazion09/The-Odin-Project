@@ -1,21 +1,37 @@
+export { DomElement };
 import "./css/reset.css";
 import "./css/style.css";
-import { home } from "./component/home.js";
-import { menuItem } from "./component/menu.js";
+import { homeContent } from "./component/home.js";
+import { menuContent } from "./component/menu.js";
+
+class DomElement {
+  constructor(elementType, className, content) {
+    this.element = document.createElement(elementType);
+    this.element.classList.add(className);
+    this.element.textContent = content;
+  }
+  appendTo(parent) {
+    parent.appendChild(this.element);
+  }
+}
 
 const mainContent = document.querySelector("#content");
 const menuBtn = document.querySelector("#menu-btn");
 const homeBtn = document.querySelector("#home-btn");
 
-const Home = new home();
-let homeTab = Home.createAndAppendHomeElement(mainContent);
-Home.createAndAppendIntroText(homeTab);
+homeContent.appendTo(mainContent);
+menuContent.appendTo(mainContent);
 
-// menu Tab
-// const Menu = new menu();
-// let menuTab = Menu.createAndAppendMenuElement(mainContent);
-// Menu.createAndAppendMenuTitle(menuTab);
-// Menu.createAndAppendMenuItem(menuTab);
+const homeTab = document.querySelector(".home");
+const menuTab = document.querySelector(".menu");
+menuTab.style.display = "none";
 
-let menu = new menuItem();
-menu.createMenuList(mainContent);
+menuBtn.addEventListener("click", function () {
+  homeTab.style.display = "none";
+  menuTab.style.display = "block";
+});
+
+homeBtn.addEventListener("click", function () {
+  homeTab.style.display = "block";
+  menuTab.style.display = "none";
+});
