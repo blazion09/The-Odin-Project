@@ -1,4 +1,4 @@
-import { DomElement } from "./index.js";
+import { DomElement } from "./DomElement";
 export { menuContent };
 
 const menuContent = new DomElement("div", "menu");
@@ -17,7 +17,6 @@ const menuItems = [
   "Veggie Burger",
   "BBQ Bacon Burger",
 ];
-
 for (let i = 0; i < menuItems.length; i++) {
   let menuLI = new DomElement("li", "menuList", menuItems[i]);
   menuLI.appendTo(menuUL.element);

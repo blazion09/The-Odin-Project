@@ -1,4 +1,4 @@
-import { DomElement } from "./index.js";
+import { DomElement } from "./DomElement";
 export { homeContent };
 
 const homeContent = new DomElement("div", "home", "");
