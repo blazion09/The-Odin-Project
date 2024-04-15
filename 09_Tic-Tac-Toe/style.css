@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  margin: 100px;
+}
+
+h2 {
+  font-size: 50px;
+  text-align: center;
+  margin: 20px;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: calc(100px * 3);
+}
+
+.square {
+  border: 1px solid;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  font-size: 80px;
+}
