@@ -1,0 +1,99 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("../font/Roboto-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Roboto-Bold";
+  src: url("../font/Roboto-Bold.ttf");
+}
+
+body {
+  font-family: "Roboto";
+  margin: 0;
+  height: 100vh;
+  font-size: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+:root {
+  --padding: 4.6875rem;
+}
+
+.spacing {
+  padding: var(--padding);
+}
+
+main {
+  min-height: 100%;
+  background-color: wheat;
+  background-image: url(../images/amirali-mirhashemian-sc5sTPMrVfk-unsplash.jpg);
+  background-position: center;
+  background-size: cover;
+  color: white;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: var(--padding);
+  padding-right: 100px;
+  padding-top: var(--padding);
+  font-size: 1.875rem;
+}
+
+button {
+  font-family: "Roboto-Bold";
+  display: inline-block;
+  padding: 12px 20px;
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: rgb(102, 102, 98);
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: rgb(98, 129, 158);
+}
+
+button:active {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transform: translateY(1px);
+}
+
+.intro {
+  display: flex;
+  justify-content: left;
+  color: white;
+  padding-top: clamp(100px, 10%, 500px);
+  padding-left: var(--padding);
+  width: clamp(100px, 30%, 400px);
+  line-height: 40px;
+}
+
+.menu,
+.about {
+  padding: var(--padding);
+  padding-top: 150px;
+  width: clamp(100px, 30%, 400px);
+  line-height: 30px;
+}
+
+.menu-title,
+.about-title {
+  padding-bottom: 20px;
+}
