@@ -1,7 +1,46 @@
+body {
+  margin: 0;
+  height: 100vh;
+  font-size: 20px;
+}
+
 .hidden {
   display: none;
 }
 
 .show {
   display: block;
+}
+
+:root {
+  --padding: 3.125rem;
+}
+
+.spacing {
+  padding: var(--padding);
+}
+
+main {
+  min-height: 100%;
+  background-color: wheat;
+  background-image: url(../images/amirali-mirhashemian-sc5sTPMrVfk-unsplash.jpg);
+  background-position: center;
+  background-size: cover;
+  color: white;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.intro {
+  display: flex;
+  justify-content: left;
+  color: white;
+  padding-top: 300px;
+  padding-left: var(--padding);
+}
+
+.home {
 }
