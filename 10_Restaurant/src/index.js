@@ -19,7 +19,8 @@ const menuTab = document.querySelector(".menu");
 const aboutTab = document.querySelector(".about");
 
 //default tab is home
-menuTab.style.display = "none";
+homeTab.style.display = "none";
+menuTab.style.display = "block";
 aboutTab.style.display = "none";
 
 //button to switch between tabs

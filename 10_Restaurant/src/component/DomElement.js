@@ -1,7 +1,9 @@
 export class DomElement {
   constructor(elementType, className, content) {
     this.element = document.createElement(elementType);
-    this.element.classList.add(className);
+    if (className) {
+      this.element.classList.add(className);
+    }
     this.element.textContent = content;
   }
   appendTo(parent) {
