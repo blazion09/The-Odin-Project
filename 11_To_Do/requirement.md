@@ -3,6 +3,7 @@
    description
 
 => addDueDate
+=> addPriority
 => editTask
 => deleteTask
 
