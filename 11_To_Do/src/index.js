@@ -25,7 +25,7 @@ function editTask(object, key, value) {
   }
 }
 
-class Task {
+class TaskDetails {
   constructor(title, description, dueDate, priorityLevel) {
     this._title = title;
     this._description = description;
@@ -58,18 +58,19 @@ class Task {
   get priorityLevel() {
     return this._priority;
   }
+
+  addTaskToArray(array) {
+    array.push(this);
+  }
+
+  removeTask(array) {}
 }
 
-const task3 = new Task("Task 3", "Description 3", "04/12", "High");
-task3.title = "Task4";
+const list = [];
+const task3 = new TaskDetails("Task 3", "Description 3", "04/12", "High");
 
+task3.addTaskToArray(list);
+task3.title = "Title has Changed";
+
+console.dir(list);
 console.dir(task3);
-
-// const task1 = new CreateTask("Task 1", "Description 1");
-
-// task1.addDueDate("20", "04");
-// task1.addPriority("High");
-
-// editTask(task1, "title", "Title2");
-
-// console.dir(task1);
