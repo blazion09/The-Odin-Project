@@ -4,6 +4,7 @@ export class TaskDetails {
     this._description = description;
     this._dueDate = dueDate;
     this._priority = priorityLevel;
+    this._timeStamp = Date.now();
   }
 
   set title(newTitle) {
@@ -31,10 +32,14 @@ export class TaskDetails {
   get priorityLevel() {
     return this._priority;
   }
-
-  addTaskToArray(array) {
-    array.push(this);
+  get timeStamp() {
+    return this._timeStamp;
   }
 
-  removeTask(array) {}
+  addTaskToLocalStorage() {
+    localStorage.setItem(this._timeStamp, JSON.stringify(this));
+  }
+  removeTaskFromLocalStorage() {
+    localStorage.removeItem(this._timeStamp);
+  }
 }
