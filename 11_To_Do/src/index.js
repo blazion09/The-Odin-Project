@@ -23,5 +23,9 @@ const project1 = new Project("Project 1", "Description 1");
 
 project1.addTask(task3);
 project1.addTask(task4);
+console.log(project1.task);
+project1.saveToLocalStorage();
 
-console.dir(project1.task);
+project1.deleteTask(task4);
+console.log(project1.task);
+project1.saveToLocalStorage();

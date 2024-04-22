@@ -24,4 +24,15 @@ export class Project {
   addTask(task) {
     this._task[task.timeStamp] = task;
   }
+
+  deleteTask(task) {
+    delete this._task[task.timeStamp];
+  }
+
+  saveToLocalStorage() {
+    localStorage.setItem(this._title, JSON.stringify(this));
+  }
+  deleteFromLocalStorage() {
+    localStorage.removeItem(this._title);
+  }
 }
