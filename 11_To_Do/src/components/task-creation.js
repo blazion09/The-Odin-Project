@@ -19,6 +19,10 @@ export class TaskDetails {
   set priorityLevel(newPriorityLevel) {
     this._priority = newPriorityLevel;
   }
+  //FOR DEVELOPMENT PROCESS
+  set timeStamp(newTimeStamp) {
+    this._timeStamp = newTimeStamp;
+  }
 
   get title() {
     return this._title;
