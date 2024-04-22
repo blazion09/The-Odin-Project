@@ -19,3 +19,6 @@
    Timestamp
 
 right now the local storage logic both add and delete task to object and localstorage
+
+reference:
+https://mooniidev.github.io/todo-list/#

@@ -20,7 +20,10 @@ export class LocalStorage {
   }
 
   static editProjectTitle(project, newTitle) {
+    localStorage.removeItem(project.title);
     project.title = newTitle;
     this.saveProject(project);
   }
+
+  static editTaskTitle(task, newTitle) {}
 }

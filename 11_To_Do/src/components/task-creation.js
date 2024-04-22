@@ -46,11 +46,4 @@ export class TaskDetails {
   get timeStamp() {
     return this._timeStamp;
   }
-
-  addTaskToLocalStorage() {
-    localStorage.setItem(this._timeStamp, JSON.stringify(this));
-  }
-  removeTaskFromLocalStorage() {
-    localStorage.removeItem(this._timeStamp);
-  }
 }
