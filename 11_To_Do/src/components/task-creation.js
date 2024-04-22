@@ -1,9 +1,10 @@
 export class TaskDetails {
-  constructor(title, description, dueDate, priorityLevel) {
+  constructor(title, description, dueDate, priorityLevel, project) {
     this._title = title;
     this._description = description;
     this._dueDate = dueDate;
     this._priority = priorityLevel;
+    this._project = project;
     this._timeStamp = Date.now();
   }
 
@@ -18,6 +19,9 @@ export class TaskDetails {
   }
   set priorityLevel(newPriorityLevel) {
     this._priority = newPriorityLevel;
+  }
+  set project(newProject) {
+    this._project = newProject;
   }
   //FOR DEVELOPMENT PROCESS
   set timeStamp(newTimeStamp) {
@@ -35,6 +39,9 @@ export class TaskDetails {
   }
   get priorityLevel() {
     return this._priority;
+  }
+  get project() {
+    return this._project;
   }
   get timeStamp() {
     return this._timeStamp;

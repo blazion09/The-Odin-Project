@@ -17,3 +17,5 @@
    Title
    Description
    Timestamp
+
+right now the local storage logic both add and delete task to object and localstorage
