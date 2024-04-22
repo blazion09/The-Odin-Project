@@ -1,6 +1,6 @@
 import "./css/reset.css";
 import "./css/style.css";
-import "./components/task-creation";
+import { TaskDetails } from "./components/task-creation";
 
 const list = [];
 const task3 = new TaskDetails("Task 3", "Description 3", "04/12", "High");

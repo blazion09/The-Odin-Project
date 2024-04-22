@@ -1,6 +1,4 @@
-export { TaskDetails };
-
-class TaskDetails {
+export class TaskDetails {
   constructor(title, description, dueDate, priorityLevel) {
     this._title = title;
     this._description = description;
