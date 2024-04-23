@@ -4,7 +4,7 @@ import "./css/style.css";
 import taskDialogHTML from "./components/html/task-modal.html";
 import projectDialogHTML from "./components/html/project-modal.html";
 
-import { create, createProject } from "./components/js/project-dom-creation";
+import { createProject } from "./components/js/project-dom-creation";
 import { TaskDetails } from "./components/js/task-creation";
 import { Project } from "./components/js/project-creation";
 import { LocalStorage } from "./components/js/local-storage-logic";
@@ -22,5 +22,9 @@ const projectDIV = document.querySelector(".project");
 const createProjectBtn = document.querySelector(".create-project");
 const projectDialog = document.querySelector(".project-dialog");
 const projectForm = document.getElementById("project-form");
-createProjectBtn.addEventListener("click", createProject);
-projectForm.addEventListener("submit", create);
+createProjectBtn.addEventListener("click", () => {
+  projectDialog.showModal();
+});
+projectForm.addEventListener("submit", createProject);
+
+//Create Task

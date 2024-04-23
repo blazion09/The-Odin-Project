@@ -5,19 +5,19 @@ import { Project } from "./project-creation";
 import { taskModal } from "./task-dom-creation";
 
 export function createProject() {
-  projectDialog.showModal();
-}
-
-export function create() {
   //constructor(title, description)
   const title = projectForm.elements["project-title"].value;
-  const description = projectForm.elements["project-description"].value;
+  if (!localStorage.getItem(title)) {
+    const description = projectForm.elements["project-description"].value;
 
-  const project = new Project(title, description);
-  LocalStorage.saveProject(project);
-  projectDialog.close();
+    const project = new Project(title, description);
+    LocalStorage.saveProject(project);
+    projectDialog.close();
 
-  createDOM(project.title, description, project);
+    createDOM(project.title, description, project);
+  } else {
+    alert("Same Project Name Exist");
+  }
 }
 
 //create DOM for Project Title, Project Description and Create Task Button(with Data of Project name)
