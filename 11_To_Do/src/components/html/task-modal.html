@@ -1,0 +1,50 @@
+<dialog class="task-dialog">
+  <form method="dialog" id="task-form" action="">
+    <div class="task-title">
+      <label for="task-title">Enter task title: </label>
+      <input
+        type="text"
+        name="task-title"
+        id="task-title"
+        required
+        value="Task 1"
+      />
+    </div>
+    <div class="task-description">
+      <label for="task-description">Enter task description: </label>
+      <input
+        type="text"
+        name="task-description"
+        id="task-description"
+        required
+        value="Description 1"
+      />
+    </div>
+    <div class="task-due">
+      <label for="task-due">Select task due date: </label>
+      <input
+        type="date"
+        name="task-due"
+        id="task-due"
+        required
+        value="2024-05-05"
+      />
+    </div>
+    <div class="task-priority">
+      <label for="task-priority">Select task importance: </label>
+      <div>
+        <input type="radio" id="low" name="task-priority" value="low" checked />
+        <label for="low">LOW</label>
+      </div>
+      <div>
+        <input type="radio" id="medium" name="task-priority" value="medium" />
+        <label for="medium">MEDIUM</label>
+      </div>
+      <div>
+        <input type="radio" id="high" name="task-priority" value="high" />
+        <label for="high">HIGH</label>
+      </div>
+    </div>
+    <button type="submit">Add Task</button>
+  </form>
+</dialog>

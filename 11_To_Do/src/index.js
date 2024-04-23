@@ -1,12 +1,18 @@
 import "./css/reset.css";
 import "./css/style.css";
-import { TaskDetails } from "./components/task-creation";
-import { Project } from "./components/project-creation";
-import { LocalStorage } from "./components/local-storage-logic";
+
+import taskDialogHTML from "./components/html/task-modal.html";
+import projectDialogHTML from "./components/html/project-modal.html";
+
+import { TaskDetails } from "./components/js/task-creation";
+import { Project } from "./components/js/project-creation";
+import { LocalStorage } from "./components/js/local-storage-logic";
 
 //FOR DEVELOPMENT PROCESS
 localStorage.clear();
 //
+document.getElementById("taskDialogHTML").innerHTML = taskDialogHTML;
+document.getElementById("projectDialogHTML").innerHTML = projectDialogHTML;
 
 const project1 = new Project("Project 1", "Description 1");
 
