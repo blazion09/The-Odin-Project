@@ -1,6 +1,6 @@
 export class Project {
   constructor(title, description) {
-    this._title = title.replace(/ /g, "");
+    this._title = title;
     this._description = description;
     this._task = {};
   }
