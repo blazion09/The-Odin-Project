@@ -21,26 +21,3 @@ const projectDIV = document.querySelector(".project");
 //Create Project
 const createProjectBtn = document.querySelector(".create-project");
 createProjectBtn.addEventListener("click", createProject);
-
-const project1 = new Project("Project 1", "Description 1");
-
-const createTask = document.querySelector(".create-task");
-const taskDialog = document.querySelector(".task-dialog");
-const taskForm = document.getElementById("task-form");
-
-createTask.addEventListener("click", () => {
-  taskDialog.showModal();
-});
-
-taskForm.addEventListener("submit", function (event) {
-  event.preventDefault();
-  //constructor(title, description, dueDate, priorityLevel, project)
-  const title = taskForm.elements["task-title"].value;
-  const description = taskForm.elements["task-description"].value;
-  const dueDate = taskForm.elements["task-due"].value;
-  const priorityLevel = taskForm.elements["task-priority"].value;
-
-  const task = new TaskDetails(title, description, dueDate, priorityLevel);
-  LocalStorage.addTask(project1, task);
-  taskDialog.close();
-});

@@ -2,6 +2,7 @@ import { projectDIV } from "../..";
 import { DOMCreation } from "./dom-creation";
 import { LocalStorage } from "./local-storage-logic";
 import { Project } from "./project-creation";
+import { taskModal } from "./task-dom-creation";
 
 export function createProject() {
   const projectDialog = document.querySelector(".project-dialog");
@@ -18,12 +19,31 @@ export function createProject() {
     LocalStorage.saveProject(project);
     projectDialog.close();
 
-    createDOM(title);
+    createDOM(project.title, description, project);
   });
 }
 
 //create DOM for Project Title, Project Description and Create Task Button(with Data of Project name)
-function createDOM(projectName) {
+function createDOM(projectName, projecDesc, projectObj) {
   const projectTitle = new DOMCreation("div", projectName, projectName);
   projectTitle.appendTo(projectDIV);
+
+  const projectDescription = new DOMCreation(
+    "div",
+    `${projectName}-description`,
+    projecDesc
+  );
+  projectDescription.appendTo(projectTitle.element);
+
+  const addTaskBtn = new DOMCreation(
+    "button",
+    `${projectName}-btn`,
+    "Add Task"
+  );
+  addTaskBtn.appendTo(projectTitle.element);
+  if (!addTaskBtn.onclick) {
+    addTaskBtn.element.addEventListener("click", function () {
+      taskModal(projectObj);
+    });
+  }
 }
