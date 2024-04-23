@@ -2,7 +2,7 @@ import { projectDIV, projectDialog, projectForm } from "../..";
 import { DOMCreation } from "./dom-creation";
 import { LocalStorage } from "./local-storage-logic";
 import { Project } from "./project-creation";
-import { taskModal } from "./task-dom-creation";
+import { addTaskModalOpener, taskModal } from "./task-dom-creation";
 
 export function createProject() {
   //constructor(title, description)
@@ -21,7 +21,7 @@ export function createProject() {
 }
 
 //create DOM for Project Title, Project Description and Create Task Button(with Data of Project name)
-function createDOM(projectName, projecDesc, projectObj) {
+function createDOM(projectName, projecDesc) {
   const projectTitle = new DOMCreation("div", projectName, projectName);
   projectTitle.appendTo(projectDIV);
 
@@ -38,9 +38,5 @@ function createDOM(projectName, projecDesc, projectObj) {
     "Add Task"
   );
   addTaskBtn.appendTo(projectTitle.element);
-  if (!addTaskBtn.onclick) {
-    addTaskBtn.element.addEventListener("click", function () {
-      taskModal(projectObj);
-    });
-  }
+  addTaskModalOpener(projectName);
 }

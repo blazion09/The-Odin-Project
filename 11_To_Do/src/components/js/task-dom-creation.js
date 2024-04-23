@@ -1,5 +1,13 @@
 import { LocalStorage } from "./local-storage-logic";
 import { TaskDetails } from "./task-creation";
+import { taskDialog } from "../..";
+
+export function addTaskModalOpener(projectName) {
+  const openModal = document.querySelector(`.${projectName}-btn`);
+  openModal.addEventListener("click", function () {
+    taskDialog.showModal();
+  });
+}
 
 export function taskModal(projectName) {
   const taskDialog = document.querySelector(".task-dialog");
