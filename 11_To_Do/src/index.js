@@ -4,6 +4,7 @@ import "./css/style.css";
 import taskDialogHTML from "./components/html/task-modal.html";
 import projectDialogHTML from "./components/html/project-modal.html";
 
+import { projectDOM } from "./components/js/project-dom-creation";
 import { TaskDetails } from "./components/js/task-creation";
 import { Project } from "./components/js/project-creation";
 import { LocalStorage } from "./components/js/local-storage-logic";
@@ -13,6 +14,10 @@ localStorage.clear();
 //
 document.getElementById("taskDialogHTML").innerHTML = taskDialogHTML;
 document.getElementById("projectDialogHTML").innerHTML = projectDialogHTML;
+
+//Create Project
+const createProjectBtn = document.querySelector(".create-project");
+createProjectBtn.addEventListener("click", projectDOM);
 
 const project1 = new Project("Project 1", "Description 1");
 
