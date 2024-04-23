@@ -1,6 +1,7 @@
 import { LocalStorage } from "./local-storage-logic";
 import { TaskDetails } from "./task-creation";
-import { taskDialog, taskForm } from "../..";
+import { projectDIV, taskDialog, taskForm } from "../..";
+import { DOMCreation } from "./dom-creation";
 
 export function addTaskModalOpener(projectName) {
   const openModal = document.querySelector(
@@ -19,5 +20,11 @@ export function saveTask(projectObj) {
 
   const task = new TaskDetails(title, description, dueDate, priorityLevel);
   LocalStorage.addTask(projectObj, task);
+  createTaskDOM(title);
   taskDialog.close();
+}
+
+function createTaskDOM(title) {
+  const taskTitle = new DOMCreation("div", title, title);
+  taskTitle.appendTo(projectDIV);
 }
