@@ -8,6 +8,7 @@ import { createProject } from "./components/js/project-dom-creation";
 import { TaskDetails } from "./components/js/task-creation";
 import { Project } from "./components/js/project-creation";
 import { LocalStorage } from "./components/js/local-storage-logic";
+import { saveTask } from "./components/js/task-dom-creation";
 
 export { projectDIV, projectDialog, projectForm, taskDialog, taskForm };
 
@@ -31,3 +32,4 @@ projectForm.addEventListener("submit", createProject);
 //Create Task
 const taskDialog = document.querySelector(".task-dialog");
 const taskForm = document.getElementById("task-form");
+taskForm.addEventListener("submit", saveTask);

@@ -9,19 +9,23 @@ export function addTaskModalOpener(projectName) {
   );
   openModal.addEventListener("click", function () {
     taskDialog.showModal();
+    localStorage.setItem("selectedProject", projectName);
   });
 }
 
-export function saveTask(projectObj) {
+export function saveTask() {
   const title = taskForm.elements["task-title"].value;
   const description = taskForm.elements["task-description"].value;
   const dueDate = taskForm.elements["task-due"].value;
   const priorityLevel = taskForm.elements["task-priority"].value;
 
   const task = new TaskDetails(title, description, dueDate, priorityLevel);
-  LocalStorage.addTask(projectObj, task);
+  let x = localStorage.getItem("selectedProject");
+  let selectedProject = JSON.parse(localStorage.getItem(x));
+  selectedProject._task[task.timeStamp] = task;
+  localStorage.setItem(x, JSON.stringify(selectedProject));
+
   createTaskDOM(title);
-  taskDialog.close();
 }
 
 function createTaskDOM(title) {

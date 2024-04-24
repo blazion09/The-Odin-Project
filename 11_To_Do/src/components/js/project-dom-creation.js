@@ -39,8 +39,4 @@ function createDOM(projectName, projecDesc, projectObj) {
   );
   addTaskBtn.appendTo(projectTitle.element);
   addTaskModalOpener(projectName);
-  taskForm.removeEventListener("submit", saveTask);
-  taskForm.addEventListener("submit", function () {
-    saveTask(projectObj);
-  });
 }
