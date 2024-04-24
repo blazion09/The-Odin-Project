@@ -25,10 +25,17 @@ export function saveTask() {
   selectedProject._task[task.timeStamp] = task;
   localStorage.setItem(x, JSON.stringify(selectedProject));
 
-  createTaskDOM(title);
+  createTaskDOM(title, task.timeStamp + "");
 }
 
-function createTaskDOM(title) {
+function createTaskDOM(title, taskTimestamp) {
   const taskTitle = new DOMCreation("div", title, title);
   taskTitle.appendTo(projectDIV);
+
+  const editBtn = new DOMCreation("button", taskTimestamp, "Edit Task");
+  editBtn.appendTo(projectDIV);
+  editBtn.element.addEventListener("click", function () {
+    taskDialog.showModal();
+    localStorage.setItem("selectedTask", taskTimestamp);
+  });
 }
