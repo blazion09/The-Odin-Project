@@ -1,6 +1,10 @@
 export class LocalStorage {
-  static saveProject(project) {
-    localStorage.setItem(project.title, JSON.stringify(project));
+  static saveProject(projectName) {
+    localStorage.setItem(projectName, JSON.stringify(project));
+  }
+
+  static loadProject(projectName) {
+    JSON.parse(localStorage.getItem(projectName));
   }
 
   static deleteProject(project) {
