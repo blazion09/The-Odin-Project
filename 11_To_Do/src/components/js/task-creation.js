@@ -1,5 +1,5 @@
+import { projectDIV } from "../..";
 import { DOMCreation } from "./dom-creation";
-
 export class TaskDetails {
   constructor(title, description, dueDate, priorityLevel) {
     this._title = title;
@@ -43,6 +43,10 @@ export class TaskDetails {
   }
 }
 
-// export function addTaskBtn(){
-//   const addTaskBtn = new DOMCreation("button", )
-// }
+export function addTaskBtn(projectID) {
+  projectID = "Task-" + projectID;
+  const btn = new DOMCreation("button", "add-task-btn", "Add Task");
+  btn.element.setAttribute("id", projectID);
+  const project = document.querySelector(`.Project-${projectID}`);
+  btn.appendTo(project);
+}

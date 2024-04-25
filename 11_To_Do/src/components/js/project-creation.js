@@ -6,6 +6,7 @@ import {
 } from "../..";
 import { LocalStorage } from "./local-storage-logic";
 import { DOMCreation } from "./dom-creation";
+import { addTaskBtn } from "./task-creation";
 
 export class Project {
   constructor(title, description) {
@@ -33,6 +34,7 @@ export function saveProject(projectID) {
   addProjectDOM(projectID, project);
   addEditProjectBtn(projectID);
   //Task
+  addTaskBtn(projectID);
 }
 
 function addProjectDOM(projectID, project) {
