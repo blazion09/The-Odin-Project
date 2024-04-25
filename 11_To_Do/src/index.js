@@ -4,6 +4,8 @@ import "./css/style.css";
 import taskDialogHTML from "./components/html/task-modal.html";
 import projectDialogHTML from "./components/html/project-modal.html";
 import { TaskDetails } from "./components/js/task-creation";
+import { Project } from "./components/js/project-creation";
+import { LocalStorage } from "./components/js/local-storage-logic";
 
 export { projectDIV, projectDialog, projectForm, taskDialog, taskForm };
 
@@ -18,6 +20,17 @@ const projectDIV = document.querySelector(".project");
 const createProjectBtn = document.querySelector(".create-project");
 const projectDialog = document.querySelector(".project-dialog");
 const projectForm = document.getElementById("project-form");
+
+createProjectBtn.addEventListener("click", () => projectDialog.showModal());
+projectForm.addEventListener("submit", function () {
+  //get value from form
+  const title = projectForm.elements["project-title"].value;
+  const description = projectForm.elements["project-description"].value;
+
+  const project = new Project(title, description);
+  //save project to local storage
+  LocalStorage.saveItem(project.timeStamp, project);
+});
 
 //Create Task
 const taskDialog = document.querySelector(".task-dialog");
