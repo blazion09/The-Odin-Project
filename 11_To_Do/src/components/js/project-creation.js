@@ -30,7 +30,13 @@ export function saveProject(projectID) {
   projectID = Date.now();
   LocalStorage.saveItem(projectID, project);
 
+  addProjectDOM(projectID, project);
   addEditProjectBtn(projectID);
+}
+
+function addProjectDOM(projectID, project) {
+  const projectDOM = new DOMCreation("div", projectID, project.title);
+  projectDOM.appendTo(projectDIV);
 }
 
 function addEditProjectBtn(projectID) {
@@ -43,7 +49,6 @@ function addEditProjectBtn(projectID) {
   editProjectBtn.element.addEventListener("click", function () {
     editProject(projectID);
   });
-  editProjectBtn.appendTo(projectDIV);
 }
 
 function editProject(projectID) {

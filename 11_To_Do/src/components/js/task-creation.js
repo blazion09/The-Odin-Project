@@ -1,3 +1,5 @@
+import { DOMCreation } from "./dom-creation";
+
 export class TaskDetails {
   constructor(title, description, dueDate, priorityLevel) {
     this._title = title;
@@ -40,3 +42,7 @@ export class TaskDetails {
     return this._timeStamp;
   }
 }
+
+// export function addTaskBtn(){
+//   const addTaskBtn = new DOMCreation("button", )
+// }

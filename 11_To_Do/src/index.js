@@ -56,5 +56,3 @@ editProjectForm.addEventListener("submit", function () {
 //Create Task
 const taskDialog = document.querySelector(".task-dialog");
 const taskForm = document.getElementById("task-form");
-
-const task = new TaskDetails("Title 1", "Description 1", "2020-22-1", "Low");
