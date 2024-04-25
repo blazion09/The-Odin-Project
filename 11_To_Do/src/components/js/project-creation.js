@@ -29,17 +29,32 @@ export function saveProject(projectID) {
   const project = new Project(title, description);
   projectID = Date.now();
   LocalStorage.saveItem(projectID, project);
-
+  //Project
   addProjectDOM(projectID, project);
   addEditProjectBtn(projectID);
+  //Task
 }
 
 function addProjectDOM(projectID, project) {
   const projectDOM = new DOMCreation("div", `Project-${projectID}`);
   projectDOM.appendTo(projectDIV);
+
+  //Project Title
   const projectTitle = new DOMCreation("p", "project-title", project.title);
   projectTitle.element.setAttribute("id", `Project-Title-${projectID}`);
   projectTitle.appendTo(projectDOM.element);
+
+  //Project Description
+  const projectDescription = new DOMCreation(
+    "p",
+    "project-description",
+    project.description
+  );
+  projectDescription.element.setAttribute(
+    "id",
+    `Project-Description-${projectID}`
+  );
+  projectDescription.appendTo(projectDOM.element);
 }
 
 function addEditProjectBtn(projectID) {
@@ -68,16 +83,25 @@ function editProject(projectID) {
 export function saveEditedProject() {
   const projectID = localStorage.getItem("selected");
   const loadedProject = LocalStorage.retrieveItem(projectID);
+  //edit project details
   loadedProject.title = editProjectForm.elements["project-title"].value;
   loadedProject.description =
     editProjectForm.elements["project-description"].value;
+  //
   LocalStorage.saveItem(projectID, loadedProject);
-  const projectTitle = document.querySelector(`#Project-Title-${projectID}`);
-  projectTitle.textContent = loadedProject.title;
+
+  updateProjectDOM(projectID);
 }
 
-// function updateProjectDOM(projectID) {
-//   const projectDOM = document.querySelector(`.Project${projectID}`);
-//   const loadedProject = LocalStorage.retrieveItem(projectID);
-//   projectDOM.textContent = loadedProject.title;
-// }
+function updateProjectDOM(projectID) {
+  const loadedProject = LocalStorage.retrieveItem(projectID);
+  //Project Title
+  const projectTitle = document.querySelector(`#Project-Title-${projectID}`);
+  projectTitle.textContent = loadedProject.title;
+
+  //Project Description
+  const projectDescription = document.querySelector(
+    `#Project-Description-${projectID}`
+  );
+  projectDescription.textContent = loadedProject.description;
+}
