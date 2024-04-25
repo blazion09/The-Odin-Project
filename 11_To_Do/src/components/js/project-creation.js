@@ -3,7 +3,6 @@ export class Project {
     this.title = title;
     this.description = description;
     this.task = {};
-    this.timeStamp = Date.now();
   }
 
   addTask(task) {

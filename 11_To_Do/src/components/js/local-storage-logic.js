@@ -1,9 +1,9 @@
 export class LocalStorage {
-  static saveItem(timeStamp, value) {
-    localStorage.setItem(timeStamp, JSON.stringify(value));
+  static saveItem(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
   }
 
-  static retrieveItem(timeStamp) {
-    localStorage.getItem(timeStamp);
+  static retrieveItem(key) {
+    return JSON.parse(localStorage.getItem(key));
   }
 }
