@@ -4,15 +4,10 @@ import "./css/style.css";
 import taskDialogHTML from "./components/html/task-modal.html";
 import projectDialogHTML from "./components/html/project-modal.html";
 import editProjectDialogHTML from "./components/html/edit-project-modal.html";
-import { TaskDetails } from "./components/js/task-creation";
 import {
-  Project,
-  ProjectDOM,
   saveEditedProject,
   saveProject,
 } from "./components/js/project-creation";
-import { LocalStorage } from "./components/js/local-storage-logic";
-import { DOMCreation } from "./components/js/dom-creation";
 
 export {
   projectDIV,

@@ -35,8 +35,11 @@ export function saveProject(projectID) {
 }
 
 function addProjectDOM(projectID, project) {
-  const projectDOM = new DOMCreation("div", projectID, project.title);
+  const projectDOM = new DOMCreation("div", `Project-${projectID}`);
   projectDOM.appendTo(projectDIV);
+  const projectTitle = new DOMCreation("p", "project-title", project.title);
+  projectTitle.element.setAttribute("id", `Project-Title-${projectID}`);
+  projectTitle.appendTo(projectDOM.element);
 }
 
 function addEditProjectBtn(projectID) {
@@ -49,6 +52,8 @@ function addEditProjectBtn(projectID) {
   editProjectBtn.element.addEventListener("click", function () {
     editProject(projectID);
   });
+  const projectDOM = document.querySelector(`.Project-${projectID}`);
+  editProjectBtn.appendTo(projectDOM);
 }
 
 function editProject(projectID) {
@@ -67,4 +72,12 @@ export function saveEditedProject() {
   loadedProject.description =
     editProjectForm.elements["project-description"].value;
   LocalStorage.saveItem(projectID, loadedProject);
+  const projectTitle = document.querySelector(`#Project-Title-${projectID}`);
+  projectTitle.textContent = loadedProject.title;
 }
+
+// function updateProjectDOM(projectID) {
+//   const projectDOM = document.querySelector(`.Project${projectID}`);
+//   const loadedProject = LocalStorage.retrieveItem(projectID);
+//   projectDOM.textContent = loadedProject.title;
+// }
