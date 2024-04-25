@@ -8,6 +8,7 @@ import {
   saveEditedProject,
   saveProject,
 } from "./components/js/project-creation";
+import { saveTask } from "./components/js/task-creation";
 
 export {
   projectDIV,
@@ -44,6 +45,7 @@ projectForm.addEventListener("submit", function () {
 //edit project
 const editProjectDialog = document.querySelector(".edit-project-dialog");
 const editProjectForm = document.getElementById("project-edit");
+
 editProjectForm.addEventListener("submit", function () {
   saveEditedProject();
 });
@@ -51,3 +53,7 @@ editProjectForm.addEventListener("submit", function () {
 //Create Task
 const taskDialog = document.querySelector(".task-dialog");
 const taskForm = document.getElementById("task-form");
+
+taskForm.addEventListener("submit", function () {
+  saveTask();
+});

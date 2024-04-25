@@ -1,12 +1,12 @@
-import { projectDIV } from "../..";
+import { taskDialog, taskForm } from "../..";
 import { DOMCreation } from "./dom-creation";
+import { LocalStorage } from "./local-storage-logic";
 export class TaskDetails {
   constructor(title, description, dueDate, priorityLevel) {
     this._title = title;
     this._description = description;
     this._dueDate = dueDate;
     this._priority = priorityLevel;
-    this._timeStamp = Date.now();
   }
 
   set title(newTitle) {
@@ -21,10 +21,6 @@ export class TaskDetails {
   set priorityLevel(newPriorityLevel) {
     this._priority = newPriorityLevel;
   }
-  //FOR DEVELOPMENT PROCESS
-  set timeStamp(newTimeStamp) {
-    this._timeStamp = newTimeStamp;
-  }
 
   get title() {
     return this._title;
@@ -38,15 +34,32 @@ export class TaskDetails {
   get priorityLevel() {
     return this._priority;
   }
-  get timeStamp() {
-    return this._timeStamp;
-  }
 }
 
 export function addTaskBtn(projectID) {
-  projectID = "Task-" + projectID;
   const btn = new DOMCreation("button", "add-task-btn", "Add Task");
-  btn.element.setAttribute("id", projectID);
-  const project = document.querySelector(`.Project-${projectID}`);
-  btn.appendTo(project);
+  const projectDOM = document.querySelector(`.Project-${projectID}`);
+  btn.element.addEventListener("click", function () {
+    taskDialog.showModal();
+    localStorage.setItem("selectedProject", projectID);
+  });
+  btn.appendTo(projectDOM);
+}
+
+export function saveTask() {
+  const title = taskForm.elements["task-title"].value;
+  const description = taskForm.elements["task-description"].value;
+  const dueDate = taskForm.elements["task-due"].value;
+  const priorityLevel = taskForm.elements["task-priority"].value;
+  const taskID = Date.now();
+  const task = new TaskDetails(title, description, dueDate, priorityLevel);
+  LocalStorage.saveItem(taskID, task);
+  addTaskDOM();
+}
+
+function addTaskDOM() {
+  const taskContainer = new DOMCreation("div", "task-container", "here ");
+  const projectID = localStorage.getItem("selectedProject");
+  const projectDOM = document.querySelector(`.Project-${projectID}`);
+  taskContainer.appendTo(projectDOM);
 }
