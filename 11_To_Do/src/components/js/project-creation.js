@@ -58,13 +58,13 @@ function addEditProjectBtn(projectID) {
   );
   editProjectBtn.element.setAttribute("id", projectID);
   editProjectBtn.element.addEventListener("click", function () {
-    editProject(projectID);
+    showEditProjectModal(projectID);
   });
   const projectDOM = document.querySelector(`.Project-${projectID}`);
   editProjectBtn.appendTo(projectDOM);
 }
 
-function editProject(projectID) {
+function showEditProjectModal(projectID) {
   editProjectDialog.showModal();
   const loadedProject = LocalStorage.retrieveItem(projectID);
   localStorage.setItem("selected", projectID);

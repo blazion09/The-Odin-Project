@@ -1,4 +1,4 @@
-import { taskDialog, taskForm } from "../..";
+import { editTaskDialog, editTaskForm, taskDialog, taskForm } from "../..";
 import { DOMCreation } from "./dom-creation";
 import { LocalStorage } from "./local-storage-logic";
 export class TaskDetails {
@@ -41,6 +41,8 @@ export function addTaskDOM(taskID) {
   //title
   const title = new DOMCreation("p", "task-title", task.title);
   title.appendTo(taskContainer.element);
+  //edit button
+  addEditTaskBtn(title.element, taskID);
   //description
   const description = new DOMCreation(
     "p",
@@ -54,4 +56,23 @@ export function addTaskDOM(taskID) {
   //priority
   const priority = new DOMCreation("p", "task-priority", task.priority);
   priority.appendTo(taskContainer.element);
+}
+
+function addEditTaskBtn(taskContainer, taskID) {
+  const editBtn = new DOMCreation("button", "edit-task", "Edit Task");
+  editBtn.appendTo(taskContainer);
+  editBtn.element.addEventListener("click", function () {
+    showEditTaskModal(taskID);
+  });
+}
+
+function showEditTaskModal(taskID) {
+  editTaskDialog.showModal();
+  const loadedTask = LocalStorage.retrieveItem(taskID);
+  localStorage.setItem("selectedTask", taskID);
+
+  editTaskForm.elements["task-title"].value = loadedTask.title;
+  editTaskForm.elements["task-description"].value = loadedTask.description;
+  editTaskForm.elements["task-due"].value = loadedTask.dueDate;
+  editTaskForm.elements["task-priority"].value = loadedTask.priority;
 }
