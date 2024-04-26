@@ -15,6 +15,7 @@ export function addTaskBtn(projectID) {
   const projectDOM = document.querySelector(`.Project-${projectID}`);
   btn.element.addEventListener("click", function () {
     taskDialog.showModal();
+    taskForm.reset();
     localStorage.setItem("selectedProject", projectID);
   });
   btn.appendTo(projectDOM);
