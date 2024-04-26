@@ -31,6 +31,7 @@ export function saveProject(projectID) {
 
 function addProjectDOM(projectID, project) {
   const projectContainer = new DOMCreation("div", `Project-${projectID}`);
+  projectContainer.element.classList.add("project-container");
   projectContainer.appendTo(projectDIV);
   //Title
   const projectTitle = new DOMCreation("p", "project-title", project.title);
@@ -76,7 +77,7 @@ function showEditProjectModal(projectID) {
 export function saveEditedProject() {
   const projectID = localStorage.getItem("selected");
   const loadedProject = LocalStorage.retrieveItem(projectID);
-  //edit project details
+  //Save new project details
   loadedProject.title = editProjectForm.elements["project-title"].value;
   loadedProject.description =
     editProjectForm.elements["project-description"].value;

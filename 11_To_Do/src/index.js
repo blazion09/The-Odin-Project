@@ -9,7 +9,11 @@ import {
   saveEditedProject,
   saveProject,
 } from "./components/js/project-creation";
-import { addTaskDOM, saveTask } from "./components/js/task-creation";
+import {
+  addTaskDOM,
+  saveEditedTask,
+  saveTask,
+} from "./components/js/task-creation";
 
 export {
   projectDIV,
@@ -66,3 +70,7 @@ taskForm.addEventListener("submit", function () {
 //Edit Task
 const editTaskDialog = document.querySelector(".edit-task-dialog");
 const editTaskForm = document.getElementById("edit-task-form");
+
+editTaskForm.addEventListener("submit", function () {
+  saveEditedTask();
+});

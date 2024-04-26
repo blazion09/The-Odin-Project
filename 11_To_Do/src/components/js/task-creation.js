@@ -21,6 +21,7 @@ export function addTaskBtn(projectID) {
   btn.appendTo(projectDOM);
 }
 
+//Function to activate when submitting task form
 export function saveTask() {
   const title = taskForm.elements["task-title"].value;
   const description = taskForm.elements["task-description"].value;
@@ -40,22 +41,26 @@ export function addTaskDOM(taskID) {
   const projectDOM = document.querySelector(`.Project-${projectID}`);
   taskContainer.appendTo(projectDOM);
   //title
-  const title = new DOMCreation("p", "task-title", task.title);
+  const title = new DOMCreation("div", "task-title", task.title);
+  title.element.setAttribute("id", `Task-Title-${taskID}`);
   title.appendTo(taskContainer.element);
-  //edit button
-  addEditTaskBtn(title.element, taskID);
+  //Add Edit Button
+  addEditTaskBtn(taskContainer.element, taskID);
   //description
   const description = new DOMCreation(
     "p",
     "task-description",
     task.description
   );
+  description.element.setAttribute("id", `Task-Description-${taskID}`);
   description.appendTo(taskContainer.element);
   //due date
   const dueDate = new DOMCreation("p", "task-due", task.dueDate);
+  dueDate.element.setAttribute("id", `Task-Due-${taskID}`);
   dueDate.appendTo(taskContainer.element);
   //priority
   const priority = new DOMCreation("p", "task-priority", task.priority);
+  priority.element.setAttribute("id", `Task-Priority-${taskID}`);
   priority.appendTo(taskContainer.element);
 }
 
@@ -76,4 +81,33 @@ function showEditTaskModal(taskID) {
   editTaskForm.elements["task-description"].value = loadedTask.description;
   editTaskForm.elements["task-due"].value = loadedTask.dueDate;
   editTaskForm.elements["task-priority"].value = loadedTask.priority;
+}
+
+export function saveEditedTask() {
+  const taskID = localStorage.getItem("selectedTask");
+  const loadedTask = LocalStorage.retrieveItem(taskID);
+  //Save new task details
+  loadedTask.title = editTaskForm.elements["task-title"].value;
+  loadedTask.description = editTaskForm.elements["task-description"].value;
+  loadedTask.dueDate = editTaskForm.elements["task-due"].value;
+  loadedTask.priority = editTaskForm.elements["task-priority"].value;
+  LocalStorage.saveItem(taskID, loadedTask);
+
+  updateTaskDOM(taskID);
+}
+
+function updateTaskDOM(taskID) {
+  const loadedTask = LocalStorage.retrieveItem(taskID);
+
+  const title = document.querySelector(`#Task-Title-${taskID}`);
+  title.textContent = loadedTask.title;
+
+  const desc = document.querySelector(`#Task-Description-${taskID}`);
+  desc.textContent = loadedTask.description;
+
+  const dueDate = document.querySelector(`#Task-Due-${taskID}`);
+  dueDate.textContent = loadedTask.dueDate;
+
+  const priority = document.querySelector(`#Task-Priority-${taskID}`);
+  priority.textContent = loadedTask.priority;
 }
