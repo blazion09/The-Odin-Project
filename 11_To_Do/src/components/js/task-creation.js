@@ -3,36 +3,10 @@ import { DOMCreation } from "./dom-creation";
 import { LocalStorage } from "./local-storage-logic";
 export class TaskDetails {
   constructor(title, description, dueDate, priorityLevel) {
-    this._title = title;
-    this._description = description;
-    this._dueDate = dueDate;
-    this._priority = priorityLevel;
-  }
-
-  set title(newTitle) {
-    this._title = newTitle;
-  }
-  set description(newDescription) {
-    this._description = newDescription;
-  }
-  set dueDate(newDueDate) {
-    this._dueDate = newDueDate;
-  }
-  set priorityLevel(newPriorityLevel) {
-    this._priority = newPriorityLevel;
-  }
-
-  get title() {
-    return this._title;
-  }
-  get description() {
-    return this._description;
-  }
-  get dueDate() {
-    return this._dueDate;
-  }
-  get priorityLevel() {
-    return this._priority;
+    this.title = title;
+    this.description = description;
+    this.dueDate = dueDate;
+    this.priority = priorityLevel;
   }
 }
 
@@ -54,12 +28,30 @@ export function saveTask() {
   const taskID = Date.now();
   const task = new TaskDetails(title, description, dueDate, priorityLevel);
   LocalStorage.saveItem(taskID, task);
-  addTaskDOM();
+  addTaskDOM(taskID);
 }
 
-function addTaskDOM() {
-  const taskContainer = new DOMCreation("div", "task-container", "here ");
+export function addTaskDOM(taskID) {
   const projectID = localStorage.getItem("selectedProject");
+  const task = LocalStorage.retrieveItem(taskID);
+  //container
+  const taskContainer = new DOMCreation("div", "task-container");
   const projectDOM = document.querySelector(`.Project-${projectID}`);
   taskContainer.appendTo(projectDOM);
+  //title
+  const title = new DOMCreation("p", "task-title", task.title);
+  title.appendTo(taskContainer.element);
+  //description
+  const description = new DOMCreation(
+    "p",
+    "task-description",
+    task.description
+  );
+  description.appendTo(taskContainer.element);
+  //due date
+  const dueDate = new DOMCreation("p", "task-due", task.dueDate);
+  dueDate.appendTo(taskContainer.element);
+  //priority
+  const priority = new DOMCreation("p", "task-priority", task.priority);
+  priority.appendTo(taskContainer.element);
 }

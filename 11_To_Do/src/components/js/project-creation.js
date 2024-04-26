@@ -14,14 +14,6 @@ export class Project {
     this.description = description;
     this.task = {};
   }
-
-  addTask(task) {
-    this._task[task.timeStamp] = task;
-  }
-
-  deleteTask(task) {
-    delete this._task[task.timeStamp];
-  }
 }
 
 export function saveProject(projectID) {
@@ -38,15 +30,14 @@ export function saveProject(projectID) {
 }
 
 function addProjectDOM(projectID, project) {
-  const projectDOM = new DOMCreation("div", `Project-${projectID}`);
-  projectDOM.appendTo(projectDIV);
-
-  //Project Title
+  const projectContainer = new DOMCreation("div", `Project-${projectID}`);
+  projectContainer.appendTo(projectDIV);
+  //Title
   const projectTitle = new DOMCreation("p", "project-title", project.title);
   projectTitle.element.setAttribute("id", `Project-Title-${projectID}`);
-  projectTitle.appendTo(projectDOM.element);
+  projectTitle.appendTo(projectContainer.element);
 
-  //Project Description
+  //Description
   const projectDescription = new DOMCreation(
     "p",
     "project-description",
@@ -56,7 +47,7 @@ function addProjectDOM(projectID, project) {
     "id",
     `Project-Description-${projectID}`
   );
-  projectDescription.appendTo(projectDOM.element);
+  projectDescription.appendTo(projectContainer.element);
 }
 
 function addEditProjectBtn(projectID) {

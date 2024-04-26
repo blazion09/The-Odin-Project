@@ -8,7 +8,7 @@ import {
   saveEditedProject,
   saveProject,
 } from "./components/js/project-creation";
-import { saveTask } from "./components/js/task-creation";
+import { addTaskDOM, saveTask } from "./components/js/task-creation";
 
 export {
   projectDIV,
