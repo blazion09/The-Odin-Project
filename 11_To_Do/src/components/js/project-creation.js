@@ -32,9 +32,10 @@ export function saveProject(projectID) {
 }
 
 function addProjectDOM(projectID, project) {
-  const projectContainer = new DOMCreation("div", `Project-${projectID}`);
-  projectContainer.element.classList.add("project-container");
-  projectContainer.appendTo(projectDIV);
+  const wrapper = new DOMCreation("div", `Project-${projectID}`);
+  wrapper.appendTo(projectDIV);
+  const projectContainer = new DOMCreation("div", "project-container");
+  projectContainer.appendTo(wrapper.element);
   //Nav
   const nav = document.querySelector(".nav-list");
   const list = new DOMCreation("li", `List-${projectID}`, project.title);
