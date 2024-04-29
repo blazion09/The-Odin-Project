@@ -28,6 +28,7 @@ export {
   editProjectDialog,
   editTaskDialog,
   editTaskForm,
+  projectList,
 };
 
 //FOR DEVELOPMENT PROCESS
@@ -39,6 +40,7 @@ document.getElementById("editProjectDialogHTML").innerHTML =
   editProjectDialogHTML;
 document.getElementById("editTaskDialogHTML").innerHTML = editTaskDialogHTML;
 const projectDIV = document.querySelector(".project");
+const projectList = ["default"];
 
 //Create Project
 const createProjectBtn = document.querySelector(".create-project");
@@ -89,4 +91,14 @@ defaultTaskBtn.addEventListener("click", function () {
   taskDialog.showModal();
   taskForm.reset();
   localStorage.setItem("selectedProject", "default");
+});
+
+const defaultList = document.querySelector(".default-list");
+defaultList.addEventListener("click", function () {
+  projectList.forEach((project) => {
+    const allProjectContainer = document.querySelector(`.Project-${project}`);
+    allProjectContainer.style.display = "none";
+    const activeContainer = document.querySelector(`.Project-default`);
+    activeContainer.style.display = "block";
+  });
 });

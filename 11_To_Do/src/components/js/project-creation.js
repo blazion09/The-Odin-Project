@@ -3,6 +3,7 @@ import {
   projectDIV,
   editProjectDialog,
   editProjectForm,
+  projectList,
 } from "../..";
 import { LocalStorage } from "./local-storage-logic";
 import { DOMCreation } from "./dom-creation";
@@ -22,6 +23,7 @@ export function saveProject(projectID) {
   const project = new Project(title, description);
   projectID = Date.now();
   LocalStorage.saveItem(projectID, project);
+  projectList.push(projectID);
   //Project
   addProjectDOM(projectID, project);
   addEditProjectBtn(projectID);
@@ -33,6 +35,26 @@ function addProjectDOM(projectID, project) {
   const projectContainer = new DOMCreation("div", `Project-${projectID}`);
   projectContainer.element.classList.add("project-container");
   projectContainer.appendTo(projectDIV);
+  //Nav
+  const nav = document.querySelector(".nav-list");
+  const list = new DOMCreation("li", `List-${projectID}`, project.title);
+  //switch between active project DOM
+  list.element.addEventListener("click", function () {
+    projectList.forEach((project) => {
+      const allProjectContainer = document.querySelector(`.Project-${project}`);
+      allProjectContainer.style.display = "none";
+      const activeContainer = document.querySelector(`.Project-${projectID}`);
+      activeContainer.style.display = "block";
+    });
+  });
+  //show current projectDOM
+  projectList.forEach((project) => {
+    const allProjectContainer = document.querySelector(`.Project-${project}`);
+    allProjectContainer.style.display = "none";
+    const activeContainer = document.querySelector(`.Project-${projectID}`);
+    activeContainer.style.display = "block";
+  });
+  list.appendTo(nav);
   //Title
   const projectTitle = new DOMCreation("p", "project-title", project.title);
   projectTitle.element.setAttribute("id", `Project-Title-${projectID}`);
