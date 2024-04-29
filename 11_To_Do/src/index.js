@@ -6,14 +6,17 @@ import projectDialogHTML from "./components/html/project-modal.html";
 import editProjectDialogHTML from "./components/html/edit-project-modal.html";
 import editTaskDialogHTML from "./components/html/edit-task-modal.html";
 import {
+  Project,
   saveEditedProject,
   saveProject,
+  showEditProjectModal,
 } from "./components/js/project-creation";
 import {
   addTaskDOM,
   saveEditedTask,
   saveTask,
 } from "./components/js/task-creation";
+import { LocalStorage } from "./components/js/local-storage-logic";
 
 export {
   projectDIV,
@@ -73,4 +76,17 @@ const editTaskForm = document.getElementById("edit-task-form");
 
 editTaskForm.addEventListener("submit", function () {
   saveEditedTask();
+});
+
+//default
+const editProjectBtn = document.querySelector(".edit-project");
+editProjectBtn.addEventListener("click", () => showEditProjectModal("default"));
+const project = new Project("Project Title 1", "Project Description 1");
+LocalStorage.saveItem("default", project);
+
+const defaultTaskBtn = document.querySelector(".add-task-btn");
+defaultTaskBtn.addEventListener("click", function () {
+  taskDialog.showModal();
+  taskForm.reset();
+  localStorage.setItem("selectedProject", "default");
 });

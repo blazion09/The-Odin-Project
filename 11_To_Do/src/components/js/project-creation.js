@@ -65,7 +65,7 @@ function addEditProjectBtn(projectID) {
   editProjectBtn.appendTo(projectDOM);
 }
 
-function showEditProjectModal(projectID) {
+export function showEditProjectModal(projectID) {
   editProjectDialog.showModal();
   const loadedProject = LocalStorage.retrieveItem(projectID);
   localStorage.setItem("selected", projectID);
@@ -87,7 +87,7 @@ export function saveEditedProject() {
   updateProjectDOM(projectID);
 }
 
-function updateProjectDOM(projectID) {
+export function updateProjectDOM(projectID) {
   const loadedProject = LocalStorage.retrieveItem(projectID);
   //Project Title
   const projectTitle = document.querySelector(`#Project-Title-${projectID}`);
