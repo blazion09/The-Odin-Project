@@ -81,9 +81,10 @@ ul {
 }
 
 .project {
-  margin: 20px;
 }
 
-.add-task-btn {
-  margin-top: 20px;
+.project-title {
+}
+
+.project-description {
 }
