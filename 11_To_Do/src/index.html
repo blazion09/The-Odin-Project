@@ -6,20 +6,35 @@
     <title>To Do App</title>
   </head>
   <body>
-    <nav>
-      <header>
-        <h1>Task Planner</h1>
+    <div class="wrapper">
+      <nav>
+        <header>
+          <h1>Task Planner</h1>
+        </header>
         <div class="action">
-          <button type="button" class="create-project">
-            Create New Project
-          </button>
+          <button type="button" class="create-project">+ NEW PROJECT</button>
         </div>
-      </header>
-      <ul class="nav-list">
-        <li>Project 1</li>
-      </ul>
-    </nav>
-    <main><div class="project"></div></main>
+        <ul class="nav-list">
+          <li>Project 1</li>
+        </ul>
+      </nav>
+      <main>
+        <div class="project">
+          <div class="project-title">Project 1</div>
+          <div class="project-description">Project Description 1</div>
+          <button class="add-task-btn">Add Task</button>
+        </div>
+
+        <div class="task">
+          <div class="task-title-container">
+            <div class="task-title">Task 1</div>
+            <div class="task-description">Task Description 1</div>
+          </div>
+          <div class="task-due">2024-05-05</div>
+          <button class="edit-task">Edit</button>
+        </div>
+      </main>
+    </div>
 
     <div id="taskDialogHTML"></div>
     <div id="projectDialogHTML"></div>
