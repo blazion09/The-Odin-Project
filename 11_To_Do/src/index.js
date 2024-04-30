@@ -40,7 +40,7 @@ document.getElementById("editProjectDialogHTML").innerHTML =
   editProjectDialogHTML;
 document.getElementById("editTaskDialogHTML").innerHTML = editTaskDialogHTML;
 const projectDIV = document.querySelector(".project");
-const projectList = ["default"];
+const projectList = [];
 
 //Create Project
 const createProjectBtn = document.querySelector(".create-project");
@@ -80,30 +80,18 @@ editTaskForm.addEventListener("submit", function () {
   saveEditedTask();
 });
 
-//default
-const editProjectBtn = document.querySelector(".edit-project");
-editProjectBtn.addEventListener("click", () => showEditProjectModal("default"));
-const project = new Project("Project Title 1", "Project Description 1");
-LocalStorage.saveItem("default", project);
-
-const defaultTaskBtn = document.querySelector(".add-task-btn");
-defaultTaskBtn.addEventListener("click", function () {
-  taskDialog.showModal();
-  taskForm.reset();
-  localStorage.setItem("selectedProject", "default");
-});
-
-const defaultList = document.querySelector(".default-list");
-defaultList.addEventListener("click", function () {
-  if (document.querySelector(".li-selected") != null) {
-    const activeProject = document.querySelector(".li-selected");
-    activeProject.classList.remove("li-selected");
-  }
-  projectList.forEach((project) => {
-    const allProjectContainer = document.querySelector(`.Project-${project}`);
-    allProjectContainer.style.display = "none";
-    const activeContainer = document.querySelector(`.Project-default`);
-    activeContainer.style.display = "block";
-    defaultList.classList.add("li-selected");
-  });
-});
+//default project
+function defaultPage() {
+  //project details
+  projectForm.elements["project-title"].value = "Project Title";
+  projectForm.elements["project-description"].value =
+    "This is the project description.";
+  saveProject();
+  //defaul task
+  taskForm.elements["task-title"].value = "Task Title";
+  taskForm.elements["task-description"].value = "This is the task description";
+  taskForm.elements["task-due"].value = "2024-05-05";
+  taskForm.elements["task-priority"].value = "Low";
+  saveTask();
+}
+defaultPage();

@@ -22,6 +22,7 @@ export function saveProject(projectID) {
   const description = projectForm.elements["project-description"].value;
   const project = new Project(title, description);
   projectID = Date.now();
+  localStorage.setItem("selectedProject", projectID);
   LocalStorage.saveItem(projectID, project);
   projectList.push(projectID);
   //Project
