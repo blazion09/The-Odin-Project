@@ -123,7 +123,9 @@ export function saveEditedProject() {
   loadedProject.title = editProjectForm.elements["project-title"].value;
   loadedProject.description =
     editProjectForm.elements["project-description"].value;
-  //
+  //update nav list
+  const list = document.querySelector(`.List-${projectID}`);
+  list.textContent = editProjectForm.elements["project-title"].value;
   LocalStorage.saveItem(projectID, loadedProject);
 
   updateProjectDOM(projectID);

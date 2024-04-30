@@ -145,6 +145,7 @@ main {
 .project-container {
   border-bottom: 3px solid black;
   display: grid;
+  padding-bottom: 20px;
   grid-template-columns: 400px 100px;
   grid-template-rows: 1fr 1fr 1fr;
 }
