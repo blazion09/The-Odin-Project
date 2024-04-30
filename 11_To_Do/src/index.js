@@ -95,10 +95,15 @@ defaultTaskBtn.addEventListener("click", function () {
 
 const defaultList = document.querySelector(".default-list");
 defaultList.addEventListener("click", function () {
+  if (document.querySelector(".li-selected") != null) {
+    const activeProject = document.querySelector(".li-selected");
+    activeProject.classList.remove("li-selected");
+  }
   projectList.forEach((project) => {
     const allProjectContainer = document.querySelector(`.Project-${project}`);
     allProjectContainer.style.display = "none";
     const activeContainer = document.querySelector(`.Project-default`);
     activeContainer.style.display = "block";
+    defaultList.classList.add("li-selected");
   });
 });

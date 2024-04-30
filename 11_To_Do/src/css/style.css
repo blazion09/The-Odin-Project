@@ -90,6 +90,10 @@ li:active {
   transform: scale(1.05);
 }
 
+.li-selected {
+  background-color: #3498db;
+}
+
 main {
   background-color: #f8f8f8;
   flex-grow: 9999;

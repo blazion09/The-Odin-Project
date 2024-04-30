@@ -41,11 +41,17 @@ function addProjectDOM(projectID, project) {
   const list = new DOMCreation("li", `List-${projectID}`, project.title);
   //switch between active project DOM
   list.element.addEventListener("click", function () {
+    //remove active color if there is any active
+    if (document.querySelector(".li-selected") != null) {
+      const activeProject = document.querySelector(".li-selected");
+      activeProject.classList.remove("li-selected");
+    }
     projectList.forEach((project) => {
       const allProjectContainer = document.querySelector(`.Project-${project}`);
       allProjectContainer.style.display = "none";
       const activeContainer = document.querySelector(`.Project-${projectID}`);
       activeContainer.style.display = "block";
+      list.element.classList.add("li-selected");
     });
   });
   //show current projectDOM
