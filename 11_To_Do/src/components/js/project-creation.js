@@ -36,6 +36,25 @@ function addProjectDOM(projectID, project) {
   wrapper.appendTo(projectDIV);
   const projectContainer = new DOMCreation("div", "project-container");
   projectContainer.appendTo(wrapper.element);
+  //Title
+  const projectTitle = new DOMCreation("p", "project-title", project.title);
+  projectTitle.element.setAttribute("id", `Project-Title-${projectID}`);
+  projectTitle.appendTo(projectContainer.element);
+  //Description
+  const projectDescription = new DOMCreation(
+    "p",
+    "project-description",
+    project.description
+  );
+  projectDescription.element.setAttribute(
+    "id",
+    `Project-Description-${projectID}`
+  );
+  projectDescription.appendTo(projectContainer.element);
+  addNavInteraction(projectID, project);
+}
+
+function addNavInteraction(projectID, project) {
   //Nav
   const nav = document.querySelector(".nav-list");
   const list = new DOMCreation("li", `List-${projectID}`, project.title);
@@ -62,22 +81,6 @@ function addProjectDOM(projectID, project) {
     activeContainer.style.display = "block";
   });
   list.appendTo(nav);
-  //Title
-  const projectTitle = new DOMCreation("p", "project-title", project.title);
-  projectTitle.element.setAttribute("id", `Project-Title-${projectID}`);
-  projectTitle.appendTo(projectContainer.element);
-
-  //Description
-  const projectDescription = new DOMCreation(
-    "p",
-    "project-description",
-    project.description
-  );
-  projectDescription.element.setAttribute(
-    "id",
-    `Project-Description-${projectID}`
-  );
-  projectDescription.appendTo(projectContainer.element);
 }
 
 function addEditProjectBtn(projectID) {
