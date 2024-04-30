@@ -22,16 +22,14 @@ body {
 }
 
 .wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  min-height: 100svh;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: clamp(200px, 50%, 250px) 4fr;
 }
 
 nav {
   background-color: #333333;
   color: #ffffff;
-  flex-grow: 1;
-  width: clamp(200px, 50%, 300px);
 }
 
 nav {
