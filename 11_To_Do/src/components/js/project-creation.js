@@ -26,7 +26,6 @@ export function saveProject(projectID) {
   projectList.push(projectID);
   //Project
   addProjectDOM(projectID, project);
-  addEditProjectBtn(projectID);
   //Task
   addTaskBtn(projectID);
 }
@@ -51,6 +50,9 @@ function addProjectDOM(projectID, project) {
     `Project-Description-${projectID}`
   );
   projectDescription.appendTo(projectContainer.element);
+  //Button
+  addEditProjectBtn(projectID, projectContainer.element);
+  //Nav
   addNavInteraction(projectID, project);
 }
 
@@ -83,7 +85,7 @@ function addNavInteraction(projectID, project) {
   list.appendTo(nav);
 }
 
-function addEditProjectBtn(projectID) {
+function addEditProjectBtn(projectID, projectContainer) {
   const editProjectBtn = new DOMCreation(
     "button",
     "edit-project",
@@ -93,8 +95,7 @@ function addEditProjectBtn(projectID) {
   editProjectBtn.element.addEventListener("click", function () {
     showEditProjectModal(projectID);
   });
-  const projectDOM = document.querySelector(`.Project-${projectID}`);
-  editProjectBtn.appendTo(projectDOM);
+  editProjectBtn.appendTo(projectContainer);
 }
 
 export function showEditProjectModal(projectID) {
