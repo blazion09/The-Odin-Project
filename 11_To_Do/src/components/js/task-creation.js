@@ -39,8 +39,20 @@ export function addTaskDOM(taskID) {
   const task = LocalStorage.retrieveItem(taskID);
   //container
   const taskContainer = new DOMCreation("div", "task-container");
+  taskContainer.element.setAttribute("id", `Task-Container-${taskID}`);
   const taskSection = document.querySelector(`#Task-Section-${projectID}`);
   taskContainer.appendTo(taskSection);
+  //set color based on priority
+  switch (task.priority) {
+    case "Low":
+      taskContainer.element.style.backgroundColor = "#ADD8E6";
+      break;
+    case "Medium":
+      taskContainer.element.style.backgroundColor = "#FFFF00";
+      break;
+    case "High":
+      taskContainer.element.style.backgroundColor = "#FF0000";
+  }
   //task-title-container
   const titleContainer = new DOMCreation("div", "task-title-container");
   titleContainer.appendTo(taskContainer.element);
@@ -115,4 +127,16 @@ function updateTaskDOM(taskID) {
 
   const priority = document.querySelector(`#Task-Priority-${taskID}`);
   priority.textContent = loadedTask.priority;
+  //set color based on priority
+  const taskContainer = document.querySelector(`#Task-Container-${taskID}`);
+  switch (loadedTask.priority) {
+    case "Low":
+      taskContainer.style.backgroundColor = "#ADD8E6";
+      break;
+    case "Medium":
+      taskContainer.style.backgroundColor = "#FFFF00";
+      break;
+    case "High":
+      taskContainer.style.backgroundColor = "#FF0000";
+  }
 }
