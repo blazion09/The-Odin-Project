@@ -85,6 +85,11 @@ function addNavInteraction(projectID, project) {
     allProjectContainer.style.display = "none";
     const activeContainer = document.querySelector(`.Project-${projectID}`);
     activeContainer.style.display = "block";
+    if (document.querySelector(".li-selected") != null) {
+      const activeProject = document.querySelector(".li-selected");
+      activeProject.classList.remove("li-selected");
+    }
+    list.element.classList.add("li-selected");
   });
   list.appendTo(nav);
 }

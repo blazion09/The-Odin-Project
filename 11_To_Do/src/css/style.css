@@ -30,7 +30,8 @@ body {
 nav {
   background-color: #333333;
   color: #ffffff;
-  flex-grow: 0.5;
+  flex-grow: 1;
+  width: clamp(200px, 50%, 300px);
 }
 
 nav {
@@ -69,6 +70,7 @@ h1 {
   font-family: "Lato-Bold";
   background-color: #4c51bf;
   cursor: pointer;
+  width: 210px;
 }
 
 .edit-project,
@@ -98,14 +100,14 @@ li {
   padding: 15px;
   border: 1px solid black;
   margin: 20px;
-  background-color: #ff7f50;
+  background-color: #888f7a;
   color: black;
   max-width: 200px;
   min-width: 150px;
 }
 
 li:hover {
-  background-color: grey;
+  background-color: rgb(117, 223, 237);
   cursor: pointer;
 }
 
@@ -114,7 +116,7 @@ li:active {
 }
 
 .li-selected {
-  background-color: #3498db;
+  background-color: #0681d4;
 }
 
 main {
@@ -135,7 +137,8 @@ main {
 }
 
 .task-section {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .edit-task {
