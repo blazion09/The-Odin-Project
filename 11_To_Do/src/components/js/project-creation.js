@@ -26,8 +26,6 @@ export function saveProject(projectID) {
   projectList.push(projectID);
   //Project
   addProjectDOM(projectID, project);
-  //Task
-  addTaskBtn(projectID);
 }
 
 function addProjectDOM(projectID, project) {
@@ -50,6 +48,12 @@ function addProjectDOM(projectID, project) {
     `Project-Description-${projectID}`
   );
   projectDescription.appendTo(projectContainer.element);
+  //add task
+  addTaskBtn(projectID, projectContainer.element);
+  //Task Section
+  const taskSection = new DOMCreation("div", "task-section");
+  taskSection.element.setAttribute("id", `Task-Section-${projectID}`);
+  taskSection.appendTo(wrapper.element);
   //Button
   addEditProjectBtn(projectID, projectContainer.element);
   //Nav

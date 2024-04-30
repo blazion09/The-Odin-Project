@@ -30,14 +30,14 @@ body {
 nav {
   background-color: #333333;
   color: #ffffff;
-  flex-basis: 300px;
-  flex-grow: 1;
+  flex-grow: 0.5;
 }
 
 nav {
   display: flex;
   flex-direction: column;
   border: 1px solid black;
+  align-items: center;
 }
 
 header {
@@ -82,8 +82,8 @@ h1 {
 }
 
 .add-task-btn {
-  margin-top: 20px;
-  margin-bottom: 30px;
+  grid-row: 3/4;
+  max-width: 100px;
 }
 
 .create-project:hover {
@@ -100,6 +100,8 @@ li {
   margin: 20px;
   background-color: #ff7f50;
   color: black;
+  max-width: 200px;
+  min-width: 150px;
 }
 
 li:hover {
@@ -117,7 +119,7 @@ li:active {
 
 main {
   background-color: #f8f8f8;
-  flex-grow: 9999;
+  flex-grow: 4;
   color: #333333;
 }
 
@@ -132,6 +134,10 @@ main {
 .task-container {
 }
 
+.task-section {
+  display: grid;
+}
+
 .edit-task {
 }
 
@@ -139,7 +145,7 @@ main {
   border-bottom: 3px solid black;
   display: grid;
   grid-template-columns: 400px 100px;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
 }
 
 .project-title {

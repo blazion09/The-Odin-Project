@@ -10,15 +10,14 @@ export class TaskDetails {
   }
 }
 
-export function addTaskBtn(projectID) {
+export function addTaskBtn(projectID, projectContainer) {
   const btn = new DOMCreation("button", "add-task-btn", "Add Task");
-  const projectDOM = document.querySelector(`.Project-${projectID}`);
   btn.element.addEventListener("click", function () {
     taskDialog.showModal();
     taskForm.reset();
     localStorage.setItem("selectedProject", projectID);
   });
-  btn.appendTo(projectDOM);
+  btn.appendTo(projectContainer);
 }
 
 //Function to activate when submitting task form
@@ -38,8 +37,8 @@ export function addTaskDOM(taskID) {
   const task = LocalStorage.retrieveItem(taskID);
   //container
   const taskContainer = new DOMCreation("div", "task-container");
-  const projectDOM = document.querySelector(`.Project-${projectID}`);
-  taskContainer.appendTo(projectDOM);
+  const taskSection = document.querySelector(`#Task-Section-${projectID}`);
+  taskContainer.appendTo(taskSection);
   //title
   const title = new DOMCreation("div", "task-title", task.title);
   title.element.setAttribute("id", `Task-Title-${taskID}`);
