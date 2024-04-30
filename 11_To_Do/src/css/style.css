@@ -1,0 +1,245 @@
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("../font/Lato/Lato-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Lato-Bold";
+  src: url("../font/Lato/Lato-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Lato-Black";
+  src: url("../font/Lato/Lato-Black.ttf");
+}
+
+@font-face {
+  font-family: "Lato-Italic";
+  src: url("../font/Lato/Lato-LightItalic.ttf");
+}
+
+body {
+  font-family: "Lato";
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: clamp(200px, 50%, 250px) 4fr;
+}
+
+nav {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  align-items: center;
+}
+
+header {
+  background-color: #4c51bf;
+  width: 100%;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid black;
+}
+
+h1 {
+  font-family: "Lato-Black";
+  font-size: 24px;
+}
+
+.action {
+  padding: 1.25rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* button */
+.create-project {
+  color: #ffffff;
+  border: 1px solid black;
+  padding: 20px;
+  font-family: "Lato-Bold";
+  background-color: #4c51bf;
+  cursor: pointer;
+  width: 210px;
+}
+
+.edit-project,
+.add-task-btn,
+.edit-task {
+  border: 1px solid black;
+  padding: 5px;
+  cursor: pointer;
+  background-color: #ffffff;
+  margin: 9px;
+}
+
+.add-task-btn {
+  grid-row: 3/4;
+  max-width: 100px;
+  background-color: #ff7f50;
+}
+
+.create-project:hover {
+  background-color: #a96a04;
+}
+
+ul {
+  padding: 10px;
+}
+
+li {
+  padding: 15px;
+  border: 1px solid black;
+  margin: 20px;
+  background-color: #888f7a;
+  color: black;
+  max-width: 200px;
+  min-width: 150px;
+}
+
+li:hover {
+  background-color: rgb(117, 223, 237);
+  cursor: pointer;
+}
+
+li:active {
+  transform: scale(1.05);
+}
+
+.li-selected {
+  background-color: #0681d4;
+}
+
+main {
+  background-color: #f8f8f8;
+  flex-grow: 4;
+  color: #333333;
+}
+
+.project,
+.task {
+  padding: 20px;
+}
+
+.task-container {
+  border: 1px solid #333333;
+  min-width: 200px;
+  padding: 10px;
+  margin: 10px;
+  line-height: 1.5;
+}
+
+.task-title-container {
+  display: flex;
+}
+
+.task-title {
+  flex-grow: 1;
+  font-family: "Lato-Bold";
+}
+
+.task-description {
+  font-family: "Lato-Italic";
+}
+
+.task-section {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.edit-task-btn {
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+}
+
+.project-container {
+  border-bottom: 3px solid black;
+  display: grid;
+  padding-bottom: 20px;
+  grid-template-columns: 400px 100px;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.project-title {
+  font-size: 24px;
+  font-family: "Lato-Bold";
+  padding: 10px;
+}
+
+.project-description {
+  grid-column: 1/2;
+  padding: 10px;
+  color: rgb(52, 50, 50);
+}
+
+.edit-project {
+  grid-row: 1/2;
+  grid-column: 2/3;
+}
+
+/* form */
+/* General form styles */
+#edit-task-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Form field styles */
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+}
+
+/* Radio button styles */
+.task-priority {
+  margin-bottom: 15px;
+}
+
+.task-priority div {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/* Button styles */
+button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+/* form */
