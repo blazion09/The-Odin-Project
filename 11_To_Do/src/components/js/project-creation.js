@@ -49,13 +49,26 @@ function addProjectDOM(projectID, project) {
     `Project-Description-${projectID}`
   );
   projectDescription.appendTo(projectContainer.element);
-  //add task
+  //Add Task Button
   addTaskBtn(projectID, projectContainer.element);
+  //Add Delete Project Button
+  const deleteBtn = new DOMCreation(
+    "btn",
+    "delete-project-btn",
+    "Remove Project"
+  );
+  deleteBtn.element.addEventListener("click", () => {
+    wrapper.element.remove();
+    const navLi = document.querySelector(`.List-${projectID}`);
+    navLi.remove();
+    localStorage.clear(projectID);
+  });
+  deleteBtn.appendTo(projectContainer.element);
   //Task Section
   const taskSection = new DOMCreation("div", "task-section");
   taskSection.element.setAttribute("id", `Task-Section-${projectID}`);
   taskSection.appendTo(wrapper.element);
-  //Button
+  //Edit Button
   addEditProjectBtn(projectID, projectContainer.element);
   //Nav
   addNavInteraction(projectID, project);
@@ -74,6 +87,9 @@ function addNavInteraction(projectID, project) {
     }
     projectList.forEach((project) => {
       const allProjectContainer = document.querySelector(`.Project-${project}`);
+      if (allProjectContainer == null) {
+        return;
+      }
       allProjectContainer.style.display = "none";
       const activeContainer = document.querySelector(`.Project-${projectID}`);
       activeContainer.style.display = "block";
@@ -83,6 +99,9 @@ function addNavInteraction(projectID, project) {
   //show current projectDOM
   projectList.forEach((project) => {
     const allProjectContainer = document.querySelector(`.Project-${project}`);
+    if (allProjectContainer == null) {
+      return;
+    }
     allProjectContainer.style.display = "none";
     const activeContainer = document.querySelector(`.Project-${projectID}`);
     activeContainer.style.display = "block";
