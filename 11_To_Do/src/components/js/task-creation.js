@@ -1,6 +1,8 @@
 import { editTaskDialog, editTaskForm, taskDialog, taskForm } from "../..";
 import { DOMCreation } from "./dom-creation";
 import { LocalStorage } from "./local-storage-logic";
+
+import editIcon from "../../img/edit-text.png";
 export class TaskDetails {
   constructor(title, description, dueDate, priorityLevel) {
     this.title = title;
@@ -39,12 +41,15 @@ export function addTaskDOM(taskID) {
   const taskContainer = new DOMCreation("div", "task-container");
   const taskSection = document.querySelector(`#Task-Section-${projectID}`);
   taskContainer.appendTo(taskSection);
+  //task-title-container
+  const titleContainer = new DOMCreation("div", "task-title-container");
+  titleContainer.appendTo(taskContainer.element);
   //title
   const title = new DOMCreation("div", "task-title", task.title);
   title.element.setAttribute("id", `Task-Title-${taskID}`);
-  title.appendTo(taskContainer.element);
+  title.appendTo(titleContainer.element);
   //Add Edit Button
-  addEditTaskBtn(taskContainer.element, taskID);
+  addEditTaskBtn(titleContainer.element, taskID);
   //description
   const description = new DOMCreation(
     "p",
@@ -54,7 +59,7 @@ export function addTaskDOM(taskID) {
   description.element.setAttribute("id", `Task-Description-${taskID}`);
   description.appendTo(taskContainer.element);
   //due date
-  const dueDate = new DOMCreation("p", "task-due", task.dueDate);
+  const dueDate = new DOMCreation("p", "task-due", `Task Due: ${task.dueDate}`);
   dueDate.element.setAttribute("id", `Task-Due-${taskID}`);
   dueDate.appendTo(taskContainer.element);
   //priority
@@ -64,7 +69,8 @@ export function addTaskDOM(taskID) {
 }
 
 function addEditTaskBtn(taskContainer, taskID) {
-  const editBtn = new DOMCreation("button", "edit-task", "Edit Task");
+  const editBtn = new DOMCreation("img", "edit-task-btn");
+  editBtn.element.src = editIcon;
   editBtn.appendTo(taskContainer);
   editBtn.element.addEventListener("click", function () {
     showEditTaskModal(taskID);

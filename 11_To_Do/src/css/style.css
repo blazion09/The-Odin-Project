@@ -17,6 +17,11 @@
   src: url("../font/Lato/Lato-Black.ttf");
 }
 
+@font-face {
+  font-family: "Lato-Italic";
+  src: url("../font/Lato/Lato-LightItalic.ttf");
+}
+
 body {
   font-family: "Lato";
 }
@@ -84,6 +89,7 @@ h1 {
 .add-task-btn {
   grid-row: 3/4;
   max-width: 100px;
+  background-color: #ff7f50;
 }
 
 .create-project:hover {
@@ -128,10 +134,25 @@ main {
   padding: 20px;
 }
 
-.task {
+.task-container {
+  border: 1px solid #333333;
+  min-width: 200px;
+  padding: 10px;
+  margin: 10px;
+  line-height: 1.5;
 }
 
-.task-container {
+.task-title-container {
+  display: flex;
+}
+
+.task-title {
+  flex-grow: 1;
+  font-family: "Lato-Bold";
+}
+
+.task-description {
+  font-family: "Lato-Italic";
 }
 
 .task-section {
@@ -139,7 +160,10 @@ main {
   flex-wrap: wrap;
 }
 
-.edit-task {
+.edit-task-btn {
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
 }
 
 .project-container {
