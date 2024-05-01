@@ -53,7 +53,7 @@ function addProjectDOM(projectID, project) {
   addTaskBtn(projectID, projectContainer.element);
   //Add Delete Project Button
   const deleteBtn = new DOMCreation(
-    "btn",
+    "button",
     "delete-project-btn",
     "Remove Project"
   );

@@ -78,6 +78,12 @@ export function addTaskDOM(taskID) {
   const priority = new DOMCreation("p", "task-priority", task.priority);
   priority.element.setAttribute("id", `Task-Priority-${taskID}`);
   priority.appendTo(taskContainer.element);
+  //add task delete button
+  const deleteBtn = new DOMCreation("button", "task-delete-btn", "Delete Task");
+  deleteBtn.element.addEventListener("click", () => {
+    taskContainer.element.remove();
+  });
+  deleteBtn.appendTo(taskContainer.element);
 }
 
 function addEditTaskBtn(taskContainer, taskID) {
