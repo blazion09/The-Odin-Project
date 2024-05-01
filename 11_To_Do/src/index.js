@@ -5,6 +5,8 @@ import taskDialogHTML from "./components/html/task-modal.html";
 import projectDialogHTML from "./components/html/project-modal.html";
 import editProjectDialogHTML from "./components/html/edit-project-modal.html";
 import editTaskDialogHTML from "./components/html/edit-task-modal.html";
+import removeProjectConfirmationHTML from "./components/html/comfirm-remove.html";
+
 import {
   Project,
   saveEditedProject,
@@ -39,6 +41,9 @@ document.getElementById("projectDialogHTML").innerHTML = projectDialogHTML;
 document.getElementById("editProjectDialogHTML").innerHTML =
   editProjectDialogHTML;
 document.getElementById("editTaskDialogHTML").innerHTML = editTaskDialogHTML;
+document.getElementById("removeProjectConfirmationHTML").innerHTML =
+  removeProjectConfirmationHTML;
+
 const projectDIV = document.querySelector(".project");
 const projectList = [];
 
@@ -62,6 +67,28 @@ const editProjectForm = document.getElementById("project-edit");
 
 editProjectForm.addEventListener("submit", function () {
   saveEditedProject();
+});
+
+//Delete Project
+const yesDelete = document.querySelector("#yesDelete");
+yesDelete.addEventListener("click", () => {
+  const projectID = localStorage.getItem("selectedProject");
+  const wrapper = document.querySelector(`.Project-${projectID}`);
+  wrapper.remove();
+  const navLi = document.querySelector(`.List-${projectID}`);
+  navLi.remove();
+  localStorage.removeItem(projectID);
+  const confirmationDialog = document.querySelector(
+    "#delete-project-confirmation"
+  );
+  confirmationDialog.close();
+});
+const cancelDelete = document.querySelector("#cancelDelete");
+cancelDelete.addEventListener("click", () => {
+  const confirmationDialog = document.querySelector(
+    "#delete-project-confirmation"
+  );
+  confirmationDialog.close();
 });
 
 //Create Task

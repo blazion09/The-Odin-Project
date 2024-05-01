@@ -57,13 +57,18 @@ function addProjectDOM(projectID, project) {
     "delete-project-btn",
     "Remove Project"
   );
-  deleteBtn.element.addEventListener("click", () => {
-    wrapper.element.remove();
-    const navLi = document.querySelector(`.List-${projectID}`);
-    navLi.remove();
-    localStorage.clear(projectID);
-  });
   deleteBtn.appendTo(projectContainer.element);
+  deleteBtn.element.addEventListener("click", () => {
+    const confirmationDialog = document.querySelector(
+      "#delete-project-confirmation"
+    );
+    const projectToRemove = document.querySelector("#toBeRemove");
+    confirmationDialog.showModal();
+    const projectSelected = LocalStorage.retrieveItem(projectID);
+    localStorage.setItem("selectedProject", projectID);
+    projectToRemove.textContent = projectSelected.title;
+  });
+
   //Task Section
   const taskSection = new DOMCreation("div", "task-section");
   taskSection.element.setAttribute("id", `Task-Section-${projectID}`);
