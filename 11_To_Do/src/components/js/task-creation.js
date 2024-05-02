@@ -82,6 +82,7 @@ export function addTaskDOM(taskID) {
   const deleteBtn = new DOMCreation("button", "task-delete-btn", "Delete Task");
   deleteBtn.element.addEventListener("click", () => {
     taskContainer.element.remove();
+    localStorage.removeItem(taskID);
   });
   deleteBtn.appendTo(taskContainer.element);
 }
