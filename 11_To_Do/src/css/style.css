@@ -44,7 +44,6 @@ nav {
 
 header {
   width: 100%;
-  padding: 30px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -57,7 +56,6 @@ h1 {
 }
 
 .action {
-  padding: 1.25rem;
   display: flex;
   justify-content: center;
 }
@@ -65,7 +63,6 @@ h1 {
 /* button */
 .create-project {
   border: 1px solid black;
-  padding: 20px;
   font-family: "Lato-Bold";
   cursor: pointer;
   width: 210px;
@@ -75,9 +72,7 @@ h1 {
 .add-task-btn,
 .edit-task {
   border: 1px solid black;
-  padding: 5px;
   cursor: pointer;
-  margin: 9px;
 }
 
 .add-task-btn {
@@ -89,13 +84,10 @@ h1 {
 }
 
 ul {
-  padding: 10px;
 }
 
 li {
-  padding: 15px;
   border: 1px solid black;
-  margin: 20px;
   max-width: 200px;
   min-width: 150px;
 }
@@ -117,7 +109,6 @@ main {
 
 .project,
 .task {
-  padding: 20px;
 }
 
 .task-basic-view {
@@ -132,13 +123,10 @@ main {
 }
 
 .task-detail-container {
-  padding-top: 16px;
 }
 
 .task-container {
   border: 1px solid #333333;
-  padding: 10px;
-  margin: 10px;
   line-height: 1.5;
   width: 100%;
   cursor: pointer;
@@ -174,7 +162,6 @@ main {
 .project-container {
   border-bottom: 3px solid black;
   display: grid;
-  padding-bottom: 20px;
   grid-template-columns: 400px 100px;
   grid-template-rows: 1fr 1fr 1fr;
 }
@@ -182,64 +169,13 @@ main {
 .project-title {
   font-size: 24px;
   font-family: "Lato-Bold";
-  padding: 10px;
 }
 
 .project-description {
   grid-column: 1/2;
-  padding: 10px;
 }
 
 .edit-project {
   grid-row: 1/2;
   grid-column: 2/3;
 }
-
-/* form */
-/* General form styles */
-#edit-task-form {
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Form field styles */
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-input[type="text"],
-input[type="date"] {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-bottom: 15px;
-}
-
-/* Radio button styles */
-.task-priority {
-  margin-bottom: 15px;
-}
-
-.task-priority div {
-  display: inline-block;
-  margin-right: 10px;
-}
-
-/* Button styles */
-button[type="submit"] {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-button[type="submit"]:hover {
-}
-/* form */
