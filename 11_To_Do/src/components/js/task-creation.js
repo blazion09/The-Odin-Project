@@ -76,6 +76,7 @@ export function addTaskDOM(taskID) {
     localStorage.removeItem(taskID);
   });
   deleteBtn.appendTo(actionContainer.element);
+  addTaskCardListener(taskID);
 }
 
 function addEditTaskBtn(taskContainer, taskID) {
@@ -117,14 +118,9 @@ function updateTaskDOM(taskID) {
   const title = document.querySelector(`#Task-Title-${taskID}`);
   title.textContent = loadedTask.title;
 
-  const desc = document.querySelector(`#Task-Description-${taskID}`);
-  desc.textContent = loadedTask.description;
-
   const dueDate = document.querySelector(`#Task-Due-${taskID}`);
   dueDate.textContent = loadedTask.dueDate;
 
-  const priority = document.querySelector(`#Task-Priority-${taskID}`);
-  priority.textContent = loadedTask.priority;
   //set color based on priority
   const taskContainer = document.querySelector(`#Task-Container-${taskID}`);
   switch (loadedTask.priority) {
@@ -137,4 +133,10 @@ function updateTaskDOM(taskID) {
     case "High":
       taskContainer.style.backgroundColor = "#FF0000";
   }
+}
+
+function addTaskCardListener(taskID) {
+  const selectedTask = localStorage.setItem("selectedTask", taskID);
+  const task = document.querySelector(`#Task-Container-${taskID}`);
+  task.addEventListener("click", (e) => console.log(e));
 }
