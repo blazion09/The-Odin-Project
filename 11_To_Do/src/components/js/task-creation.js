@@ -4,6 +4,7 @@ import { LocalStorage } from "./local-storage-logic";
 import { formatDistanceToNowStrict } from "date-fns";
 
 import editIcon from "../../img/edit-text.png";
+import addIcon from "../../svg/add-square-svgrepo-com.svg";
 export class TaskDetails {
   constructor(title, description, dueDate, priorityLevel) {
     this.title = title;
@@ -14,12 +15,18 @@ export class TaskDetails {
 }
 
 export function addTaskBtn(projectID, projectContainer) {
-  const btn = new DOMCreation("button", "add-task-btn", "Add Task");
+  const btn = new DOMCreation("div", "add-task-btn");
   btn.element.addEventListener("click", function () {
     taskDialog.showModal();
     taskForm.reset();
     localStorage.setItem("selectedProject", projectID);
   });
+  const addTask = new DOMCreation("p", "add-task-text", "Task");
+  addTask.appendTo(btn.element);
+  const addIconContainer = new DOMCreation("img", "add-task-icon");
+  addIconContainer.element.src = addIcon;
+  addIconContainer.appendTo(btn.element);
+
   btn.appendTo(projectContainer);
 }
 

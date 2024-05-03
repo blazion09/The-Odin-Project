@@ -97,22 +97,44 @@ li:active {
 .li-selected {
 }
 
-.add-task-btn,
 .edit-task {
   border: 1px solid black;
   cursor: pointer;
 }
 
 .edit-project,
-.delete-project-btn {
+.delete-project-btn,
+.add-task-icon {
   width: 16px;
   height: 16px;
   cursor: pointer;
 }
 
 .add-task-btn {
-  grid-row: 3/4;
-  max-width: 100px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  max-width: 96px;
+  height: 32px;
+  margin: 16px;
+  box-shadow: 0 4px 6px #2b2a2a;
+  border-radius: 10px;
+  margin-bottom: 48px;
+  padding: 24px;
+}
+
+.add-task-btn:active {
+  box-shadow: 0 1px 3px #2b2a2a;
+}
+
+.add-task-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.add-task-text {
+  padding-right: 8px;
 }
 
 main {
@@ -122,8 +144,6 @@ main {
 .project-container {
   border-bottom: 3px solid black;
   display: grid;
-  grid-template-columns: 600px 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
 }
 
 .project-top-container {
@@ -132,12 +152,14 @@ main {
 }
 
 .project-title {
-  font-size: 24px;
+  font-size: 32px;
   font-family: "Lato-Bold";
+  padding: 16px;
 }
 
 .project-description {
-  grid-column: 1/2;
+  padding: 16px;
+  font-size: 24px;
 }
 
 .edit-project {
