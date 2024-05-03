@@ -27,9 +27,9 @@ body {
 }
 
 .wrapper {
-  min-height: 100vh;
+  height: 100vh;
   display: grid;
-  grid-template-columns: clamp(200px, 50%, 250px) 4fr;
+  grid-template-columns: clamp(200px, 30%, 400px) 1fr;
 }
 
 nav {
@@ -40,6 +40,7 @@ nav {
   flex-direction: column;
   border: 1px solid black;
   align-items: center;
+  background-color: grey;
 }
 
 header {
@@ -47,7 +48,7 @@ header {
   display: flex;
   align-items: center;
   flex-direction: column;
-  border: 1px solid black;
+  padding: 64px;
 }
 
 h1 {
@@ -62,10 +63,38 @@ h1 {
 
 /* button */
 .create-project {
-  border: 1px solid black;
   font-family: "Lato-Bold";
   cursor: pointer;
-  width: 210px;
+
+  width: 128px;
+  height: 64px;
+  margin: 48px;
+}
+
+.create-project:hover {
+}
+
+ul {
+}
+
+li {
+  border: 1px solid black;
+  width: 256px;
+  height: 96px;
+  margin-bottom: 48px;
+  display: grid;
+  place-items: center;
+}
+
+li:hover {
+  cursor: pointer;
+}
+
+li:active {
+  transform: scale(1.05);
+}
+
+.li-selected {
 }
 
 .edit-project,
@@ -80,35 +109,29 @@ h1 {
   max-width: 100px;
 }
 
-.create-project:hover {
-}
-
-ul {
-}
-
-li {
-  border: 1px solid black;
-  max-width: 200px;
-  min-width: 150px;
-}
-
-li:hover {
-  cursor: pointer;
-}
-
-li:active {
-  transform: scale(1.05);
-}
-
-.li-selected {
-}
-
 main {
-  flex-grow: 4;
+  padding: 64px;
 }
 
-.project,
-.task {
+.project-container {
+  border-bottom: 3px solid black;
+  display: grid;
+  grid-template-columns: 400px 100px;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.project-title {
+  font-size: 24px;
+  font-family: "Lato-Bold";
+}
+
+.project-description {
+  grid-column: 1/2;
+}
+
+.edit-project {
+  grid-row: 1/2;
+  grid-column: 2/3;
 }
 
 .task-basic-view {
@@ -157,25 +180,4 @@ main {
   width: 17px;
   height: 17px;
   cursor: pointer;
-}
-
-.project-container {
-  border-bottom: 3px solid black;
-  display: grid;
-  grid-template-columns: 400px 100px;
-  grid-template-rows: 1fr 1fr 1fr;
-}
-
-.project-title {
-  font-size: 24px;
-  font-family: "Lato-Bold";
-}
-
-.project-description {
-  grid-column: 1/2;
-}
-
-.edit-project {
-  grid-row: 1/2;
-  grid-column: 2/3;
 }
