@@ -136,40 +136,49 @@ function updateTaskDOM(taskID) {
     case "High":
       taskContainer.style.backgroundColor = "#FF0000";
   }
+  //update task description
+  if (document.querySelector(`#Task-Description-${taskID}`) != null) {
+    document.querySelector(`#Task-Description-${taskID}`).textContent =
+      loadedTask.description;
+  }
+  //update priority
+  if (document.querySelector(`#Task-Priority-${taskID}`) != null) {
+    document.querySelector(
+      `#Task-Priority-${taskID}`
+    ).textContent = `Task-Priority: ${loadedTask.priority}`;
+  }
 }
 
 function addTaskCardListener(taskID) {
-  const activeTask = LocalStorage.retrieveItem(taskID);
   const task = document.querySelector(`#Task-Container-${taskID}`);
   task.addEventListener("click", (event) => {
-    if (document.querySelector(`#Task-Active-${taskID}`) == null) {
-      if (
-        event.target.classList.contains("task-delete-btn") ||
-        event.target.classList.contains("edit-task-btn")
-      ) {
-        event.stopPropagation();
-      } else {
-        //show task details
-        const detailContainer = new DOMCreation("div", "task-detail-container");
-        detailContainer.appendTo(task);
-        detailContainer.element.setAttribute("id", `Task-Active-${taskID}`);
-        //description
-        const description = new DOMCreation(
-          "p",
-          "task-description",
-          activeTask.description
-        );
-        description.element.setAttribute("id", `Task-Description-${taskID}`);
-        description.appendTo(detailContainer.element);
-        //priority
-        const priority = new DOMCreation(
-          "p",
-          "task-priority",
-          `Task-Priority: ${activeTask.priority}`
-        );
-        priority.element.setAttribute("id", `Task-Priority-${taskID}`);
-        priority.appendTo(detailContainer.element);
-      }
+    const activeTask = LocalStorage.retrieveItem(taskID);
+    if (
+      event.target.classList.contains("task-delete-btn") ||
+      event.target.classList.contains("edit-task-btn")
+    ) {
+      event.stopPropagation();
+    } else if (document.querySelector(`#Task-Active-${taskID}`) == null) {
+      //show task details
+      const detailContainer = new DOMCreation("div", "task-detail-container");
+      detailContainer.appendTo(task);
+      detailContainer.element.setAttribute("id", `Task-Active-${taskID}`);
+      //description
+      const description = new DOMCreation(
+        "p",
+        "task-description",
+        activeTask.description
+      );
+      description.element.setAttribute("id", `Task-Description-${taskID}`);
+      description.appendTo(detailContainer.element);
+      //priority
+      const priority = new DOMCreation(
+        "p",
+        "task-priority",
+        `Task-Priority: ${activeTask.priority}`
+      );
+      priority.element.setAttribute("id", `Task-Priority-${taskID}`);
+      priority.appendTo(detailContainer.element);
     } else {
       document.querySelector(`#Task-Active-${taskID}`).remove();
     }
