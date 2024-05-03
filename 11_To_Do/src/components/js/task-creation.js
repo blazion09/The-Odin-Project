@@ -1,6 +1,7 @@
 import { editTaskDialog, editTaskForm, taskDialog, taskForm } from "../..";
 import { DOMCreation } from "./dom-creation";
 import { LocalStorage } from "./local-storage-logic";
+import { formatDistanceToNowStrict } from "date-fns";
 
 import editIcon from "../../img/edit-text.png";
 export class TaskDetails {
@@ -70,6 +71,13 @@ export function addTaskDOM(taskID) {
   const dueDate = new DOMCreation("p", "task-due", task.dueDate);
   dueDate.element.setAttribute("id", `Task-Due-${taskID}`);
   dueDate.appendTo(actionContainer.element);
+  //Add due until
+  const dueUntil = formatDistanceToNowStrict(new Date(task.dueDate), {
+    addSuffix: true,
+  });
+  const dueDOM = new DOMCreation("div", "due-until", `Due ${dueUntil}`);
+  dueDOM.element.setAttribute("id", `Task-Due-Until-${taskID}`);
+  dueDOM.appendTo(actionContainer.element);
   //Add Edit Button
   addEditTaskBtn(actionContainer.element, taskID);
   //add task delete button
@@ -147,6 +155,12 @@ function updateTaskDOM(taskID) {
       `#Task-Priority-${taskID}`
     ).textContent = `Task-Priority: ${loadedTask.priority}`;
   }
+  //update due until
+  const dueUntil = formatDistanceToNowStrict(new Date(loadedTask.dueDate), {
+    addSuffix: true,
+  });
+  const dueDOM = document.querySelector(`#Task-Due-Until-${taskID}`);
+  dueDOM.textContent = `Due ${dueUntil}`;
 }
 
 function addTaskCardListener(taskID) {
