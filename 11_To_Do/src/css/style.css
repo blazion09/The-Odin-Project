@@ -97,10 +97,14 @@ li:active {
 .li-selected {
 }
 
-.edit-project,
 .add-task-btn,
 .edit-task {
   border: 1px solid black;
+  cursor: pointer;
+}
+
+.edit-project {
+  width: 16px;
   cursor: pointer;
 }
 

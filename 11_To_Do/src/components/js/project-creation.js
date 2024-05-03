@@ -9,6 +9,8 @@ import { LocalStorage } from "./local-storage-logic";
 import { DOMCreation } from "./dom-creation";
 import { addTaskBtn } from "./task-creation";
 
+import editIcon from "../../img/edit-text.png";
+
 export class Project {
   constructor(title, description) {
     this.title = title;
@@ -120,11 +122,8 @@ function addNavInteraction(projectID, project) {
 }
 
 function addEditProjectBtn(projectID, projectContainer) {
-  const editProjectBtn = new DOMCreation(
-    "button",
-    "edit-project",
-    "Edit Project"
-  );
+  const editProjectBtn = new DOMCreation("img", "edit-project");
+  editProjectBtn.element.src = editIcon;
   editProjectBtn.element.setAttribute("id", projectID);
   editProjectBtn.element.addEventListener("click", function () {
     showEditProjectModal(projectID);
