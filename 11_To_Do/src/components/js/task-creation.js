@@ -53,12 +53,15 @@ export function addTaskDOM(taskID) {
     case "High":
       taskContainer.element.style.backgroundColor = "#FF0000";
   }
+  //task-basic-view
+  const basicView = new DOMCreation("div", "task-basic-view");
+  basicView.appendTo(taskContainer.element);
   //task-title-container
   const titleContainer = new DOMCreation("div", "task-title-container");
-  titleContainer.appendTo(taskContainer.element);
+  titleContainer.appendTo(basicView.element);
   //task-action-container
   const actionContainer = new DOMCreation("div", "task-action-container");
-  actionContainer.appendTo(taskContainer.element);
+  actionContainer.appendTo(basicView.element);
   //title
   const title = new DOMCreation("div", "task-title", task.title);
   title.element.setAttribute("id", `Task-Title-${taskID}`);
@@ -136,7 +139,39 @@ function updateTaskDOM(taskID) {
 }
 
 function addTaskCardListener(taskID) {
-  const selectedTask = localStorage.setItem("selectedTask", taskID);
+  const activeTask = LocalStorage.retrieveItem(taskID);
   const task = document.querySelector(`#Task-Container-${taskID}`);
-  task.addEventListener("click", (e) => console.log(e));
+  task.addEventListener("click", (event) => {
+    if (document.querySelector(`#Task-Active-${taskID}`) == null) {
+      if (
+        event.target.classList.contains("task-delete-btn") ||
+        event.target.classList.contains("edit-task-btn")
+      ) {
+        event.stopPropagation();
+      } else {
+        //show task details
+        const detailContainer = new DOMCreation("div", "task-detail-container");
+        detailContainer.appendTo(task);
+        detailContainer.element.setAttribute("id", `Task-Active-${taskID}`);
+        //description
+        const description = new DOMCreation(
+          "p",
+          "task-description",
+          activeTask.description
+        );
+        description.element.setAttribute("id", `Task-Description-${taskID}`);
+        description.appendTo(detailContainer.element);
+        //priority
+        const priority = new DOMCreation(
+          "p",
+          "task-priority",
+          `Task-Priority: ${activeTask.priority}`
+        );
+        priority.element.setAttribute("id", `Task-Priority-${taskID}`);
+        priority.appendTo(detailContainer.element);
+      }
+    } else {
+      document.querySelector(`#Task-Active-${taskID}`).remove();
+    }
+  });
 }
