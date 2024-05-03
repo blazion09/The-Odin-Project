@@ -136,10 +136,11 @@ main {
 
 .task-container {
   border: 1px solid #333333;
-  min-width: 200px;
   padding: 10px;
   margin: 10px;
   line-height: 1.5;
+  display: flex;
+  flex-grow: 1;
 }
 
 .task-title-container {
