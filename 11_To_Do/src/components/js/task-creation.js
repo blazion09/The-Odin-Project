@@ -1,6 +1,7 @@
 import { editTaskDialog, editTaskForm, taskDialog, taskForm } from "../..";
 import { DOMCreation } from "./dom-creation";
 import { LocalStorage } from "./local-storage-logic";
+import { formatDistanceToNowStrict } from "date-fns";
 
 import editIcon from "../../img/edit-text.png";
 export class TaskDetails {
@@ -66,10 +67,13 @@ export function addTaskDOM(taskID) {
   const title = new DOMCreation("div", "task-title", task.title);
   title.element.setAttribute("id", `Task-Title-${taskID}`);
   title.appendTo(titleContainer.element);
-  //due date
-  const dueDate = new DOMCreation("p", "task-due", task.dueDate);
-  dueDate.element.setAttribute("id", `Task-Due-${taskID}`);
-  dueDate.appendTo(actionContainer.element);
+  //Add due until
+  const dueUntil = formatDistanceToNowStrict(new Date(task.dueDate), {
+    addSuffix: true,
+  });
+  const dueDOM = new DOMCreation("div", "due-until", `Due ${dueUntil}`);
+  dueDOM.element.setAttribute("id", `Task-Due-Until-${taskID}`);
+  dueDOM.appendTo(actionContainer.element);
   //Add Edit Button
   addEditTaskBtn(actionContainer.element, taskID);
   //add task delete button
@@ -120,10 +124,10 @@ function updateTaskDOM(taskID) {
 
   const title = document.querySelector(`#Task-Title-${taskID}`);
   title.textContent = loadedTask.title;
-
-  const dueDate = document.querySelector(`#Task-Due-${taskID}`);
-  dueDate.textContent = loadedTask.dueDate;
-
+  if (document.querySelector(`#Task-Due-${taskID}`) != null) {
+    const dueDate = document.querySelector(`#Task-Due-${taskID}`);
+    dueDate.textContent = `Due Date: ${loadedTask.dueDate}`;
+  }
   //set color based on priority
   const taskContainer = document.querySelector(`#Task-Container-${taskID}`);
   switch (loadedTask.priority) {
@@ -147,6 +151,12 @@ function updateTaskDOM(taskID) {
       `#Task-Priority-${taskID}`
     ).textContent = `Task-Priority: ${loadedTask.priority}`;
   }
+  //update due until
+  const dueUntil = formatDistanceToNowStrict(new Date(loadedTask.dueDate), {
+    addSuffix: true,
+  });
+  const dueDOM = document.querySelector(`#Task-Due-Until-${taskID}`);
+  dueDOM.textContent = `Due ${dueUntil}`;
 }
 
 function addTaskCardListener(taskID) {
@@ -171,6 +181,14 @@ function addTaskCardListener(taskID) {
       );
       description.element.setAttribute("id", `Task-Description-${taskID}`);
       description.appendTo(detailContainer.element);
+      //due date
+      const dueDate = new DOMCreation(
+        "p",
+        "task-due",
+        `Due Date: ${activeTask.dueDate}`
+      );
+      dueDate.element.setAttribute("id", `Task-Due-${taskID}`);
+      dueDate.appendTo(detailContainer.element);
       //priority
       const priority = new DOMCreation(
         "p",
