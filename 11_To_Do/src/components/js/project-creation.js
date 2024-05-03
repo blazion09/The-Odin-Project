@@ -10,6 +10,7 @@ import { DOMCreation } from "./dom-creation";
 import { addTaskBtn } from "./task-creation";
 
 import editIcon from "../../img/edit-text.png";
+import deleteIcon from "../../svg/delete-svgrepo-com.svg";
 
 export class Project {
   constructor(title, description) {
@@ -36,10 +37,13 @@ function addProjectDOM(projectID, project) {
   wrapper.appendTo(projectDIV);
   const projectContainer = new DOMCreation("div", "project-container");
   projectContainer.appendTo(wrapper.element);
+  //title, edit, delete button container
+  const topContainer = new DOMCreation("div", "project-top-container");
+  topContainer.appendTo(projectContainer.element);
   //Title
   const projectTitle = new DOMCreation("p", "project-title", project.title);
   projectTitle.element.setAttribute("id", `Project-Title-${projectID}`);
-  projectTitle.appendTo(projectContainer.element);
+  projectTitle.appendTo(topContainer.element);
   //Description
   const projectDescription = new DOMCreation(
     "p",
@@ -53,13 +57,12 @@ function addProjectDOM(projectID, project) {
   projectDescription.appendTo(projectContainer.element);
   //Add Task Button
   addTaskBtn(projectID, projectContainer.element);
+  //Edit Project Button
+  addEditProjectBtn(projectID, topContainer.element);
   //Add Delete Project Button
-  const deleteBtn = new DOMCreation(
-    "button",
-    "delete-project-btn",
-    "Remove Project"
-  );
-  deleteBtn.appendTo(projectContainer.element);
+  const deleteBtn = new DOMCreation("img", "delete-project-btn");
+  deleteBtn.element.src = deleteIcon;
+  deleteBtn.appendTo(topContainer.element);
   deleteBtn.element.addEventListener("click", () => {
     const confirmationDialog = document.querySelector(
       "#delete-project-confirmation"
@@ -70,13 +73,10 @@ function addProjectDOM(projectID, project) {
     localStorage.setItem("selectedProject", projectID);
     projectToRemove.textContent = projectSelected.title;
   });
-
   //Task Section
   const taskSection = new DOMCreation("div", "task-section");
   taskSection.element.setAttribute("id", `Task-Section-${projectID}`);
   taskSection.appendTo(wrapper.element);
-  //Edit Button
-  addEditProjectBtn(projectID, projectContainer.element);
   //Nav
   addNavInteraction(projectID, project);
 }
