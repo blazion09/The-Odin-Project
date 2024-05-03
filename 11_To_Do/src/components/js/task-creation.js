@@ -56,35 +56,26 @@ export function addTaskDOM(taskID) {
   //task-title-container
   const titleContainer = new DOMCreation("div", "task-title-container");
   titleContainer.appendTo(taskContainer.element);
+  //task-action-container
+  const actionContainer = new DOMCreation("div", "task-action-container");
+  actionContainer.appendTo(taskContainer.element);
   //title
   const title = new DOMCreation("div", "task-title", task.title);
   title.element.setAttribute("id", `Task-Title-${taskID}`);
   title.appendTo(titleContainer.element);
-  //Add Edit Button
-  addEditTaskBtn(titleContainer.element, taskID);
-  //description
-  const description = new DOMCreation(
-    "p",
-    "task-description",
-    task.description
-  );
-  description.element.setAttribute("id", `Task-Description-${taskID}`);
-  description.appendTo(taskContainer.element);
   //due date
-  const dueDate = new DOMCreation("p", "task-due", `Task Due: ${task.dueDate}`);
+  const dueDate = new DOMCreation("p", "task-due", task.dueDate);
   dueDate.element.setAttribute("id", `Task-Due-${taskID}`);
-  dueDate.appendTo(taskContainer.element);
-  //priority
-  const priority = new DOMCreation("p", "task-priority", task.priority);
-  priority.element.setAttribute("id", `Task-Priority-${taskID}`);
-  priority.appendTo(taskContainer.element);
+  dueDate.appendTo(actionContainer.element);
+  //Add Edit Button
+  addEditTaskBtn(actionContainer.element, taskID);
   //add task delete button
   const deleteBtn = new DOMCreation("button", "task-delete-btn", "Delete Task");
   deleteBtn.element.addEventListener("click", () => {
     taskContainer.element.remove();
     localStorage.removeItem(taskID);
   });
-  deleteBtn.appendTo(taskContainer.element);
+  deleteBtn.appendTo(actionContainer.element);
 }
 
 function addEditTaskBtn(taskContainer, taskID) {
