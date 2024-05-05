@@ -5,6 +5,7 @@ import { formatDistanceToNowStrict } from "date-fns";
 
 import editIcon from "../../img/edit-text.png";
 import addIcon from "../../svg/add-square-svgrepo-com.svg";
+import deleteIcon from "../../svg/delete-svgrepo-com.svg";
 export class TaskDetails {
   constructor(title, description, dueDate, priorityLevel) {
     this.title = title;
@@ -84,7 +85,8 @@ export function addTaskDOM(taskID) {
   //Add Edit Button
   addEditTaskBtn(actionContainer.element, taskID);
   //add task delete button
-  const deleteBtn = new DOMCreation("button", "task-delete-btn", "Delete Task");
+  const deleteBtn = new DOMCreation("img", "task-delete-btn");
+  deleteBtn.element.src = deleteIcon;
   deleteBtn.element.addEventListener("click", () => {
     taskContainer.element.remove();
     localStorage.removeItem(taskID);
