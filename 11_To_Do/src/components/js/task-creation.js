@@ -54,13 +54,13 @@ export function addTaskDOM(taskID) {
   //set color based on priority
   switch (task.priority) {
     case "Low":
-      taskContainer.element.style.backgroundColor = "#ADD8E6";
+      taskContainer.element.style.backgroundColor = "#AED9E0";
       break;
     case "Medium":
-      taskContainer.element.style.backgroundColor = "#FFFF00";
+      taskContainer.element.style.backgroundColor = "#D0E89E";
       break;
     case "High":
-      taskContainer.element.style.backgroundColor = "#FF0000";
+      taskContainer.element.style.backgroundColor = "#FFA69E";
   }
   //task-basic-view
   const basicView = new DOMCreation("div", "task-basic-view");
