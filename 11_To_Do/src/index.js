@@ -8,18 +8,10 @@ import editTaskDialogHTML from "./components/html/edit-task-modal.html";
 import removeProjectConfirmationHTML from "./components/html/comfirm-remove.html";
 
 import {
-  Project,
   saveEditedProject,
   saveProject,
-  showEditProjectModal,
 } from "./components/js/project-creation";
-import {
-  addTaskDOM,
-  saveEditedTask,
-  saveTask,
-} from "./components/js/task-creation";
-import { LocalStorage } from "./components/js/local-storage-logic";
-
+import { saveEditedTask, saveTask } from "./components/js/task-creation";
 export {
   projectDIV,
   projectDialog,
