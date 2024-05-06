@@ -24,10 +24,13 @@
 
 body {
   font-family: "Lato";
+  display: flex;
+  justify-content: center;
 }
 
 .wrapper {
   height: 100vh;
+  width: clamp(1200px, 100%, 1800px);
   display: grid;
   grid-template-columns: clamp(200px, 25%, 400px) 1fr;
 }
@@ -44,7 +47,7 @@ header {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 64px;
+  padding-top: 96px;
 }
 
 h1 {
@@ -217,6 +220,10 @@ main {
 
 .task-due {
   padding: 12px;
+}
+
+.due-until {
+  font-family: "Lato-Bold";
 }
 
 .task-priority {

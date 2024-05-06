@@ -107,11 +107,20 @@ function defaultPage() {
   projectForm.elements["project-description"].value =
     "This is the project description.";
   saveProject();
-  //defaul task
+  taskForm.elements["task-title"].value = "Task Title";
+  taskForm.elements["task-description"].value = "This is the task description";
+  taskForm.elements["task-due"].value = "2024-05-05";
+  taskForm.elements["task-priority"].value = "Low";
+  saveTask();
+  projectForm.elements["project-title"].value = "Project 2";
+  projectForm.elements["project-description"].value =
+    "This is the project description.";
+  saveProject();
+  //default task
   taskForm.elements["task-title"].value = "Task Title";
   taskForm.elements["task-description"].value = "This is the task description";
   taskForm.elements["task-due"].value = "2024-05-05";
   taskForm.elements["task-priority"].value = "Low";
   saveTask();
 }
-defaultPage();
+window.addEventListener("DOMContentLoaded", defaultPage);

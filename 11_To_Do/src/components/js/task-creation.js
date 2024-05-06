@@ -54,13 +54,14 @@ export function addTaskDOM(taskID) {
   //set color based on priority
   switch (task.priority) {
     case "Low":
-      taskContainer.element.style.backgroundColor = "#AED9E0";
+      taskContainer.element.style.borderLeft = "8px solid #5faf5f";
       break;
     case "Medium":
-      taskContainer.element.style.backgroundColor = "#D0E89E";
+      taskContainer.element.style.borderLeft = "8px solid #f7f776";
+      taskContainer.element.style.borderBottom = "8px solid #f7f776";
       break;
     case "High":
-      taskContainer.element.style.backgroundColor = "#FFA69E";
+      taskContainer.element.style.border = "8px solid #e75757";
   }
   //task-basic-view
   const basicView = new DOMCreation("div", "task-basic-view");
@@ -139,15 +140,17 @@ function updateTaskDOM(taskID) {
   }
   //set color based on priority
   const taskContainer = document.querySelector(`#Task-Container-${taskID}`);
+  taskContainer.style.border = "none";
   switch (loadedTask.priority) {
     case "Low":
-      taskContainer.style.backgroundColor = "#ADD8E6";
+      taskContainer.style.borderLeft = "8px solid #5faf5f";
       break;
     case "Medium":
-      taskContainer.style.backgroundColor = "#FFFF00";
+      taskContainer.style.borderLeft = "8px solid #f7f776";
+      taskContainer.style.borderBottom = "8px solid #f7f776";
       break;
     case "High":
-      taskContainer.style.backgroundColor = "#FF0000";
+      taskContainer.style.border = "8px solid #e75757";
   }
   //update task description
   if (document.querySelector(`#Task-Description-${taskID}`) != null) {
@@ -191,21 +194,18 @@ function addTaskCardListener(taskID) {
       description.element.setAttribute("id", `Task-Description-${taskID}`);
       description.appendTo(detailContainer.element);
       //due date
-      const dueDate = new DOMCreation(
-        "p",
-        "task-due",
-        `Due Date: ${activeTask.dueDate}`
-      );
+      const dueDate = new DOMCreation("p", "task-due", activeTask.dueDate);
       dueDate.element.setAttribute("id", `Task-Due-${taskID}`);
       dueDate.appendTo(detailContainer.element);
       //priority
-      const priority = new DOMCreation(
-        "p",
-        "task-priority",
-        `Task-Priority: ${activeTask.priority}`
-      );
-      priority.element.setAttribute("id", `Task-Priority-${taskID}`);
-      priority.appendTo(detailContainer.element);
+      // const priority = new DOMCreation(
+      //   "p",
+      //   "task-priority",
+      //   `Priority: ${activeTask.priority}`
+      // );
+      // priority.element.style.color = "#5faf5f";
+      // priority.element.setAttribute("id", `Task-Priority-${taskID}`);
+      // priority.appendTo(detailContainer.element);
     } else {
       document.querySelector(`#Task-Active-${taskID}`).remove();
     }
