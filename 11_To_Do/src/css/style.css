@@ -26,6 +26,7 @@ body {
   font-family: "Lato";
   display: flex;
   justify-content: center;
+  background-color: #f0f9ff;
 }
 
 .wrapper {
@@ -56,22 +57,36 @@ h1 {
 }
 
 .action {
+  width: 70%;
   display: flex;
   justify-content: center;
+  margin-top: 24px;
+  margin-bottom: 32px;
 }
 
 /* button */
 .create-project {
-  font-family: "Lato-Bold";
+  display: flex;
   cursor: pointer;
-  box-shadow: -1px 3px 4px #2b2a2a;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 32px;
+  margin: 16px;
+  box-shadow: 0 3px 6px #2b2a2a;
   border-radius: 10px;
-  width: 128px;
-  height: 64px;
-  margin: 48px;
+  margin-bottom: 24px;
+  padding: 24px;
+  background-color: white;
 }
 
-.create-project:hover {
+.create-project:active {
+  box-shadow: 0 1px 3px #2b2a2a;
+}
+
+.add-project-icon {
+  width: 20px;
+  height: 20px;
 }
 
 ul {
@@ -90,6 +105,7 @@ li {
 
 li:hover {
   cursor: pointer;
+  transform: scale(1.1);
 }
 
 li:active {
@@ -97,7 +113,7 @@ li:active {
 }
 
 .li-selected {
-  background-color: rgb(105, 105, 230);
+  background-color: #10b981;
 }
 
 .edit-task {
@@ -120,15 +136,23 @@ li:active {
   justify-content: center;
   max-width: 96px;
   height: 32px;
-  margin: 16px;
   box-shadow: 0 4px 6px #2b2a2a;
   border-radius: 10px;
+  margin-top: 24px;
   margin-bottom: 24px;
+  margin-left: 16px;
   padding: 24px;
+  padding-left: 16px;
+  background-color: white;
 }
 
 .add-task-btn:active {
   box-shadow: 0 1px 3px #2b2a2a;
+}
+
+.add-task-btn:hover,
+.create-project:hover {
+  transform: scale(1.1);
 }
 
 .add-task-icon {
@@ -136,7 +160,8 @@ li:active {
   height: 20px;
 }
 
-.add-task-text {
+.add-task-text,
+.add-project-text {
   padding-right: 8px;
 }
 
@@ -152,6 +177,7 @@ main {
 
 .project-container {
   display: grid;
+  margin-bottom: 24px;
 }
 
 .project-top-container {
@@ -210,16 +236,18 @@ main {
 
 .task-title {
   flex-grow: 1;
-  font-family: "Lato-Bold";
+  font-family: "Lato-Black";
 }
 
 .task-description {
-  font-family: "Lato-Italic";
+  font-family: "Lato-Bold";
   padding: 12px;
+  font-size: 24px;
 }
 
 .task-due {
   padding: 12px;
+  font-family: "Lato-Italic";
 }
 
 .due-until {

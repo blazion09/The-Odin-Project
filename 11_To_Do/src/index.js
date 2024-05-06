@@ -102,25 +102,79 @@ editTaskForm.addEventListener("submit", function () {
 
 //default project
 function defaultPage() {
-  //project details
-  projectForm.elements["project-title"].value = "Project Title";
+  //project 1
+  projectForm.elements["project-title"].value = "Home Renovation";
   projectForm.elements["project-description"].value =
-    "This is the project description.";
+    "Renovation for upcoming winter.";
   saveProject();
-  taskForm.elements["task-title"].value = "Task Title";
-  taskForm.elements["task-description"].value = "This is the task description";
-  taskForm.elements["task-due"].value = "2024-05-05";
+  for (let i = 0; i < 5; i++) {
+    console.log("loading");
+  }
+  //task 1
+  taskForm.elements["task-title"].value =
+    "Research contractors for kitchen remodel";
+  taskForm.elements["task-description"].value =
+    "Find and compare at least 3 reputable contractors who specialize in kitchen renovations. Check reviews, licenses, and portfolios.";
+  taskForm.elements["task-due"].value = "2024-08-05";
   taskForm.elements["task-priority"].value = "Low";
   saveTask();
-  projectForm.elements["project-title"].value = "Project 2";
-  projectForm.elements["project-description"].value =
-    "This is the project description.";
+  for (let i = 0; i < 5; i++) {
+    console.log("loading");
+  }
+  //task 2
+  taskForm.elements["task-title"].value = "Get quotes for new flooring";
+  taskForm.elements["task-description"].value =
+    "Contact local flooring companies and request quotes for hardwood or tile flooring for the living room and hallway (approximately 500 sq ft).";
+  taskForm.elements["task-due"].value = "2024-05-15";
+  taskForm.elements["task-priority"].value = "Medium";
+  saveTask();
+  for (let i = 0; i < 5; i++) {
+    console.log("loading");
+  }
+
+  //project 2
+  projectForm.elements["project-title"].value = "Plan Summer Vacation";
+  projectForm.elements["project-description"].value = "Japan here we go!!";
   saveProject();
-  //default task
-  taskForm.elements["task-title"].value = "Task Title";
-  taskForm.elements["task-description"].value = "This is the task description";
-  taskForm.elements["task-due"].value = "2024-05-05";
+  for (let i = 0; i < 5; i++) {
+    console.log("loading");
+  }
+  //task3
+  taskForm.elements["task-title"].value = "Book flights and accommodation";
+  taskForm.elements["task-description"].value =
+    "Once the destination is chosen, search for and book airline tickets, hotel reservations, or rental accommodations (e.g., Airbnb, vacation home) for the desired travel dates and number of travelers.";
+  taskForm.elements["task-due"].value = "2024-06-05";
+  taskForm.elements["task-priority"].value = "High";
+  saveTask();
+  for (let i = 0; i < 5; i++) {
+    console.log("loading");
+  }
+  //task4
+  taskForm.elements["task-title"].value =
+    "Research local attractions and activities";
+  taskForm.elements["task-description"].value =
+    " Explore and compile a list of top-rated tourist attractions, cultural sites, outdoor activities, and dining options in the vacation destination to create an itinerary.";
+  taskForm.elements["task-due"].value = "2024-07-05";
+  taskForm.elements["task-priority"].value = "Medium";
+  saveTask();
+  for (let i = 0; i < 5; i++) {
+    console.log("loading");
+  }
+  //task 5
+  taskForm.elements["task-title"].value = "Create a tentative itinerary";
+  taskForm.elements["task-description"].value =
+    "Based on the research, plan out a daily schedule with a balanced mix of activities, sightseeing, and relaxation time, ensuring you can cover all the desired attractions and experiences during the vacation.";
+  taskForm.elements["task-due"].value = "2024-07-05";
   taskForm.elements["task-priority"].value = "Low";
   saveTask();
+  for (let i = 0; i < 5; i++) {
+    console.log("loading");
+  }
 }
-window.addEventListener("DOMContentLoaded", defaultPage);
+defaultPage();
+
+// taskForm.elements["task-title"].value = "Task Title";
+// taskForm.elements["task-description"].value = "This is the task description";
+// taskForm.elements["task-due"].value = "2024-05-05";
+// taskForm.elements["task-priority"].value = "Low";
+// saveTask();
