@@ -4,6 +4,8 @@ import { LocalStorage } from "./local-storage-logic";
 import { formatDistanceToNowStrict } from "date-fns";
 
 import editIcon from "../../img/edit-text.png";
+import addIcon from "../../svg/add-square-svgrepo-com.svg";
+import deleteIcon from "../../svg/delete-svgrepo-com.svg";
 export class TaskDetails {
   constructor(title, description, dueDate, priorityLevel) {
     this.title = title;
@@ -14,12 +16,18 @@ export class TaskDetails {
 }
 
 export function addTaskBtn(projectID, projectContainer) {
-  const btn = new DOMCreation("button", "add-task-btn", "Add Task");
+  const btn = new DOMCreation("div", "add-task-btn");
   btn.element.addEventListener("click", function () {
     taskDialog.showModal();
     taskForm.reset();
     localStorage.setItem("selectedProject", projectID);
   });
+  const addTask = new DOMCreation("p", "add-task-text", "Task");
+  addTask.appendTo(btn.element);
+  const addIconContainer = new DOMCreation("img", "add-task-icon");
+  addIconContainer.element.src = addIcon;
+  addIconContainer.appendTo(btn.element);
+
   btn.appendTo(projectContainer);
 }
 
@@ -46,13 +54,14 @@ export function addTaskDOM(taskID) {
   //set color based on priority
   switch (task.priority) {
     case "Low":
-      taskContainer.element.style.backgroundColor = "#ADD8E6";
+      taskContainer.element.style.borderLeft = "8px solid #5faf5f";
       break;
     case "Medium":
-      taskContainer.element.style.backgroundColor = "#FFFF00";
+      taskContainer.element.style.borderLeft = "8px solid #f7f776";
+      taskContainer.element.style.borderBottom = "8px solid #f7f776";
       break;
     case "High":
-      taskContainer.element.style.backgroundColor = "#FF0000";
+      taskContainer.element.style.border = "8px solid #e75757";
   }
   //task-basic-view
   const basicView = new DOMCreation("div", "task-basic-view");
@@ -77,7 +86,8 @@ export function addTaskDOM(taskID) {
   //Add Edit Button
   addEditTaskBtn(actionContainer.element, taskID);
   //add task delete button
-  const deleteBtn = new DOMCreation("button", "task-delete-btn", "Delete Task");
+  const deleteBtn = new DOMCreation("img", "task-delete-btn");
+  deleteBtn.element.src = deleteIcon;
   deleteBtn.element.addEventListener("click", () => {
     taskContainer.element.remove();
     localStorage.removeItem(taskID);
@@ -130,15 +140,17 @@ function updateTaskDOM(taskID) {
   }
   //set color based on priority
   const taskContainer = document.querySelector(`#Task-Container-${taskID}`);
+  taskContainer.style.border = "none";
   switch (loadedTask.priority) {
     case "Low":
-      taskContainer.style.backgroundColor = "#ADD8E6";
+      taskContainer.style.borderLeft = "8px solid #5faf5f";
       break;
     case "Medium":
-      taskContainer.style.backgroundColor = "#FFFF00";
+      taskContainer.style.borderLeft = "8px solid #f7f776";
+      taskContainer.style.borderBottom = "8px solid #f7f776";
       break;
     case "High":
-      taskContainer.style.backgroundColor = "#FF0000";
+      taskContainer.style.border = "8px solid #e75757";
   }
   //update task description
   if (document.querySelector(`#Task-Description-${taskID}`) != null) {
@@ -182,21 +194,18 @@ function addTaskCardListener(taskID) {
       description.element.setAttribute("id", `Task-Description-${taskID}`);
       description.appendTo(detailContainer.element);
       //due date
-      const dueDate = new DOMCreation(
-        "p",
-        "task-due",
-        `Due Date: ${activeTask.dueDate}`
-      );
+      const dueDate = new DOMCreation("p", "task-due", activeTask.dueDate);
       dueDate.element.setAttribute("id", `Task-Due-${taskID}`);
       dueDate.appendTo(detailContainer.element);
       //priority
-      const priority = new DOMCreation(
-        "p",
-        "task-priority",
-        `Task-Priority: ${activeTask.priority}`
-      );
-      priority.element.setAttribute("id", `Task-Priority-${taskID}`);
-      priority.appendTo(detailContainer.element);
+      // const priority = new DOMCreation(
+      //   "p",
+      //   "task-priority",
+      //   `Priority: ${activeTask.priority}`
+      // );
+      // priority.element.style.color = "#5faf5f";
+      // priority.element.setAttribute("id", `Task-Priority-${taskID}`);
+      // priority.appendTo(detailContainer.element);
     } else {
       document.querySelector(`#Task-Active-${taskID}`).remove();
     }
