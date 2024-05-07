@@ -29,6 +29,24 @@ body {
   background-color: #f0f9ff;
 }
 
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 16px;
+}
+
+input,
+textarea,
+select,
+button {
+  width: 150px;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 .wrapper {
   height: 100vh;
   width: clamp(1200px, 100%, 1800px);
@@ -268,4 +286,33 @@ main {
   width: 17px;
   height: 17px;
   cursor: pointer;
+}
+
+/* Form */
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+dialog {
+  border-radius: 10px;
+  box-shadow: 0 15px 35px hsla(0, 0%, 0%, 0.2);
+  border: 1px solid #ccc;
+}
+
+label {
+  display: block;
+  font-size: 24px;
+}
+
+input {
+  margin: 16px;
+  width: 200px;
+  padding: 12px;
+}
+
+#project-description {
+  text-are: 250px;
 }
