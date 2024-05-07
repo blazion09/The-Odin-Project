@@ -26,6 +26,8 @@ export {
   projectList,
 };
 
+// localStorage.clear();
+
 document.getElementById("taskDialogHTML").innerHTML = taskDialogHTML;
 document.getElementById("projectDialogHTML").innerHTML = projectDialogHTML;
 document.getElementById("editProjectDialogHTML").innerHTML =
@@ -165,7 +167,7 @@ function defaultPage() {
   taskForm.elements["task-priority"].value = "Low";
   saveTask();
 }
-window.addEventListener("DOMContentLoaded", defaultPage);
+// window.addEventListener("DOMContentLoaded", defaultPage);
 
 // taskForm.elements["task-title"].value = "Task Title";
 // taskForm.elements["task-description"].value = "This is the task description";

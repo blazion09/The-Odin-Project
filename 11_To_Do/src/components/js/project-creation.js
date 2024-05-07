@@ -11,6 +11,7 @@ import { addTaskBtn } from "./task-creation";
 
 import editIcon from "../../img/edit-text.png";
 import deleteIcon from "../../svg/delete-svgrepo-com.svg";
+import { loadProject } from "./load-storage";
 
 export class Project {
   constructor(title, description) {
@@ -26,8 +27,14 @@ export function saveProject(projectID) {
   const project = new Project(title, description);
   projectID = Date.now();
   localStorage.setItem("selectedProject", projectID);
+  localStorage.setItem("projectList", projectID);
+  console.log(projectList);
   LocalStorage.saveItem(projectID, project);
   projectList.push(projectID);
+  const savedProject = LocalStorage.retrieveItem("savedProject");
+  savedProject.projectID = project;
+  console.log(savedProject);
+  // LocalStorage.saveItem("savedProject", savedProject);
   //Project
   addProjectDOM(projectID, project);
 }
