@@ -26,9 +26,6 @@ export {
   projectList,
 };
 
-//FOR DEVELOPMENT PROCESS
-localStorage.clear();
-//
 document.getElementById("taskDialogHTML").innerHTML = taskDialogHTML;
 document.getElementById("projectDialogHTML").innerHTML = projectDialogHTML;
 document.getElementById("editProjectDialogHTML").innerHTML =
