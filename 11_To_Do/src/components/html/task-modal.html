@@ -1,7 +1,7 @@
 <dialog class="task-dialog">
   <form method="dialog" id="task-form" action="">
     <div class="task-title-form">
-      <label for="task-title">Enter task title: </label>
+      <label for="task-title">Task:*</label>
       <input
         type="text"
         name="task-title"
@@ -11,17 +11,11 @@
       />
     </div>
     <div class="task-description-form">
-      <label for="task-description">Enter task description: </label>
-      <input
-        type="text"
-        name="task-description"
-        id="task-description"
-        required
-        value="Task Description 1"
-      />
+      <label for="task-description">Description:</label>
+      <textarea name="task-description" id="task-description"></textarea>
     </div>
     <div class="task-due">
-      <label for="task-due">Select task due date: </label>
+      <label for="task-due">Due Date:*</label>
       <input
         type="date"
         name="task-due"
@@ -31,25 +25,12 @@
       />
     </div>
     <div class="task-priority">
-      <label for="task-priority">Select task priority: </label>
+      <label for="task-priority">Priority:*</label>
       <select name="task-priority" id="task-priority">
         <option value="Low">Low</option>
         <option value="Medium">Medium</option>
         <option value="High">High</option>
       </select>
-
-      <!-- <div>
-        <input type="radio" id="low" name="task-priority" value="Low" checked />
-        <label for="low">LOW</label>
-      </div>
-      <div>
-        <input type="radio" id="medium" name="task-priority" value="Medium" />
-        <label for="medium">MEDIUM</label>
-      </div>
-      <div>
-        <input type="radio" id="high" name="task-priority" value="High" />
-        <label for="high">HIGH</label>
-      </div> -->
     </div>
     <button type="submit">Add Task</button>
   </form>
