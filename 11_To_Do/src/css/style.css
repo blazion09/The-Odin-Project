@@ -47,6 +47,20 @@ button {
   box-sizing: border-box;
 }
 
+button {
+  padding: 8px;
+  background-color: white;
+  box-shadow: -1px 3px 4px #2b2a2a;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #0ea5e9;
+  margin: 8px;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
 .wrapper {
   height: 100vh;
   width: clamp(1200px, 100%, 1800px);
@@ -215,6 +229,23 @@ main {
   color: rgb(80, 79, 79);
 }
 
+p.toBeRemove {
+  margin: 16px;
+}
+
+#toBeRemove {
+  font-family: "Lato-Bold";
+}
+
+#delete-project-confirmation {
+  padding: 32px;
+  box-shadow: 0px 6px 20px 0px hsl(225, 87%, 12%);
+}
+
+#cancelDelete {
+  background-color: #f43f5e;
+}
+
 .edit-project {
   margin-left: 32px;
   margin-right: 8px;
@@ -325,16 +356,6 @@ select {
   border-radius: 5px;
   box-shadow: 0px 3px 1px 1px #7f8990;
   width: 100px;
-}
-
-select option[value="Low"] {
-  background-color: #5faf5f;
-}
-select option[value="Medium"] {
-  background-color: #f7f776;
-}
-select option[value="High"] {
-  background-color: #e75757;
 }
 
 textarea {
