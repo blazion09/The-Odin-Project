@@ -31,10 +31,9 @@ export function saveProject(projectID) {
   console.log(projectList);
   LocalStorage.saveItem(projectID, project);
   projectList.push(projectID);
-  const savedProject = LocalStorage.retrieveItem("savedProject");
-  savedProject.projectID = project;
-  console.log(savedProject);
-  // LocalStorage.saveItem("savedProject", savedProject);
+  let savedProject = LocalStorage.retrieveItem("savedProject");
+  savedProject[projectID] = project;
+  LocalStorage.saveItem("savedProject", savedProject);
   //Project
   addProjectDOM(projectID, project);
 }

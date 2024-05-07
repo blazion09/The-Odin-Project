@@ -99,6 +99,10 @@ editTaskForm.addEventListener("submit", function () {
   saveEditedTask();
 });
 
+if (localStorage.getItem("savedProject") == null) {
+  localStorage.setItem("savedProject", "{}");
+}
+
 //default project
 function defaultPage() {
   //project 1
