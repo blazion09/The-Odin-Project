@@ -29,6 +29,38 @@ body {
   background-color: #f0f9ff;
 }
 
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 16px;
+}
+
+input,
+textarea,
+select,
+button {
+  width: 150px;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 8px;
+  background-color: white;
+  box-shadow: -1px 3px 4px #2b2a2a;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #0ea5e9;
+  margin: 8px;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
 .wrapper {
   height: 100vh;
   width: clamp(1200px, 100%, 1800px);
@@ -197,6 +229,23 @@ main {
   color: rgb(80, 79, 79);
 }
 
+p.toBeRemove {
+  margin: 16px;
+}
+
+#toBeRemove {
+  font-family: "Lato-Bold";
+}
+
+#delete-project-confirmation {
+  padding: 32px;
+  box-shadow: 0px 6px 20px 0px hsl(225, 87%, 12%);
+}
+
+#cancelDelete {
+  background-color: #f43f5e;
+}
+
 .edit-project {
   margin-left: 32px;
   margin-right: 8px;
@@ -246,7 +295,6 @@ main {
 }
 
 .task-due {
-  padding: 12px;
   font-family: "Lato-Italic";
 }
 
@@ -255,7 +303,8 @@ main {
 }
 
 .task-priority {
-  padding: 12px;
+  display: flex;
+  margin: 12px;
 }
 
 .task-section {
@@ -268,4 +317,52 @@ main {
   width: 17px;
   height: 17px;
   cursor: pointer;
+}
+
+/* Form */
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 16px;
+}
+
+dialog {
+  border-radius: 10px;
+  box-shadow: 0 15px 35px hsla(0, 0%, 0%, 0.2);
+  border: 1px solid #ccc;
+}
+
+.task-dialog,
+.edit-task-dialog {
+  min-width: 400px;
+}
+
+label {
+  display: block;
+  font-size: 20px;
+  margin: 12px;
+}
+
+input,
+textarea {
+  min-width: 350px;
+  padding: 12px;
+  border-radius: 5px;
+  box-shadow: inset 0 2px 1px 0px #7f8990;
+}
+
+select {
+  border-radius: 5px;
+  box-shadow: 0px 3px 1px 1px #7f8990;
+  width: 100px;
+}
+
+textarea {
+  height: 200px;
+}
+
+input#project-description {
+  height: 250px;
 }

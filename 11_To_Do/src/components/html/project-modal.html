@@ -1,17 +1,12 @@
 <dialog class="project-dialog">
   <form method="dialog" id="project-form" action="">
     <div class="project-title">
-      <label for="project-title">Enter project title: </label>
+      <label for="project-title">Project Title:* </label>
       <input type="text" name="project-title" id="project-title" required />
     </div>
     <div class="project-description">
-      <label for="project-description">Enter project description: </label>
-      <input
-        type="text"
-        name="project-description"
-        id="project-description"
-        required
-      />
+      <label for="project-description">Project Description: </label>
+      <textarea name="project-description" id="project-description"></textarea>
     </div>
     <button type="submit">Create Project</button>
   </form>
