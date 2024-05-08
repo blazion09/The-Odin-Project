@@ -61,6 +61,43 @@ editProjectForm.addEventListener("submit", function () {
   saveEditedProject();
 });
 
+function showFirstProject() {
+  if (projectList.length > 0) {
+    if (document.querySelector(".li-selected") != null) {
+      const activeProject = document.querySelector(".li-selected");
+      activeProject.classList.remove("li-selected");
+    }
+    const projectTop = projectList[0];
+    projectList.forEach((project) => {
+      const allProjectContainer = document.querySelector(`.Project-${project}`);
+      if (allProjectContainer == null) {
+        return;
+      }
+      allProjectContainer.style.display = "none";
+      const activeContainer = document.querySelector(`.Project-${projectTop}`);
+      activeContainer.style.display = "block";
+      const list = document.querySelector(`.List-${projectTop}`);
+      list.classList.add("li-selected");
+    });
+    //update projectDOM
+    projectList.forEach((project) => {
+      const allProjectContainer = document.querySelector(`.Project-${project}`);
+      if (allProjectContainer == null) {
+        return;
+      }
+      allProjectContainer.style.display = "none";
+      const activeContainer = document.querySelector(`.Project-${projectTop}`);
+      activeContainer.style.display = "block";
+      if (document.querySelector(".li-selected") != null) {
+        const activeProject = document.querySelector(".li-selected");
+        activeProject.classList.remove("li-selected");
+      }
+      const list = document.querySelector(`.List-${projectTop}`);
+      list.classList.add("li-selected");
+    });
+  }
+}
+
 //Delete Project
 const yesDelete = document.querySelector("#yesDelete");
 yesDelete.addEventListener("click", () => {
@@ -74,12 +111,13 @@ yesDelete.addEventListener("click", () => {
   const savedProject = LocalStorage.retrieveItem("savedProject");
   delete savedProject[projectID];
   LocalStorage.saveItem("savedProject", savedProject);
-
+  showFirstProject();
   const confirmationDialog = document.querySelector(
     "#delete-project-confirmation"
   );
   confirmationDialog.close();
 });
+
 const cancelDelete = document.querySelector("#cancelDelete");
 cancelDelete.addEventListener("click", () => {
   const confirmationDialog = document.querySelector(
@@ -173,14 +211,14 @@ function defaultPage() {
   saveTask();
 }
 
-// localStorage.clear();
-
 window.addEventListener("DOMContentLoaded", function () {
   if (localStorage.getItem("savedProject") == null) {
     localStorage.setItem("savedProject", "{}");
     defaultPage();
+    showFirstProject();
   } else {
     loadProject();
     loadTask();
+    showFirstProject();
   }
 });
