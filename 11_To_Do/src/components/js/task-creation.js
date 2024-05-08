@@ -42,9 +42,11 @@ export function saveTask() {
   LocalStorage.saveItem(taskID, task);
   //save task id to project object local storage {Project ID: {title, desc, task{} }}
   const projectID = localStorage.getItem("selectedProject");
-  const selectedProject = LocalStorage.retrieveItem("savedProject");
-  selectedProject[projectID].task.push(taskID);
-  LocalStorage.saveItem("savedProject", selectedProject);
+  const savedProject = LocalStorage.retrieveItem("savedProject");
+  const tasksArray = savedProject[projectID].task;
+  tasksArray.push(taskID);
+  savedProject[projectID].task = tasksArray;
+  LocalStorage.saveItem("savedProject", savedProject);
 
   addTaskDOM(taskID);
 }
