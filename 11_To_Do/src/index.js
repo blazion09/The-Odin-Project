@@ -8,13 +8,12 @@ import editTaskDialogHTML from "./components/html/edit-task-modal.html";
 import removeProjectConfirmationHTML from "./components/html/comfirm-remove.html";
 
 import {
-  Project,
   saveEditedProject,
   saveProject,
 } from "./components/js/project-creation";
 import { saveEditedTask, saveTask } from "./components/js/task-creation";
 import { LocalStorage } from "./components/js/local-storage-logic";
-import { loadProject } from "./components/js/load-storage";
+import { loadProject, loadTask } from "./components/js/load-storage";
 
 export {
   projectDIV,
@@ -180,7 +179,9 @@ window.addEventListener("DOMContentLoaded", function () {
   if (localStorage.getItem("savedProject") == null) {
     localStorage.setItem("savedProject", "{}");
     defaultPage();
+    // loadTask();
   } else {
     loadProject();
+    loadTask();
   }
 });

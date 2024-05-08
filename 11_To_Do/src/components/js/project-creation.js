@@ -11,7 +11,6 @@ import { addTaskBtn } from "./task-creation";
 
 import editIcon from "../../img/edit-text.png";
 import deleteIcon from "../../svg/delete-svgrepo-com.svg";
-import { loadProject } from "./load-storage";
 
 export class Project {
   constructor(title, description) {

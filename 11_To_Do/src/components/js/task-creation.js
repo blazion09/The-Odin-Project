@@ -97,6 +97,13 @@ export function addTaskDOM(taskID) {
   deleteBtn.element.addEventListener("click", () => {
     taskContainer.element.remove();
     localStorage.removeItem(taskID);
+    //remove task from savedProject local storage
+    const savedProject = LocalStorage.retrieveItem("savedProject");
+    let taskArray = savedProject[projectID].task;
+    taskArray = taskArray.filter((taskToRemove) => taskToRemove !== taskID);
+    savedProject[projectID].task = taskArray;
+    console.log(taskArray);
+    // LocalStorage.saveItem("savedProject", savedProject);
   });
   deleteBtn.appendTo(actionContainer.element);
   addTaskCardListener(taskID);
