@@ -16,7 +16,8 @@ export class Project {
   constructor(title, description) {
     this.title = title;
     this.description = description;
-    this.task = {};
+    this.task = [];
+    this.projectID = Date.now();
   }
 }
 
@@ -24,15 +25,21 @@ export function saveProject(projectID) {
   const title = projectForm.elements["project-title"].value;
   const description = projectForm.elements["project-description"].value;
   const project = new Project(title, description);
-  projectID = Date.now();
+  projectID = project.projectID;
   localStorage.setItem("selectedProject", projectID);
+  localStorage.setItem("projectList", projectID);
+  //add id to project object
   LocalStorage.saveItem(projectID, project);
   projectList.push(projectID);
+  //update project to local storage
+  const savedProject = LocalStorage.retrieveItem("savedProject");
+  savedProject[projectID] = project;
+  LocalStorage.saveItem("savedProject", savedProject);
   //Project
   addProjectDOM(projectID, project);
 }
 
-function addProjectDOM(projectID, project) {
+export function addProjectDOM(projectID, project) {
   const wrapper = new DOMCreation("div", `Project-${projectID}`);
   wrapper.appendTo(projectDIV);
   const projectContainer = new DOMCreation("div", "project-container");
@@ -151,6 +158,10 @@ export function saveEditedProject() {
   const list = document.querySelector(`.List-${projectID}`);
   list.textContent = editProjectForm.elements["project-title"].value;
   LocalStorage.saveItem(projectID, loadedProject);
+  //update savedProject local storage
+  const savedProject = LocalStorage.retrieveItem("savedProject");
+  savedProject[projectID] = loadedProject;
+  LocalStorage.saveItem("savedProject", savedProject);
 
   updateProjectDOM(projectID);
 }

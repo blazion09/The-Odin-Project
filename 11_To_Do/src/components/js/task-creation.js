@@ -7,11 +7,12 @@ import editIcon from "../../img/edit-text.png";
 import addIcon from "../../svg/add-square-svgrepo-com.svg";
 import deleteIcon from "../../svg/delete-svgrepo-com.svg";
 export class TaskDetails {
-  constructor(title, description, dueDate, priorityLevel) {
+  constructor(title, description, dueDate, priorityLevel, projectID) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priorityLevel;
+    this.projectID = projectID;
   }
 }
 
@@ -38,14 +39,28 @@ export function saveTask() {
   const dueDate = taskForm.elements["task-due"].value;
   const priorityLevel = taskForm.elements["task-priority"].value;
   const taskID = Date.now();
-  const task = new TaskDetails(title, description, dueDate, priorityLevel);
+  const projectID = localStorage.getItem("selectedProject");
+  const task = new TaskDetails(
+    title,
+    description,
+    dueDate,
+    priorityLevel,
+    projectID
+  );
   LocalStorage.saveItem(taskID, task);
+  //save task id to project object local storage {Project ID: {title, desc, task{} }}
+  const savedProject = LocalStorage.retrieveItem("savedProject");
+  const tasksArray = savedProject[projectID].task;
+  tasksArray.push(taskID);
+  savedProject[projectID].task = tasksArray;
+  LocalStorage.saveItem("savedProject", savedProject);
+
   addTaskDOM(taskID);
 }
 
 export function addTaskDOM(taskID) {
-  const projectID = localStorage.getItem("selectedProject");
   const task = LocalStorage.retrieveItem(taskID);
+  const projectID = task.projectID;
   //container
   const taskContainer = new DOMCreation("div", "task-container");
   taskContainer.element.setAttribute("id", `Task-Container-${taskID}`);
@@ -54,14 +69,14 @@ export function addTaskDOM(taskID) {
   //set color based on priority
   switch (task.priority) {
     case "Low":
-      taskContainer.element.style.borderLeft = "8px solid #5faf5f";
+      taskContainer.element.style.borderLeft = "8px inset #86EFAC";
       break;
     case "Medium":
-      taskContainer.element.style.borderLeft = "8px solid #f7f776";
-      taskContainer.element.style.borderBottom = "8px solid #f7f776";
+      taskContainer.element.style.borderLeft = "8px inset #FDE047";
+      taskContainer.element.style.borderBottom = "8px inset #FDE047";
       break;
     case "High":
-      taskContainer.element.style.border = "8px solid #e75757";
+      taskContainer.element.style.border = "8px inset #DC2626";
   }
   //task-basic-view
   const basicView = new DOMCreation("div", "task-basic-view");
@@ -85,13 +100,23 @@ export function addTaskDOM(taskID) {
   dueDOM.appendTo(actionContainer.element);
   //Add Edit Button
   addEditTaskBtn(actionContainer.element, taskID);
+
   //add task delete button
   const deleteBtn = new DOMCreation("img", "task-delete-btn");
   deleteBtn.element.src = deleteIcon;
   deleteBtn.element.addEventListener("click", () => {
     taskContainer.element.remove();
+    //remove task from savedProject local storage
+    const savedProject = LocalStorage.retrieveItem("savedProject");
+    const taskArray = savedProject[projectID].task;
+    const removedTaskArray = taskArray.filter(
+      (taskToRemove) => taskToRemove !== taskID
+    );
+    savedProject[projectID].task = removedTaskArray;
+    LocalStorage.saveItem("savedProject", savedProject);
     localStorage.removeItem(taskID);
   });
+
   deleteBtn.appendTo(actionContainer.element);
   addTaskCardListener(taskID);
 }
@@ -143,14 +168,14 @@ function updateTaskDOM(taskID) {
   taskContainer.style.border = "none";
   switch (loadedTask.priority) {
     case "Low":
-      taskContainer.style.borderLeft = "8px solid #5faf5f";
+      taskContainer.style.borderLeft = "8px inset #86EFAC";
       break;
     case "Medium":
-      taskContainer.style.borderLeft = "8px solid #f7f776";
-      taskContainer.style.borderBottom = "8px solid #f7f776";
+      taskContainer.style.borderLeft = "8px inset #FDE047";
+      taskContainer.style.borderBottom = "8px inset #FDE047";
       break;
     case "High":
-      taskContainer.style.border = "8px solid #e75757";
+      taskContainer.style.border = "8px inset #DC2626";
   }
   //update task description
   if (document.querySelector(`#Task-Description-${taskID}`) != null) {

@@ -12,6 +12,8 @@ import {
   saveProject,
 } from "./components/js/project-creation";
 import { saveEditedTask, saveTask } from "./components/js/task-creation";
+import { LocalStorage } from "./components/js/local-storage-logic";
+import { loadProject, loadTask } from "./components/js/load-storage";
 
 export {
   projectDIV,
@@ -59,6 +61,43 @@ editProjectForm.addEventListener("submit", function () {
   saveEditedProject();
 });
 
+function showFirstProject() {
+  if (projectList.length > 0) {
+    if (document.querySelector(".li-selected") != null) {
+      const activeProject = document.querySelector(".li-selected");
+      activeProject.classList.remove("li-selected");
+    }
+    const projectTop = projectList[0];
+    projectList.forEach((project) => {
+      const allProjectContainer = document.querySelector(`.Project-${project}`);
+      if (allProjectContainer == null) {
+        return;
+      }
+      allProjectContainer.style.display = "none";
+      const activeContainer = document.querySelector(`.Project-${projectTop}`);
+      activeContainer.style.display = "block";
+      const list = document.querySelector(`.List-${projectTop}`);
+      list.classList.add("li-selected");
+    });
+    //update projectDOM
+    projectList.forEach((project) => {
+      const allProjectContainer = document.querySelector(`.Project-${project}`);
+      if (allProjectContainer == null) {
+        return;
+      }
+      allProjectContainer.style.display = "none";
+      const activeContainer = document.querySelector(`.Project-${projectTop}`);
+      activeContainer.style.display = "block";
+      if (document.querySelector(".li-selected") != null) {
+        const activeProject = document.querySelector(".li-selected");
+        activeProject.classList.remove("li-selected");
+      }
+      const list = document.querySelector(`.List-${projectTop}`);
+      list.classList.add("li-selected");
+    });
+  }
+}
+
 //Delete Project
 const yesDelete = document.querySelector("#yesDelete");
 yesDelete.addEventListener("click", () => {
@@ -68,11 +107,17 @@ yesDelete.addEventListener("click", () => {
   const navLi = document.querySelector(`.List-${projectID}`);
   navLi.remove();
   localStorage.removeItem(projectID);
+  //update
+  const savedProject = LocalStorage.retrieveItem("savedProject");
+  delete savedProject[projectID];
+  LocalStorage.saveItem("savedProject", savedProject);
+  showFirstProject();
   const confirmationDialog = document.querySelector(
     "#delete-project-confirmation"
   );
   confirmationDialog.close();
 });
+
 const cancelDelete = document.querySelector("#cancelDelete");
 cancelDelete.addEventListener("click", () => {
   const confirmationDialog = document.querySelector(
@@ -104,7 +149,7 @@ function defaultPage() {
   projectForm.elements["project-description"].value =
     "Renovation for upcoming winter.";
   saveProject();
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 99; i++) {
     console.log("loading");
   }
   //task 1
@@ -115,7 +160,7 @@ function defaultPage() {
   taskForm.elements["task-due"].value = "2024-08-05";
   taskForm.elements["task-priority"].value = "Low";
   saveTask();
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 99; i++) {
     console.log("loading");
   }
   //task 2
@@ -125,7 +170,7 @@ function defaultPage() {
   taskForm.elements["task-due"].value = "2024-05-15";
   taskForm.elements["task-priority"].value = "Medium";
   saveTask();
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 99; i++) {
     console.log("loading");
   }
 
@@ -133,7 +178,7 @@ function defaultPage() {
   projectForm.elements["project-title"].value = "Plan Summer Vacation";
   projectForm.elements["project-description"].value = "Japan here we go!!";
   saveProject();
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 99; i++) {
     console.log("loading");
   }
   //task3
@@ -143,7 +188,7 @@ function defaultPage() {
   taskForm.elements["task-due"].value = "2024-06-05";
   taskForm.elements["task-priority"].value = "High";
   saveTask();
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 99; i++) {
     console.log("loading");
   }
   //task4
@@ -154,7 +199,7 @@ function defaultPage() {
   taskForm.elements["task-due"].value = "2024-07-05";
   taskForm.elements["task-priority"].value = "Medium";
   saveTask();
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 99; i++) {
     console.log("loading");
   }
   //task 5
@@ -165,10 +210,15 @@ function defaultPage() {
   taskForm.elements["task-priority"].value = "Low";
   saveTask();
 }
-window.addEventListener("DOMContentLoaded", defaultPage);
 
-// taskForm.elements["task-title"].value = "Task Title";
-// taskForm.elements["task-description"].value = "This is the task description";
-// taskForm.elements["task-due"].value = "2024-05-05";
-// taskForm.elements["task-priority"].value = "Low";
-// saveTask();
+window.addEventListener("DOMContentLoaded", function () {
+  if (localStorage.getItem("savedProject") == null) {
+    localStorage.setItem("savedProject", "{}");
+    defaultPage();
+    showFirstProject();
+  } else {
+    loadProject();
+    loadTask();
+    showFirstProject();
+  }
+});
