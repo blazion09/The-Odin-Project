@@ -8,10 +8,13 @@ import editTaskDialogHTML from "./components/html/edit-task-modal.html";
 import removeProjectConfirmationHTML from "./components/html/comfirm-remove.html";
 
 import {
+  Project,
   saveEditedProject,
   saveProject,
 } from "./components/js/project-creation";
 import { saveEditedTask, saveTask } from "./components/js/task-creation";
+import { LocalStorage } from "./components/js/local-storage-logic";
+import { loadProject } from "./components/js/load-storage";
 
 export {
   projectDIV,
@@ -25,8 +28,6 @@ export {
   editTaskForm,
   projectList,
 };
-
-// localStorage.clear();
 
 document.getElementById("taskDialogHTML").innerHTML = taskDialogHTML;
 document.getElementById("projectDialogHTML").innerHTML = projectDialogHTML;
@@ -99,10 +100,6 @@ editTaskForm.addEventListener("submit", function () {
   saveEditedTask();
 });
 
-if (localStorage.getItem("savedProject") == null) {
-  localStorage.setItem("savedProject", "{}");
-}
-
 //default project
 function defaultPage() {
   //project 1
@@ -171,10 +168,14 @@ function defaultPage() {
   taskForm.elements["task-priority"].value = "Low";
   saveTask();
 }
-// window.addEventListener("DOMContentLoaded", defaultPage);
 
-// taskForm.elements["task-title"].value = "Task Title";
-// taskForm.elements["task-description"].value = "This is the task description";
-// taskForm.elements["task-due"].value = "2024-05-05";
-// taskForm.elements["task-priority"].value = "Low";
-// saveTask();
+// localStorage.clear();
+
+window.addEventListener("DOMContentLoaded", function () {
+  if (localStorage.getItem("savedProject") == null) {
+    localStorage.setItem("savedProject", "{}");
+    defaultPage();
+  } else {
+    loadProject();
+  }
+});

@@ -40,6 +40,12 @@ export function saveTask() {
   const taskID = Date.now();
   const task = new TaskDetails(title, description, dueDate, priorityLevel);
   LocalStorage.saveItem(taskID, task);
+  //save task id to project object local storage {Project ID: {title, desc, task{} }}
+  const projectID = localStorage.getItem("selectedProject");
+  const selectedProject = LocalStorage.retrieveItem("savedProject");
+  selectedProject[projectID].task.push(taskID);
+  LocalStorage.saveItem("savedProject", selectedProject);
+
   addTaskDOM(taskID);
 }
 
