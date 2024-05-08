@@ -37,7 +37,7 @@ document.getElementById("removeProjectConfirmationHTML").innerHTML =
   removeProjectConfirmationHTML;
 
 const projectDIV = document.querySelector(".project");
-const projectList = [];
+let projectList = [];
 
 //Create Project
 const createProjectBtn = document.querySelector(".create-project");
@@ -75,6 +75,9 @@ function showFirstProject() {
       }
       allProjectContainer.style.display = "none";
       const activeContainer = document.querySelector(`.Project-${projectTop}`);
+      if (activeContainer == null) {
+        return;
+      }
       activeContainer.style.display = "block";
       const list = document.querySelector(`.List-${projectTop}`);
       list.classList.add("li-selected");
@@ -87,6 +90,9 @@ function showFirstProject() {
       }
       allProjectContainer.style.display = "none";
       const activeContainer = document.querySelector(`.Project-${projectTop}`);
+      if (activeContainer == null) {
+        return;
+      }
       activeContainer.style.display = "block";
       if (document.querySelector(".li-selected") != null) {
         const activeProject = document.querySelector(".li-selected");
@@ -111,6 +117,11 @@ yesDelete.addEventListener("click", () => {
   const savedProject = LocalStorage.retrieveItem("savedProject");
   delete savedProject[projectID];
   LocalStorage.saveItem("savedProject", savedProject);
+  //update project list
+  projectList = projectList.filter(
+    (projectToRemove) => projectToRemove !== Number(projectID)
+  );
+  //show first project
   showFirstProject();
   const confirmationDialog = document.querySelector(
     "#delete-project-confirmation"
