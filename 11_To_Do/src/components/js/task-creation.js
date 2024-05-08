@@ -7,11 +7,12 @@ import editIcon from "../../img/edit-text.png";
 import addIcon from "../../svg/add-square-svgrepo-com.svg";
 import deleteIcon from "../../svg/delete-svgrepo-com.svg";
 export class TaskDetails {
-  constructor(title, description, dueDate, priorityLevel) {
+  constructor(title, description, dueDate, priorityLevel, projectID) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priorityLevel;
+    this.projectID = projectID;
   }
 }
 
@@ -38,10 +39,16 @@ export function saveTask() {
   const dueDate = taskForm.elements["task-due"].value;
   const priorityLevel = taskForm.elements["task-priority"].value;
   const taskID = Date.now();
-  const task = new TaskDetails(title, description, dueDate, priorityLevel);
+  const projectID = localStorage.getItem("selectedProject");
+  const task = new TaskDetails(
+    title,
+    description,
+    dueDate,
+    priorityLevel,
+    projectID
+  );
   LocalStorage.saveItem(taskID, task);
   //save task id to project object local storage {Project ID: {title, desc, task{} }}
-  const projectID = localStorage.getItem("selectedProject");
   const savedProject = LocalStorage.retrieveItem("savedProject");
   const tasksArray = savedProject[projectID].task;
   tasksArray.push(taskID);
@@ -52,8 +59,8 @@ export function saveTask() {
 }
 
 export function addTaskDOM(taskID) {
-  const projectID = localStorage.getItem("selectedProject");
   const task = LocalStorage.retrieveItem(taskID);
+  const projectID = task.projectID;
   //container
   const taskContainer = new DOMCreation("div", "task-container");
   taskContainer.element.setAttribute("id", `Task-Container-${taskID}`);
@@ -93,20 +100,23 @@ export function addTaskDOM(taskID) {
   dueDOM.appendTo(actionContainer.element);
   //Add Edit Button
   addEditTaskBtn(actionContainer.element, taskID);
+
   //add task delete button
   const deleteBtn = new DOMCreation("img", "task-delete-btn");
   deleteBtn.element.src = deleteIcon;
   deleteBtn.element.addEventListener("click", () => {
     taskContainer.element.remove();
-    localStorage.removeItem(taskID);
     //remove task from savedProject local storage
     const savedProject = LocalStorage.retrieveItem("savedProject");
-    let taskArray = savedProject[projectID].task;
-    taskArray = taskArray.filter((taskToRemove) => taskToRemove !== taskID);
-    savedProject[projectID].task = taskArray;
-    console.log(taskArray);
-    // LocalStorage.saveItem("savedProject", savedProject);
+    const taskArray = savedProject[projectID].task;
+    const removedTaskArray = taskArray.filter(
+      (taskToRemove) => taskToRemove !== taskID
+    );
+    savedProject[projectID].task = removedTaskArray;
+    LocalStorage.saveItem("savedProject", savedProject);
+    localStorage.removeItem(taskID);
   });
+
   deleteBtn.appendTo(actionContainer.element);
   addTaskCardListener(taskID);
 }

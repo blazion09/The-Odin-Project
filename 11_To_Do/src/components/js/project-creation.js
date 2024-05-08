@@ -17,6 +17,7 @@ export class Project {
     this.title = title;
     this.description = description;
     this.task = [];
+    this.projectID = Date.now();
   }
 }
 
@@ -24,7 +25,7 @@ export function saveProject(projectID) {
   const title = projectForm.elements["project-title"].value;
   const description = projectForm.elements["project-description"].value;
   const project = new Project(title, description);
-  projectID = Date.now();
+  projectID = project.projectID;
   localStorage.setItem("selectedProject", projectID);
   localStorage.setItem("projectList", projectID);
   //add id to project object

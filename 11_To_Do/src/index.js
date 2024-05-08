@@ -179,7 +179,6 @@ window.addEventListener("DOMContentLoaded", function () {
   if (localStorage.getItem("savedProject") == null) {
     localStorage.setItem("savedProject", "{}");
     defaultPage();
-    // loadTask();
   } else {
     loadProject();
     loadTask();
