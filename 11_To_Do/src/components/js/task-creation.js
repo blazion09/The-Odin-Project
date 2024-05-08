@@ -69,14 +69,14 @@ export function addTaskDOM(taskID) {
   //set color based on priority
   switch (task.priority) {
     case "Low":
-      taskContainer.element.style.borderLeft = "8px solid #5faf5f";
+      taskContainer.element.style.borderLeft = "8px inset #86EFAC";
       break;
     case "Medium":
-      taskContainer.element.style.borderLeft = "8px solid #f7f776";
-      taskContainer.element.style.borderBottom = "8px solid #f7f776";
+      taskContainer.element.style.borderLeft = "8px inset #FDE047";
+      taskContainer.element.style.borderBottom = "8px inset #FDE047";
       break;
     case "High":
-      taskContainer.element.style.border = "8px solid #e75757";
+      taskContainer.element.style.border = "8px inset #DC2626";
   }
   //task-basic-view
   const basicView = new DOMCreation("div", "task-basic-view");
@@ -168,14 +168,14 @@ function updateTaskDOM(taskID) {
   taskContainer.style.border = "none";
   switch (loadedTask.priority) {
     case "Low":
-      taskContainer.style.borderLeft = "8px solid #5faf5f";
+      taskContainer.style.borderLeft = "8px inset #86EFAC";
       break;
     case "Medium":
-      taskContainer.style.borderLeft = "8px solid #f7f776";
-      taskContainer.style.borderBottom = "8px solid #f7f776";
+      taskContainer.style.borderLeft = "8px inset #FDE047";
+      taskContainer.style.borderBottom = "8px inset #FDE047";
       break;
     case "High":
-      taskContainer.style.border = "8px solid #e75757";
+      taskContainer.style.border = "8px inset #DC2626";
   }
   //update task description
   if (document.querySelector(`#Task-Description-${taskID}`) != null) {

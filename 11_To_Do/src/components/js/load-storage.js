@@ -16,7 +16,6 @@ export function loadTask() {
   for (let projectID in savedProject) {
     const tasksArray = savedProject[projectID].task;
     if (tasksArray.length > 0) {
-      // localStorage.setItem("selectedProject", projectID);
       tasksArray.forEach((task) => {
         addTaskDOM(task);
       });
