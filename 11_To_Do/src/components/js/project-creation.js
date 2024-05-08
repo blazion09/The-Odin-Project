@@ -158,6 +158,10 @@ export function saveEditedProject() {
   const list = document.querySelector(`.List-${projectID}`);
   list.textContent = editProjectForm.elements["project-title"].value;
   LocalStorage.saveItem(projectID, loadedProject);
+  //update savedProject local storage
+  const savedProject = LocalStorage.retrieveItem("savedProject");
+  savedProject[projectID] = loadedProject;
+  LocalStorage.saveItem("savedProject", savedProject);
 
   updateProjectDOM(projectID);
 }

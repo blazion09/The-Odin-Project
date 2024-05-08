@@ -6,5 +6,6 @@ export function loadProject() {
   const savedProject = LocalStorage.retrieveItem("savedProject");
   for (let key in savedProject) {
     addProjectDOM(key, savedProject[key]);
+    projectList.push(key);
   }
 }

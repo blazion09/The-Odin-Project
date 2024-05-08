@@ -71,6 +71,11 @@ yesDelete.addEventListener("click", () => {
   const navLi = document.querySelector(`.List-${projectID}`);
   navLi.remove();
   localStorage.removeItem(projectID);
+  //update
+  const savedProject = LocalStorage.retrieveItem("savedProject");
+  delete savedProject[projectID];
+  LocalStorage.saveItem("savedProject", savedProject);
+
   const confirmationDialog = document.querySelector(
     "#delete-project-confirmation"
   );
