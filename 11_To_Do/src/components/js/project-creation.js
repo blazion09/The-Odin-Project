@@ -26,6 +26,11 @@ export function saveProject(projectID) {
   const description = projectForm.elements["project-description"].value;
   const project = new Project(title, description);
   projectID = project.projectID;
+  //check local storage for duplicated projectID
+  if (localStorage.getItem(projectID) != null) {
+    projectID = Date.now() + Math.floor(Math.random() * 9999);
+  }
+  console.log(projectID);
   localStorage.setItem("selectedProject", projectID);
   localStorage.setItem("projectList", projectID);
   //add id to project object
