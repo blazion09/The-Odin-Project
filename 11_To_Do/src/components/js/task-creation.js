@@ -38,7 +38,7 @@ export function saveTask() {
   const description = taskForm.elements["task-description"].value;
   const dueDate = taskForm.elements["task-due"].value;
   const priorityLevel = taskForm.elements["task-priority"].value;
-  const taskID = Date.now();
+  let taskID = Date.now();
   const projectID = localStorage.getItem("selectedProject");
   const task = new TaskDetails(
     title,
@@ -47,6 +47,10 @@ export function saveTask() {
     priorityLevel,
     projectID
   );
+  //check local storage for duplicated taskID
+  if (localStorage.getItem(taskID) != null) {
+    taskID = Date.now() + Math.floor(Math.random() * 9999);
+  }
   LocalStorage.saveItem(taskID, task);
   //save task id to project object local storage {Project ID: {title, desc, task{} }}
   const savedProject = LocalStorage.retrieveItem("savedProject");
